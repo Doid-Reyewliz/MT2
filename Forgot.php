@@ -21,7 +21,7 @@
                     <?php if (isset($_GET['error'])) { ?>
                         <span class="error"><?php echo $_GET['error']; ?></span>
                     <?php } ?>
-                    <form action="f.php" method="POST">
+                    <form action="action/f.php" method="POST">
                         <input id="log" name="log" type="email" placeholder="Email">
                         <select name="quest" id="quest">
                             <option value="" disabled selected>Choose Question</option>
