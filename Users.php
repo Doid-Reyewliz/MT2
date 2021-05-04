@@ -109,6 +109,7 @@ $(document).ready(function(){
         var el = this;
         var deleteid = $(this).data('id');
         var confirmalert = confirm("Are you sure?");
+
         if (confirmalert == true) {
         $.ajax({
             url: 'action/del.php',
