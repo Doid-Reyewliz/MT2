@@ -45,9 +45,7 @@ if ($_SESSION['role'] == 2) {
             <input name="search" class="search" type="text" autocomplete="off" placeholder=" Search">
     </div>
 
-    <div class="products">
-
-    </div>
+    <div class="products"></div>
 
 </article>
 <div id="snackbar">Added To Cart</div>

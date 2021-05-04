@@ -7,10 +7,10 @@ if (isset($_POST['log']) && isset($_POST['pass'])) {
 	$pass = $_POST['pass'];
 
 	if (empty($log)) {
-		header("Location: index.php?error=Login is required");
+		header("Location: ../index.php?error=Login is required");
 		exit();
 	} else if (empty($pass)) {
-		header("Location: index.php?error=Password is required");
+		header("Location: ../index.php?error=Password is required");
 		exit();
 	} else {
 		$db = new Dbase();
@@ -57,11 +57,11 @@ if (isset($_POST['log']) && isset($_POST['pass'])) {
 				}
 			}
 		} else {
-			header("Location: index.php?error=Incorect Login or Password");
+			header("Location: ../index.php?error=Incorect Login or Password");
 			exit();
 		}
 	}
 } else {
-	header("Location: index.php");
+	header("Location: ../index.php");
 	exit();
 }

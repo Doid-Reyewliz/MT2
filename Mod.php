@@ -38,7 +38,7 @@ if ($_SESSION['role'] == 3) {
         </div>
         <?php if (isset($_GET['edit'])) {echo "<span class='edit'; style='width: 300px; margin-left: 40%; padding-top: 0; font-size: 18px;'>" . $_GET['edit'] . "</span>";}?>
         <br>
-        <div class="products">
+        <div class="new">
             <div class="card">
                 <form class="add_new" action="action/add.php" method="POST">
                     <input name="name" type="text" placeholder="Name" autocomplete="off">
@@ -53,84 +53,11 @@ if ($_SESSION['role'] == 3) {
                     } ?>
                 </form>
             </div>
-            <?php
-            if (isset($_POST['search'])) {
-                require_once "action/db.php";
-                $db = new Dbase();
-
-                $text = $_POST['search'];
-                $product = $db->query("SELECT * FROM products WHERE Name LIKE '%$text%' OR Company LIKE '%$text%'");
-
-                foreach ($product as $key => $value) {
-                ?>
-                <div class="card">
-                    <div class="imgBx">
-                        <img src="<?php echo 'image/' . $product[$key]['Image']; ?>" alt="">
-                        <h2><?php echo $product[$key]["Name"]; ?></h2>
-                    </div>
-                    <div class="content">
-                        <div class="size">
-                            <h3>Size: </h3>
-                            <span>40</span>
-                            <span>41</span>
-                            <span>42</span>
-                            <span>43</span>
-                        </div>
-                        <div class="color">
-                            <h3>Color: </h3>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                        <form action="action/del.php" method="post">
-                            <input type="hidden" name="code" type="text" value="<?php echo $product[$key]['Code']; ?>">
-                            <button class="edit" data-id="<?php echo $product[$key]["Code"]?>" type="submit">Edit</button>
-                        </form>
-                    </div>
-                </div>
-                <?php
-                }
-            } else {
-                require_once "action/db.php";
-                $db = new Dbase();
-
-                $product = $db->query("SELECT * FROM products ORDER BY id ASC");
-                if (!empty($product)) {
-                    foreach ($product as $key => $value) {
-                ?>
-                <div class="card">
-                    <div class="imgBx">
-                        <img src="<?php echo 'image/' . $product[$key]['Image']; ?>" alt="">
-                        <h2><?php echo $product[$key]["Name"]; ?></h2>
-                    </div>
-                    <div class="content">
-                        <div class="size">
-                            <h3>Size: </h3>
-                            <span>40</span>
-                            <span>41</span>
-                            <span>42</span>
-                            <span>43</span>
-                        </div>
-                        <div class="color">
-                            <h3>Color: </h3>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                        <form action="action/del.php" method="post">
-                            <input type="hidden" name="code" type="text" value="<?php echo $product[$key]['Code']; ?>">
-                            <button class="edit" data-id="<?php echo $product[$key]["Code"]?>" type="submit">Edit</button>
-                        </form>
-                    </div>
-                </div>
-            <?php
-                }
-            }
-            ?>
         </div>
+        <div class="products"></div>
     </div>
 <?php
-} }else {
+} else {
     echo "<body style= 'background-image: linear-gradient(to bottom left, #ffa249, #9e00f6);'><h1 style='
     color: #fff;
     margin-top: 15%;
@@ -164,7 +91,33 @@ if ($_SESSION['role'] == 3) {
     
     </body>";
 }
-    ?>
-    </body>
+?>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+//search
+$(document).ready(function(){
+    loadData();
+    function loadData(query){
+        $.ajax({
+            url : "action/search.php",
+            type: "POST",
+            chache: false,
+            data:{query:query},
+            success:function(response){
+                $(".products").html(response);
+            }
+        });
+    }
 
-    </html>
+    $(".search").keyup(function(){
+        var search = $(this).val();
+        if (search !="") {
+            loadData(search);
+        }else{
+            loadData();
+        }
+    });
+});
+</script>
+</html>
