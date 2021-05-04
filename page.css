@@ -341,18 +341,30 @@ body .order {
   border: 3px solid rgba(255, 255, 255, 0.5);
   border-right: 3px solid rgba(255, 255, 255, 0.2);
   border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   margin: 5% 5%;
+  margin-top: 2%;
   padding: 5% 5%;
   border-radius: 10px;
 }
 
 body .order .b_products {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: auto auto auto;
-      grid-template-columns: auto auto auto;
-  place-items: center;
-  row-gap: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
 body .order .b_products .product {
@@ -378,7 +390,7 @@ body .order .b_products .product {
       -ms-flex-direction: column;
           flex-direction: column;
   border-radius: 10px;
-  width: 70%;
+  width: 25%;
 }
 
 body .order .b_products .product img {
@@ -388,7 +400,7 @@ body .order .b_products .product img {
 body .order .b_products .product p {
   text-align: center;
   background-color: #fff;
-  border-radius: 5px;
+  border-radius: 7px;
   font-size: 20px;
   width: 20%;
   padding: 5px 5px;

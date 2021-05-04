@@ -21,34 +21,61 @@
                 <li><a href="Mod.php">Courses</a></li>
             <?php } else { ?>
                 <li><a href="Products.php">Products</a></li>
-                <li><a href="Contact Us.php">Market</a></li>
+                <li><a href="Contact_Us.php">Contact Us</a></li>
             <?php } ?>
         </ul>
     </nav>
 
     <nav class="nav_buttons">
-        <a class="active" href="Bag.php"><img class="basket" src="https://img.icons8.com/fluent/48/000000/shopping-basket-2.png" /></a>
-        <a href="Profile.php"><img src="https://img.icons8.com/fluent/48/000000/user-male-circle.png" /></a>
+        <a href="Profile.php">
+            <img class="prof_im" src="<?php echo 'prof_image/' . $_SESSION['image']; ?>">
+            <p <?php if($_SESSION['role'] == 3){ echo "class='rainbow rainbow_text_animated'";} ?>><?php echo $_SESSION['name']; ?></p>
+        </a>
+        <a href="Bag.php"><img class="basket" src="https://img.icons8.com/fluent/48/000000/shopping-basket-2.png" /></a>
         <a href="index.php"><img src="https://img.icons8.com/fluent/48/000000/exit.png" /></a>
     </nav>
 </header>
 
 <body>
+    <h1>Your Bag</h1>
     <section class="order">
         <div class="b_products">
-            <div class="product">
-                <img src="image/air_f_1_l_m.png" alt="">
-                <h3>Air Force 1 Low</h3>
-                <p>$50</p>
-                <div class="number">
-                    <button><img src="https://img.icons8.com/fluent/48/000000/minus.png"/></button>
-                    <p>1</p>
-                    <button><img src="https://img.icons8.com/fluent/48/000000/add.png"/></button>
-                </div>
-            </div>
+        <?php
+        require_once "action/db.php";
+        $db = new Dbase();
+
+        $mail = $_SESSION['mail'];
+        $count = 0;
+        $price = 0;
+
+        $select = $db->sql("SELECT * FROM basket WHERE user_mail = '$mail'");
+
+        if(mysqli_num_rows($select) > 0){
+
+            $sql = $db->query("SELECT basket.number, products.Image, products.Name, products.Price FROM basket INNER JOIN products ON basket.product_code = products.Code WHERE basket.user_mail = '$mail'");
+
+            foreach($sql as $row){
+                $price = $row['Price'] * $row['number'];
+                echo "<div class=\"product\">
+                        <img src=\"image/{$row['Image']}\"?>
+                        <h3>{$row['Name']}</h3>
+                        <p>$ $price</p>
+                        <div class=\"number\">
+                            <button><img src=\"https://img.icons8.com/fluent/48/000000/minus.png\"/></button>
+                            <p>{$row['number']}</p>
+                            <button><img src=\"https://img.icons8.com/fluent/48/000000/add.png\"/></button>
+                        </div>
+                    </div>";
+                $count += $price;
+            }
+        }
+        else{
+            echo "<h1>Your Bag is Empty</h1>";
+        }
+        ?>
         </div>
         <div class="total">
-            <p>Total: $10000</p>
+            <p>Total: $ <?php echo $count; ?></p>
             <button>Order</button>
         </div>
     </section>

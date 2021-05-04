@@ -56,7 +56,7 @@ if($_SESSION['role'] == 3){
     else{
         $sql = $db->sql("SELECT * FROM products ORDER BY id ASC");
     }
-    
+
     if(mysqli_num_rows($sql) > 0){
         while($row = mysqli_fetch_assoc($sql)){
             $output .=  "<div class='card'>
@@ -120,7 +120,7 @@ else{
                                     <span></span>
                                     <span></span>
                                 </div>
-                                <form action='' method='post'>
+                                <form action='action/order.php' method='post'>
                                     <input type='hidden' name='code' type='text' value='{$row['Code']}'>
                                     <button id='btn' type='submit' onclick='snack();'>Add To Cart</button>
                                 </form>
@@ -134,6 +134,7 @@ else{
     }
 }
 ?>
+
 <script>
 //For Admin
 $(document).ready(function(){

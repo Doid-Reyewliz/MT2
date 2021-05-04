@@ -51,32 +51,31 @@
 
 <script src="final.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="directory/jquery-3.4.1.js"></script>
 <script>
-    //search
-    $(document).ready(function(){
-        loadData();
-        function loadData(query){
-            $.ajax({
-                url : "action/search.php",
-                type: "POST",
-                chache: false,
-                data:{query:query},
-                success:function(response){
-                    $(".products").html(response);
-                }
-            });
-        }
-
-        $(".search").keyup(function(){
-            var search = $(this).val();
-            if (search !="") {
-                loadData(search);
-            }else{
-                loadData();
+//search
+$(document).ready(function(){
+    loadData();
+    function loadData(query){
+        $.ajax({
+            url : "action/search.php",
+            type: "POST",
+            chache: false,
+            data:{query:query},
+            success:function(response){
+                $(".products").html(response);
             }
         });
+    }
+
+    $(".search").keyup(function(){
+        var search = $(this).val();
+        if (search !="") {
+            loadData(search);
+        }else{
+            loadData();
+        }
     });
+});
 </script>
 
 <!--

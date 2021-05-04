@@ -24,16 +24,15 @@ class Dbase{
             return $resultset;
         }
     }
-    function sql($sqli){
-        $result = mysqli_query($this->conn, $sqli);
+    function sql($sql){
+        $result = mysqli_query($this->conn, $sql);
 
         if($result == TRUE){
             return $result;
         }
     }
-    function prepare($sql){
-        $result = mysqli_prepare($this->conn, $sql);
-
+    function join($join){
+        $result = mysqli_query($this->conn, $join);
         return $result;
     }
 }

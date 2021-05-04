@@ -10,6 +10,7 @@ if ($_SESSION['role'] == 3) {
     <link rel="stylesheet" type="text/css" href="page.css">
     <link rel="shortcut icon" href="https://img.icons8.com/fluent/48/000000/settings.png" />
 </head>
+
 <header>
     <nav class="nav_text">
         <ul class="list">
@@ -27,7 +28,7 @@ if ($_SESSION['role'] == 3) {
         </a>
         <a href="Bag.php"><img class="basket" src="https://img.icons8.com/fluent/48/000000/shopping-basket-2.png" /></a>
         <a href="index.php"><img src="https://img.icons8.com/fluent/48/000000/exit.png" /></a>
-    </nav>  
+    </nav>
 </header>
 
 <body>
@@ -93,6 +94,7 @@ if ($_SESSION['role'] == 3) {
 }
 ?>
 </body>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 //search
@@ -120,4 +122,5 @@ $(document).ready(function(){
     });
 });
 </script>
+
 </html>

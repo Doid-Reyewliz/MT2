@@ -1,6 +1,7 @@
 <?php
 if(isset($_POST['code'])){
-    require_once "action/db.php";
+    session_start();
+    require_once "db.php";
     $db = new Dbase();
 
     $code = $_POST['code'];
@@ -8,6 +9,6 @@ if(isset($_POST['code'])){
 
     $sql = $db->sql("INSERT INTO `basket`(`id`, `user_mail`, `product_code`, `number`, `date`, `time`) VALUES ('','$user_mail','$code',1, CURRENT_DATE(), CURRENT_TIME())");
 
-    
+    exit;
 }
 ?>
