@@ -74,10 +74,10 @@
         }
         ?>
         </div>
-        <div class="total">
+        <form class="total" action="action/order.php" method="POST">
             <p>Total: $ <?php echo $count; ?></p>
-            <button>Order</button>
-        </div>
+            <button type="submit">Order</button>
+        </form>
     </section>
 </body>
 

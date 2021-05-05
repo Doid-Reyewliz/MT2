@@ -93,7 +93,7 @@ if($_SESSION['role'] == 3){
 else{
     if(isset($_POST['query'])){
         $search = $_POST['query'];
-        $sql = $db->sql("SELECT * FROM products WHERE Name LIKE '%$search%' OR Category LIKE '$search'");
+        $sql = $db->sql("SELECT * FROM products WHERE Name LIKE '%$search%' OR Category = '$search'");
     }
     else{
         $sql = $db->sql("SELECT * FROM products ORDER BY id ASC");

@@ -6,17 +6,21 @@ if(isset($_POST['code'])){
 
     $count = 1;
 
-    $code = $_POST['code'];
     $user_mail = $_SESSION['mail'];
+    $code = $_POST['code'];
 
-    $select = $db->sql("SELECT * FROM basket WHERE user_mail = $user_mail AND product_code = $code");
+    $check = $db->sql("SELECT * FROM basket WHERE user_mail = '$user_mail' AND product_code = '$code'");
 
-    if(mysqli_num_rows("$select") == 0){
-        $sql = $db->sql("INSERT INTO `basket`(`id`, `user_mail`, `product_code`, `number`) VALUES ('', $user_mail, $code, $count");
+    if(mysqli_num_rows($check) > 0){
+        while($row = mysqli_fetch_assoc($check)){
+            $count += $row['number'];
+        }
+
+        $sql = $db->sql("UPDATE basket SET number = $count WHERE user_mail = '$user_mail' AND product_code = '$code'");
     }
     else{
-        $sql = $db->sql("UPDATE `basket` SET number = $count WHERE user_mail = $user_mail AND product_code = $code");
+        $sql = $db->sql("INSERT INTO basket(`id`, `user_mail`, `product_code`, `number`) VALUES ('', '$user_mail', '$code', '$count')");
     }
-    exit;
+    header("Location:../Products.php");
 }
 ?>
