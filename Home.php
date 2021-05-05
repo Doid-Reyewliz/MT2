@@ -27,12 +27,21 @@
     </nav>
 
     <nav class="nav_buttons">
-        <a href="Profile.php">
+        <form action="language_switcher.php" method="post">
+            <select name="lang">
+                <option value="en">En</option>
+                <option value="ru">Ru</option>
+            </select>
+        </form>
+        <a <?php if ($_SESSION['role'] != 4) { ?> href="Profile.php" <?php } ?>>
             <img class="prof_im" src="<?php echo 'prof_image/' . $_SESSION['image']; ?>">
             <p <?php if($_SESSION['role'] == 3){ echo "class='rainbow rainbow_text_animated'";} ?>><?php echo $_SESSION['name']; ?></p>
         </a>
+        <?php if ($_SESSION['role'] == 4) { ?><a href="index.php"><img src="https://img.icons8.com/fluent/48/000000/exit.png" /></a><?php } 
+        else {?>
         <a href="Bag.php"><img class="basket" src="https://img.icons8.com/fluent/48/000000/shopping-basket-2.png" /></a>
         <a href="index.php"><img src="https://img.icons8.com/fluent/48/000000/exit.png" /></a>
+        <?php }?>
     </nav>
 </header>
 
@@ -82,9 +91,11 @@
                             <span>43</span>
                         </div>
                         <div class='price'>
-                            <h3><?php echo "$" . $product[$i]['Price'];?> </h3>
+                            <h3><?php echo "$ " . $product[$i]['Price'];?> </h3>
                         </div>
-                        <button id="btn" onclick="snack();">Add To Cart</button>
+                        <?php if ($_SESSION['role'] != 4) { ?>
+                            <button id="btn" onclick="snack();">Add To Cart</button>
+                        <?php } ?>
                     </div>
                 </div>
             <?php

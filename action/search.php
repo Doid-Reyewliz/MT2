@@ -127,7 +127,7 @@ else{
         exit;
     }
     else{
-        echo "<h1 style='color:#fff;'>No values</h1>";
+        echo "<h1>¯\_(ツ)_/¯</h1>";
         exit;
     }
 }

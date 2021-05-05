@@ -19,7 +19,7 @@ elseif(isset($_POST['id'])){
         $login = $sql[$key]['Login'];
     }
 
-    $u_r = $db->sql("DELETE FROM `user_roles` WHERE user_mail = '$login'");
+    $u_r = $db->sql("DELETE FROM `user_roles` WHERE user = '$login'");
     $u_c = $db->sql("DELETE FROM `basket` WHERE user_mail = '$login'");
     $user = $db->sql("DELETE FROM `users` WHERE id = '$id'");
 

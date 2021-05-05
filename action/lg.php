@@ -53,6 +53,13 @@ if (isset($_POST['log']) && isset($_POST['pass'])) {
 						setcookie("pass", $pass, time() + 20, "/");
 						header("Location: ../Mod.php");
 						exit();
+					} else if ($role[$j]['role'] == '4') {
+						$_SESSION['role'] = $role[$j]['role'];
+						$_SESSION['mail'] = $log;
+						$_SESSION['name'] = $users[$i]['Name'];
+						$_SESSION['image'] = $users[$i]['Image'];
+						header("Location: ../Home.php");
+						exit();
 					}
 				}
 			}

@@ -1,5 +1,10 @@
 <?php
-if(isset($_POST['code'])){
+session_start();
+if($_SESSION['role'] == 4){
+    header("Location:../Products.php");
+}
+
+elseif(isset($_POST['code'])){
     session_start();
     require_once "db.php";
     $db = new Dbase();

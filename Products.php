@@ -21,12 +21,15 @@
     </nav>
 
     <nav class="nav_buttons">
-        <a href="Profile.php">
+        <a <?php if ($_SESSION['role'] != 4) { ?> href="Profile.php" <?php } ?>>
             <img class="prof_im" src="<?php echo 'prof_image/' . $_SESSION['image']; ?>">
-            <p><?php echo $_SESSION['name']; ?></p>
+            <p <?php if($_SESSION['role'] == 3){ echo "class='rainbow rainbow_text_animated'";} ?>><?php echo $_SESSION['name']; ?></p>
         </a>
+        <?php if ($_SESSION['role'] == 4) { ?><a href="index.php"><img src="https://img.icons8.com/fluent/48/000000/exit.png" /></a><?php } 
+        else {?>
         <a href="Bag.php"><img class="basket" src="https://img.icons8.com/fluent/48/000000/shopping-basket-2.png" /></a>
         <a href="index.php"><img src="https://img.icons8.com/fluent/48/000000/exit.png" /></a>
+        <?php }?>
     </nav>
 </header>
 
@@ -51,11 +54,11 @@
 </body>
 
 <script>
+//to top button
 var mybutton = document.getElementById("top_btn");
 window.onscroll = function () {
   scrollFunction();
 };
-
 function scrollFunction() {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
         mybutton.style.visibility = "visible";
@@ -63,7 +66,6 @@ function scrollFunction() {
         mybutton.style.visibility = "hidden";
     }
 }
-
 function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;

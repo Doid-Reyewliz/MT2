@@ -33,11 +33,23 @@
                         <button name="submit" id="submit" type="submit">Submit</button>
                         <p>Forget Password ? <a href="Forgot.php">Reset</a></p>
                         <p>Don't have an accouunt ? <a href="Register.php">Sign Up</a></p>
+                        <form action="action/lg.php" method="POST" name="form">
+                            <input type="hidden" name="log" value="guest@mail.com">
+                            <input type="hidden" name="pass" value=" ">
+                            <button type="submit">Enter as Guest</button>
+                        </form>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 </body>
+<script>
+function guest(selectedtype){
+    document.form.log.value = selectedtype;
+    document.form.pass.value = selectedtype;
+    document.form.submit();
+}
+</script>
 
 </html>
