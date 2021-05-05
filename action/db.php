@@ -31,9 +31,5 @@ class Dbase{
             return $result;
         }
     }
-    function join($join){
-        $result = mysqli_query($this->conn, $join);
-        return $result;
-    }
 }
 ?>

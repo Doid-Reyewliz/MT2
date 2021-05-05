@@ -69,6 +69,7 @@ if (isset($_SESSION['id'])) {
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
+//profile image upload
 $('.upload').on('click', function() {
      var file_data = $('.prof_im').prop('files')[0];
      var form_data = new FormData();

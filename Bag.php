@@ -63,7 +63,7 @@
                         <div class=\"number\">
                             <button><img src=\"https://img.icons8.com/fluent/48/000000/minus.png\"/></button>
                             <p>{$row['number']}</p>
-                            <button><img src=\"https://img.icons8.com/fluent/48/000000/add.png\"/></button>
+                            <button class=\"order\"><img src=\"https://img.icons8.com/fluent/48/000000/add.png\"/></button>
                         </div>
                     </div>";
                 $count += $price;

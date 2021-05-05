@@ -120,7 +120,7 @@ else{
                                     <span></span>
                                     <span></span>
                                 </div>
-                                <form action='action/order.php' method='post'>
+                                <form action='action/basket.php' method='post'>
                                     <input type='hidden' name='code' type='text' value='{$row['Code']}'>
                                     <button id='btn' type='submit' onclick='snack();'>Add To Cart</button>
                                 </form>
@@ -135,6 +135,7 @@ else{
 }
 ?>
 
+<script src="final.js"></script>
 <script>
 //For Admin
 $(document).ready(function(){
