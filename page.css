@@ -8,6 +8,10 @@
   letter-spacing: 1px;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -165,6 +169,30 @@ header .nav_buttons .active {
 body {
   background: -webkit-gradient(linear, left bottom, right top, from(#4edb78), to(#2d2292));
   background: linear-gradient(to top right, #4edb78, #2d2292);
+}
+
+body #top_btn {
+  background-color: rgba(0, 0, 0, 0);
+  visibility: hidden;
+  position: fixed;
+  top: 87%;
+  right: 94%;
+  border: 0;
+  outline: none;
+  border-radius: 100%;
+  cursor: pointer;
+  color: #000;
+  z-index: 99;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+body #top_btn img {
+  border-radius: 100%;
+}
+
+body #top_btn img:hover {
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 body section .slide {
@@ -556,6 +584,13 @@ body .products .card .imgBx {
   transition: 0.5s ease-in-out;
 }
 
+body .products .card .imgBx .ico {
+  right: 1px;
+  margin: 0;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
+
 body .products .card .imgBx img {
   max-width: 100%;
   margin: 0 0 40px;
@@ -566,6 +601,7 @@ body .products .card .imgBx img {
 body .products .card .imgBx h2 {
   color: #fff;
   font-weight: 600;
+  text-align: center;
 }
 
 body .products .card:hover .imgBx {
@@ -643,56 +679,29 @@ body .products .card .content .size button {
   border: 2px solid #fff;
 }
 
-body .products .card .content .color {
+body .products .card .content .price {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 0px 20px;
-  padding-bottom: 0;
-}
-
-body .products .card .content .color h3 {
-  color: #fff;
-  font-weight: 300px;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-right: 10px;
-}
-
-body .products .card .content .color span {
-  width: 20px;
-  height: 20px;
-  background: #f00;
-  border-radius: 50%;
-  margin: 0 5px;
+  width: 40%;
+  height: 30px;
   border: 2px solid #fff;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  cursor: pointer;
+  border-radius: 10px;
+  background-color: #fff;
 }
 
-body .products .card .content .color span:nth-child(2) {
-  background: #9bdc28;
-}
-
-body .products .card .content .color span:nth-child(3) {
-  background: #03a9f4;
-}
-
-body .products .card .content .color span:nth-child(4) {
-  background: #e91e63;
-}
-
-body .products .card .content .color span:hover {
-  -webkit-filter: brightness(0.7);
-          filter: brightness(0.7);
+body .products .card .content .price h3 {
+  color: #000;
+  text-align: center;
+  margin: 0;
 }
 
 body .products .card .content button {
@@ -716,6 +725,8 @@ body .products .card .content button {
 }
 
 body .products .card .content button:hover {
+  color: #a523eb;
+  border: 2px solid #a523eb;
   letter-spacing: 2px;
   -webkit-transition: 0.5s;
   transition: 0.5s;
@@ -738,7 +749,35 @@ body .products .card:hover .content {
           transform: translateY(-10px);
 }
 
-body .products .card .add_new {
+body .new .card {
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  border-right: 3px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  position: relative;
+  width: 300px;
+  height: 400px;
+  margin: 40px 40px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-radius: 20px;
+}
+
+body .new .card .add_new {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -748,7 +787,7 @@ body .products .card .add_new {
           align-items: center;
 }
 
-body .products .card .add_new input {
+body .new .card .add_new input {
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
   background: rgba(255, 255, 255, 0.1);
@@ -764,37 +803,37 @@ body .products .card .add_new input {
   background-size: 30px;
 }
 
-body .products .card .add_new input::-webkit-input-placeholder {
+body .new .card .add_new input::-webkit-input-placeholder {
   color: #fff;
   letter-spacing: normal;
 }
 
-body .products .card .add_new input:-ms-input-placeholder {
+body .new .card .add_new input:-ms-input-placeholder {
   color: #fff;
   letter-spacing: normal;
 }
 
-body .products .card .add_new input::-ms-input-placeholder {
+body .new .card .add_new input::-ms-input-placeholder {
   color: #fff;
   letter-spacing: normal;
 }
 
-body .products .card .add_new input::placeholder {
+body .new .card .add_new input::placeholder {
   color: #fff;
   letter-spacing: normal;
 }
 
-body .products .card .add_new input:nth-of-type(3) {
+body .new .card .add_new input:nth-of-type(3) {
   width: 80%;
 }
 
-body .products .card .add_new input:nth-last-of-type(2), body .products .card .add_new input:nth-last-of-type(3), body .products .card .add_new input:nth-last-of-type(1) {
+body .new .card .add_new input:nth-last-of-type(2), body .new .card .add_new input:nth-last-of-type(3), body .new .card .add_new input:nth-last-of-type(1) {
   text-align: center;
   width: 40%;
   height: 25px;
 }
 
-body .products .card .add_new input:nth-last-of-type(4) {
+body .new .card .add_new input:nth-last-of-type(4) {
   background-color: rgba(0, 0, 0, 0);
   -webkit-box-shadow: none;
           box-shadow: none;
@@ -803,12 +842,12 @@ body .products .card .add_new input:nth-last-of-type(4) {
   border: none;
 }
 
-body .products .card .add_new label {
+body .new .card .add_new label {
   margin-top: 4%;
   color: #fff;
 }
 
-body .products .card .add_new button {
+body .new .card .add_new button {
   position: relative;
   top: 10px;
   display: inline-block;
@@ -828,7 +867,7 @@ body .products .card .add_new button {
   transition: .5s;
 }
 
-body .products .card .add_new button:hover {
+body .new .card .add_new button:hover {
   border: 2px solid green;
   color: green;
   letter-spacing: 2px;
@@ -955,21 +994,27 @@ body .table .t table {
   border: 3px solid rgba(255, 255, 255, 0.5);
   border-right: 3px solid rgba(255, 255, 255, 0.2);
   border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  text-align: center;
+  border-collapse: collapse;
   width: 80%;
   border-radius: 10px;
 }
 
-body .table .t table, body .table .t th, body .table .t td {
+body .table .t th {
   border: 3px solid rgba(255, 255, 255, 0.5);
   text-align: center;
   border-collapse: collapse;
-}
-
-body .table .t th {
   color: #000;
   font-weight: bold;
   font-size: 17px;
   letter-spacing: 1px;
+}
+
+body .table .t td {
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  text-align: center;
+  border-collapse: collapse;
 }
 
 body .table .t td .trash {

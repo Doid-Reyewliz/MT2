@@ -41,7 +41,7 @@ if ($_SESSION['role'] == 2) {
             $db = new Dbase();
             $q = $db->query("SELECT * FROM users");
 
-            echo "<table><tr><th>ID</th><th>Email</th><th>Password</th><th>Name</th><th>Gender</th><th>Birthday</th><th>Question</th><th>Answer</th><th>Profile Image</th><th></th></tr>";
+            echo "<table><tr><th>ID</th><th>Email</th><th>Password</th><th>Name</th><th>Gender</th><th>Birthday</th><th>Question</th><th>Answer</th><th></th></tr>";
             if (!empty($q)) {
                 foreach ($q as $row) {
                     if ($row['id'] < 1) {
@@ -55,7 +55,6 @@ if ($_SESSION['role'] == 2) {
                             "</td><td>" . $row["Birthday"] .
                             "</td><td>" . $row["Question"] .
                             "</td><td>" . $row["Answer"] .
-                            "</td><td>" . $row["Image"] .
                             "</td><td>" . "<button class='trash'; type='submit' data-id='$row[id]'><img src='https://img.icons8.com/fluent/48/000000/delete-sign.png'/></button>" .
                             "</td></tr>";
                     }

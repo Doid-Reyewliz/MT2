@@ -31,6 +31,7 @@
 </header>
 
 <body>
+    <button onclick="topFunction()" id="top_btn"><img src="https://img.icons8.com/fluent/50/ffffff/circled-chevron-up.png"/></button>
     <article id="products">
         <h1>Products</h1>
         <ul class="categ">
@@ -49,6 +50,25 @@
     <div id="snackbar">Added To Cart</div>
 </body>
 
+<script>
+var mybutton = document.getElementById("top_btn");
+window.onscroll = function () {
+  scrollFunction();
+};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.visibility = "visible";
+    } else {
+        mybutton.style.visibility = "hidden";
+    }
+}
+
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 //search

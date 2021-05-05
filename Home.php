@@ -37,6 +37,7 @@
 </header>
 
 <body>
+    <button onclick="topFunction()" id="top_btn"><img src="https://img.icons8.com/fluent/50/ffffff/circled-chevron-up.png"/></button>
     <span class="crcl"></span>
     <section>
         <h1 class="prod">New Releases</h1>
@@ -68,6 +69,7 @@
             ?>
                 <div class="card">
                     <div class="imgBx">
+                        <img class="ico" src="https://img.icons8.com/fluent/48/ffffff/new.png"/>
                         <img src="<?php echo 'image/' . $product[$i]['Image']; ?>" alt="">
                         <h2><?php echo $product[$i]["Name"]; ?></h2>
                     </div>
@@ -79,11 +81,8 @@
                             <span>42</span>
                             <span>43</span>
                         </div>
-                        <div class="color">
-                            <h3>Color: </h3>
-                            <span></span>
-                            <span></span>
-                            <span></span>
+                        <div class='price'>
+                            <h3><?php echo "$" . $product[$i]['Price'];?> </h3>
                         </div>
                         <button id="btn" onclick="snack();">Add To Cart</button>
                     </div>

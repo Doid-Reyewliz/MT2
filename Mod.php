@@ -41,21 +41,22 @@ if ($_SESSION['role'] == 3) {
         <br>
         <div class="new">
             <div class="card">
-                <form class="add_new" action="action/add.php" method="POST">
-                    <input name="name" type="text" placeholder="Name" autocomplete="off">
-                    <input name="catg" type="text" placeholder="Category" autocomplete="off">
-                    <label>Product Image: (864x600)</label><input name="image" type="file">
-                    <input name="price" type="type" placeholder="Price">
-                    <input name="number" type="number" min="1" max="10" placeholder="Quantity">
-                    <input name="code" type="text" placeholder="Code" autocomplete="off">
-                    <button type="submit">Add</button>
+                <div class="add_new">
+                    <input id="name" name="name" type="text" placeholder="Name" autocomplete="off">
+                    <input id="catg" name="catg" type="text" placeholder="Category" autocomplete="off">
+                    <label>Product Image: (864x600)</label><input id="file" name="image" type="file">
+                    <input id="price" name="price" type="type" placeholder="Price">
+                    <input id="number" name="number" type="number" min="1" max="10" placeholder="Quantity">
+                    <input id="code" name="code" type="text" placeholder="Code" autocomplete="off">
+                    <button id="add" type="submit">Add</button>
                     <?php if (isset($_GET['error'])) {
                         echo "<span class='error'>" . $_GET['error'] . "</span>";
                     } ?>
-                </form>
+                </div>
             </div>
         </div>
-        <div class="products"></div>
+        <div class="products">
+        </div>
     </div>
 <?php
 } else {
@@ -119,6 +120,35 @@ $(document).ready(function(){
         }else{
             loadData();
         }
+    });
+});
+
+//add
+$(document).ready(function(){
+    $('#add').click(function(){
+        var name=$('#name').val();
+        var catg=$('#catg').val();
+        var price=$('#price').val();
+        var number=$('#number').val();
+        var code=$('#code').val();
+        var file=$('#file').val();
+
+        $.ajax({
+            url:'action/add.php',
+            method:'POST',
+            cache: false,
+            data:{
+                name:name,
+                catg:catg,
+                price:price,
+                number:number,
+                code:code,
+                file:file,
+            },
+            success:function(response){
+                alert("Successfully Added");
+            }
+        });
     });
 });
 </script>

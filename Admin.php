@@ -33,22 +33,24 @@ if ($_SESSION['role'] == 2) {
     </nav>
 </header>
 
-<article id="products">
-    <h1>Products</h1>
-    <ul class="categ">
-        <li><form method="POST"><input hidden type="text" name="men" value="Men"><button type="submit">Men</button></form></li>
-        <li><form method="POST"><input hidden type="text" name="women" value="Women"><button type="submit">Women</button></form></li>
-        <li><form method="POST"><input hidden type="text" name="kids" value="Kids"><button type="submit">Kids</button></form></li>
-    </ul>
+<body>
+    <button onclick="topFunction()" id="top_btn"><img src="https://img.icons8.com/fluent/50/ffffff/circled-chevron-up.png"/></button>
+    <article id="products">
+        <h1>Products</h1>
+        <ul class="categ">
+            <li><form method="POST"><input hidden type="text" name="men" value="Men"><button type="submit">Men</button></form></li>
+            <li><form method="POST"><input hidden type="text" name="women" value="Women"><button type="submit">Women</button></form></li>
+            <li><form method="POST"><input hidden type="text" name="kids" value="Kids"><button type="submit">Kids</button></form></li>
+        </ul>
 
-    <div id="search">
+        <div id="search">
             <input name="search" class="search" type="text" autocomplete="off" placeholder=" Search">
-    </div>
+        </div>
 
-    <div class="products"></div>
+        <div class="products"></div>
 
-</article>
-<div id="snackbar">Added To Cart</div>
+    </article>
+    <div id="snackbar">Added To Cart</div>
 
 <?php
 } else {
@@ -85,9 +87,28 @@ if ($_SESSION['role'] == 2) {
     
     </body>";
 }
-    ?>
+?>
 </body>
 
+<script>
+var mybutton = document.getElementById("top_btn");
+window.onscroll = function () {
+  scrollFunction();
+};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.visibility = "visible";
+    } else {
+        mybutton.style.visibility = "hidden";
+    }
+}
+
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 //remove

@@ -30,20 +30,20 @@ if($_SESSION['role'] == 2){
                                     <span>42</span>
                                     <span>43</span>
                                 </div>
-                                <div class='color'>
-                                    <h3>Color: </h3>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
+                                <div class='price'>
+                                    <h3>$ {$row['Price']}</h3>
                                 </div>
                                 <button class='rem' data-id='{$row['Code']}' type='submit'>Remove</button>
+
                             </div>
                         </div>";
         }
         echo $output;
+        exit;
     }
     else{
         echo "<h1 style='color:#fff;'>No values</h1>";
+        exit;
     }
 }
 
@@ -72,20 +72,19 @@ if($_SESSION['role'] == 3){
                                     <span>42</span>
                                     <span>43</span>
                                 </div>
-                                <div class='color'>
-                                    <h3>Color: </h3>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
+                                <div class='price'>
+                                    <h3>$ {$row['Price']}</h3>
                                 </div>
                                 <button class='edit' data-id='{$row['Code']}' type='submit'>Edit</button>
                             </div>
                         </div>";
         }
         echo $output;
+        exit;
     }
     else{
         echo "<h1 style='color:#fff;'>No values</h1>";
+        exit;
     }
 }
 
@@ -114,11 +113,8 @@ else{
                                     <span>42</span>
                                     <span>43</span>
                                 </div>
-                                <div class='color'>
-                                    <h3>Color: </h3>
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
+                                <div class='price'>
+                                    <h3>$ {$row['Price']}</h3>
                                 </div>
                                 <form action='action/basket.php' method='post'>
                                     <input type='hidden' name='code' type='text' value='{$row['Code']}'>
@@ -128,9 +124,11 @@ else{
                         </div>";
         }
         echo $output;
+        exit;
     }
     else{
         echo "<h1 style='color:#fff;'>No values</h1>";
+        exit;
     }
 }
 ?>

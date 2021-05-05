@@ -15,6 +15,27 @@
 @mixin rgba {
     background-color: rgba(0, 0, 0, 0);
 }
+@mixin both {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 20px;
+    padding-bottom: 0;
+
+    h3 {
+        color: #fff;
+        font-weight: 300px;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-right: 10px;
+    }
+}
+@mixin tab {
+    border: 3px solid rgba(255, 255, 255, .5);
+    text-align: center;
+    border-collapse: collapse;
+}
 
 ::-webkit-scrollbar{
     width: .1px;
@@ -23,6 +44,10 @@
 * {
     font-family: "Righteous";
     letter-spacing: 1px;
+}
+
+html{
+    scroll-behavior: smooth;
 }
 
 header {
@@ -130,6 +155,29 @@ header {
 
 body {
     background: linear-gradient(to top right, rgb(78, 219, 120), rgb(45, 34, 146));
+
+    #top_btn{
+        @include rgba;
+        visibility: hidden;
+        position: fixed;
+        top: 87%;
+        right: 94%;
+        border: 0;
+        outline: none;
+        border-radius: 100%;
+        cursor: pointer;
+        color: #000;
+        z-index: 99;
+        transition: 0.3s;
+
+        img{
+            border-radius: 100%;
+
+            &:hover{
+              background-color: rgba(255, 255, 255, .5);
+            }
+        }
+    }
 
     section {
         .slide {
@@ -366,6 +414,12 @@ body {
                 padding: 20px;
                 transition: 0.5s ease-in-out;
 
+                .ico{
+                    right: 1px;
+                    margin: 0;
+                    align-self: flex-end;
+                }
+
                 img {
                     max-width: 100%;
                     margin: 0 0 40px;
@@ -375,6 +429,7 @@ body {
                 h2 {
                     color: #fff;
                     font-weight: 600;
+                    text-align: center;
                 }
             }
 
@@ -396,23 +451,6 @@ body {
                 transition: 0.5s ease-in-out;
                 opacity: 0;
                 visibility: hidden;
-
-                @mixin both {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    padding: 0px 20px;
-                    padding-bottom: 0;
-
-                    h3 {
-                        color: #fff;
-                        font-weight: 300px;
-                        font-size: 14px;
-                        text-transform: uppercase;
-                        letter-spacing: 2px;
-                        margin-right: 10px;
-                    }
-                }
 
                 .size {
                     @include both;
@@ -436,35 +474,22 @@ body {
                     }
                 }
 
-                .color {
-                    @include both;
+                .price {
+                    @include flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 40%;
+                    height: 30px;
+                    border: 2px solid #fff;
+                    border-radius: 10px;
+                    background-color: #fff;
 
-                    span {
-                        width: 20px;
-                        height: 20px;
-                        background: #f00;
-                        border-radius: 50%;
-                        margin: 0 5px;
-                        border: 2px solid #fff;
-                        box-sizing: border-box;
-                        cursor: pointer;
-
-                        &:nth-child(2) {
-                            background: #9bdc28;
-                        }
-
-                        &:nth-child(3) {
-                            background: #03a9f4;
-                        }
-
-                        &:nth-child(4) {
-                            background: #e91e63;
-                        }
-
-                        &:hover {
-                            filter: brightness(0.7);
-                        }
+                    h3{
+                        color: #000;
+                        text-align: center;
+                        margin: 0;
                     }
+
                 }
 
                 button {
@@ -485,6 +510,8 @@ body {
                     transition: .5s;
 
                     &:hover {
+                        color: #a523eb;
+                        border: 2px solid #a523eb;
                         letter-spacing: 2px;
                         transition: 0.5s;
                     }
@@ -510,6 +537,21 @@ body {
                 visibility: visible;
                 transform: translateY(-10px);
             }
+        }
+    }
+
+    .new{
+
+        .card{
+            @include glass;
+            @include flex;
+            position: relative;
+            width: 300px;
+            height: 400px;
+            margin: 40px 40px;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 20px;
 
             .add_new{
                 flex-direction: column;
@@ -632,17 +674,13 @@ body {
 
             table{
                 @include glass;
+                @include tab;
                 width: 80%;
                 border-radius: 10px;
             }
 
-            table, th, td {
-                border: 3px solid rgba(255, 255, 255, .5);
-                text-align: center;
-                border-collapse: collapse;
-            }
-
             th{
+                @include tab;
                 color: #000;
                 font-weight: bold;
                 font-size: 17px;
@@ -650,6 +688,8 @@ body {
             }
 
             td{
+                @include tab;
+
                 .trash{
                     @include rgba;
                     border: none;
