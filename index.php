@@ -37,7 +37,6 @@
                     <form class="f_guest" action="action/lg.php" method="POST" name="form">
                         <input type="hidden" name="g_log" value="guest@mail.com">
                         <input type="hidden" name="g_pass" value=" ">
-                        <br>
                         <label>or</label>
                         <button class="guest" type="submit">Enter as Guest</button>
                     </form>

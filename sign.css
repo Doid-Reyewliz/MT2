@@ -349,8 +349,10 @@ section .box .container .f_guest {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -ms-flex-item-align: center;
-      align-self: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 2%;
 }
 
 section .box .container .f_guest label {
@@ -359,20 +361,33 @@ section .box .container .f_guest label {
 }
 
 section .box .container .f_guest .guest {
-  background-color: rgba(0, 0, 0, 0);
-  border: none;
-  color: #fff;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  border-right: 3px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+  margin-top: 2%;
+  background: #fff;
+  color: #2d2292;
+  width: 160px;
+  height: 40px;
+  font-size: 17px;
   cursor: pointer;
+  font-weight: 600;
+  border-radius: 35px;
+  letter-spacing: 1px;
   -webkit-transition: .5s;
   transition: .5s;
-  font-size: 18px;
-  color: #2d2292;
 }
 
 section .box .container .f_guest .guest:hover {
+  width: 180px;
+  letter-spacing: 2px;
   -webkit-transition: .5s;
   transition: .5s;
-  font-size: 20px;
 }
 
 section .box .container .content {

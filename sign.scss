@@ -256,7 +256,8 @@ section{
             .f_guest{
                 @include flex;
                 flex-direction: column;
-                align-self: center;
+                align-items: center;
+                padding-top: 2%;
 
                 label{
                     text-align: center;
@@ -264,17 +265,23 @@ section{
                 }
 
                 .guest{
-                    @include rgba;
-                    border: none;
-                    color: #fff;
-                    cursor: pointer;
-                    transition: .5s;
-                    font-size: 18px;
+                    @include glass;
+                    margin-top: 2%;
+                    background: #fff;
                     color: #2d2292;
+                    width: 160px;
+                    height: 40px;
+                    font-size: 17px;
+                    cursor: pointer;
+                    font-weight: 600;
+                    border-radius: 35px;
+                    letter-spacing: 1px;
+                    transition: .5s;
 
                     &:hover{
+                        width: 180px;
+                        letter-spacing: 2px;
                         transition: .5s;
-                        font-size: 20px;
                     }
                 }
             }
