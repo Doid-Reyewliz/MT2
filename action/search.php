@@ -6,7 +6,7 @@ $db = new Dbase();
 $output = "";
 
 //Admin
-if($_SESSION['role'] == 2){
+if($_SESSION['role'] == 3){
     if(isset($_POST['query'])){
         $search = $_POST['query'];
         $sql = $db->sql("SELECT * FROM products WHERE Name LIKE '%$search%' OR Category = '$search'");
@@ -48,7 +48,7 @@ if($_SESSION['role'] == 2){
 }
 
 //Moderator
-if($_SESSION['role'] == 3){
+if($_SESSION['role'] == 2){
     if(isset($_POST['query'])){
         $search = $_POST['query'];
         $sql = $db->sql("SELECT * FROM products WHERE Name LIKE '%$search%' OR Category = '$search'");

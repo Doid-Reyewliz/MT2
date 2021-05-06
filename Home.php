@@ -14,10 +14,10 @@
         <ul class="list">
             <img class="logo" src="image/logo_white.png" alt="">
             <li class="active"><a href="Home.html">Home</a></li>
-            <?php if ($_SESSION['role'] == 2) { ?>
+            <?php if ($_SESSION['role'] == 3) { ?>
                 <li><a href="Admin.php">Products</a></li>
                 <li><a href="Users.php">Users</a></li>
-            <?php } elseif ($_SESSION['role'] == 3) { ?>
+            <?php } elseif ($_SESSION['role'] == 2) { ?>
                 <li><a href="Mod.php">Products</a></li>
             <?php } else { ?>
                 <li><a href="Products.php">Products</a></li>
@@ -35,7 +35,7 @@
         </form>
         <a <?php if ($_SESSION['role'] != 4) { ?> href="Profile.php" <?php } ?>>
             <img class="prof_im" src="<?php echo 'prof_image/' . $_SESSION['image']; ?>">
-            <p <?php if($_SESSION['role'] == 2){ echo "class='rainbow rainbow_text_animated'";} ?>><?php echo $_SESSION['name']; ?></p>
+            <p <?php if($_SESSION['role'] == 3){ echo "class='rainbow rainbow_text_animated'";} ?>><?php echo $_SESSION['name']; ?></p>
         </a>
         <?php if ($_SESSION['role'] == 4) { ?><a href="index.php"><img src="https://img.icons8.com/fluent/48/000000/exit.png" /></a><?php } 
         else {?>

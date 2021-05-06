@@ -44,7 +44,7 @@ if ($_SESSION['role'] == 2) {
             echo "<table><tr><th>ID</th><th>Email</th><th>Password</th><th>Name</th><th>Gender</th><th>Birthday</th><th>Question</th><th>Answer</th><th></th></tr>";
             if (!empty($q)) {
                 foreach ($q as $row) {
-                    if ($row['id'] < 1) {
+                    if ($row['id'] <= 0) {
                         continue;
                     } else {
                         echo "<tr><td>" . $row["id"] .

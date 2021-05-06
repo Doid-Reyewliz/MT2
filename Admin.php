@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_SESSION['role'] == 2) {
+if ($_SESSION['role'] == 3) {
 
 ?>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@ if ($_SESSION['role'] == 2) {
     <nav class="nav_buttons">
         <a href="Profile.php">
             <img class="prof_im" src="<?php echo 'prof_image/' . $_SESSION['image']; ?>">
-            <p><?php echo $_SESSION['name']; ?></p>
+            <p class='rainbow rainbow_text_animated'> <?php echo $_SESSION['name']; ?></p>
         </a>
         <a href="Bag.php"><img class="basket" src="https://img.icons8.com/fluent/48/000000/shopping-basket-2.png" /></a>
         <a href="index.php"><img src="https://img.icons8.com/fluent/48/000000/exit.png" /></a>
