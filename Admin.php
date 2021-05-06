@@ -54,7 +54,7 @@ if ($_SESSION['role'] == 2) {
 
 <?php
 } else {
-    echo "<body style= 'background-image: linear-gradient(to bottom left, #ffa249, #9e00f6);'><h1 style='
+    echo "<body style= 'background: linear-gradient(to top right, rgb(78, 219, 120), rgb(45, 34, 146));'><h1 style='
     color: #fff;
     margin-top: 15%;
     margin-left: 23%;

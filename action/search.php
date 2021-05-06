@@ -42,7 +42,7 @@ if($_SESSION['role'] == 2){
         exit;
     }
     else{
-        echo "<h1 style='color:#fff;'>No values</h1>";
+        echo "<h1>¯\_(ツ)_/¯</h1>";
         exit;
     }
 }
@@ -83,7 +83,7 @@ if($_SESSION['role'] == 3){
         exit;
     }
     else{
-        echo "<h1 style='color:#fff;'>No values</h1>";
+        echo "<h1>¯\_(ツ)_/¯</h1>";
         exit;
     }
 }

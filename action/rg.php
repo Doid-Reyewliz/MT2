@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (isset($_POST['log']) && isset($_POST['pass']) && isset($_POST['name']) && isset($_POST['gen']) && isset($_POST['bday']) && isset($_POST['quest']) && isset($_POST['ans'])) {
+if (isset($_POST['log'], $_POST['pass'], $_POST['name'], $_POST['gen'], $_POST['bday'], $_POST['quest'], $_POST['ans'])) {
 	require_once "db.php";;
 	$db = new Dbase();
 

@@ -37,6 +37,7 @@
 </header>
 
 <body>
+    <button onclick="topFunction()" id="top_btn"><img src="https://img.icons8.com/fluent/50/ffffff/circled-chevron-up.png"/></button>
     <h1>Your Bag</h1>
     <section class="order">
         <div class="b_products">
@@ -59,11 +60,11 @@
                 echo "<div class=\"product\">
                         <img src=\"image/{$row['Image']}\"?>
                         <h3>{$row['Name']}</h3>
-                        <p>$ $price</p>
+                        <p>$$price</p>
                         <div class=\"number\">
-                            <button><img src=\"https://img.icons8.com/fluent/48/000000/minus.png\"/></button>
+                            <button class=\"minus\"><img src=\"https://img.icons8.com/fluent/48/000000/minus.png\"/></button>
                             <p>{$row['number']}</p>
-                            <button class=\"order\"><img src=\"https://img.icons8.com/fluent/48/000000/add.png\"/></button>
+                            <button class=\"pluss\"><img src=\"https://img.icons8.com/fluent/48/000000/add.png\"/></button>
                         </div>
                     </div>";
                 $count += $price;
@@ -75,7 +76,7 @@
         ?>
         </div>
         <form class="total" action="action/order.php" method="POST">
-            <p>Total: $ <?php echo $count; ?></p>
+            <p>Total: <span>$<?php echo $count; ?></span></p>
             <button type="submit">Order</button>
         </form>
     </section>
@@ -125,6 +126,25 @@
     </div>
 </footer>
 
-<script src="final.js"></script>
+<script>
+//scroll on top
+var mybutton = document.getElementById("top_btn");
+window.onscroll = function () {
+  scrollFunction();
+};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.visibility = "visible";
+    } else {
+        mybutton.style.visibility = "hidden";
+    }
+}
+
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+</script>
 
 </html>

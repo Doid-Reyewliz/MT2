@@ -304,7 +304,8 @@ body {
 
         .b_products{
             @include flex;
-            justify-content: space-evenly;
+            justify-content: space-between;
+            flex-wrap: wrap;
 
             .product{
                 @include glass;
@@ -313,10 +314,16 @@ body {
                 align-items: center;
                 flex-direction: column;
                 border-radius: 10px;
+                margin-bottom: 5%;
                 width: 25%;
 
                 img{
                     width: 200px;
+                }
+
+                h3{
+                    text-align: center;
+                    width: 60%;
                 }
 
                 p{
@@ -324,7 +331,6 @@ body {
                     background-color: #fff;
                     border-radius: 7px;
                     font-size: 20px;
-                    width: 20%;
                     padding: 5px 5px;
                 }
 
@@ -345,7 +351,7 @@ body {
 
                     p{
                         background-color: #fff;
-                        border-radius: 3px;
+                        border-radius: 5px;
                         font-weight: bold;
                         width: 30px;
                         padding: 10px 10px;
@@ -365,6 +371,10 @@ body {
             p{
                 color: #fff;
                 font-size: 40px;
+
+                span{
+                    color: #535252;
+                }
             }
 
             button{

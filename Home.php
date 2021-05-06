@@ -35,7 +35,7 @@
         </form>
         <a <?php if ($_SESSION['role'] != 4) { ?> href="Profile.php" <?php } ?>>
             <img class="prof_im" src="<?php echo 'prof_image/' . $_SESSION['image']; ?>">
-            <p <?php if($_SESSION['role'] == 3){ echo "class='rainbow rainbow_text_animated'";} ?>><?php echo $_SESSION['name']; ?></p>
+            <p <?php if($_SESSION['role'] == 2){ echo "class='rainbow rainbow_text_animated'";} ?>><?php echo $_SESSION['name']; ?></p>
         </a>
         <?php if ($_SESSION['role'] == 4) { ?><a href="index.php"><img src="https://img.icons8.com/fluent/48/000000/exit.png" /></a><?php } 
         else {?>
@@ -150,6 +150,24 @@
     </div>
 </footer>
 
-<script src="final.js"></script>
+<script>
+//scroll on top
+var mybutton = document.getElementById("top_btn");
+window.onscroll = function () {
+  scrollFunction();
+};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.visibility = "visible";
+    } else {
+        mybutton.style.visibility = "hidden";
+    }
+}
+
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}</script>
 
 </html>
