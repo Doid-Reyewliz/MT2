@@ -39,7 +39,6 @@
                         <input type="hidden" name="g_pass" value=" ">
                         <br>
                         <label>or</label>
-                        <br>
                         <button class="guest" type="submit">Enter as Guest</button>
                     </form>
                 </div>
