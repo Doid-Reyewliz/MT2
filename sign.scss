@@ -230,10 +230,11 @@ section{
                         color: #4edb78;
                         text-decoration: none;
                         transition: .5s;
-                    }
-                    a:hover{
-                        font-size: 20px;
-                        transition: .5s;
+
+                        &:hover{
+                            font-size: 20px;
+                            transition: .5s;
+                        }
                     }
                 }
                 .back{
@@ -248,6 +249,32 @@ section{
                         font-size: 19px;
                         letter-spacing: 2px;
                         transition: .5s;
+                    }
+                }
+            }
+
+            .f_guest{
+                @include flex;
+                flex-direction: column;
+                align-self: center;
+
+                label{
+                    text-align: center;
+                    margin: 0;
+                }
+
+                .guest{
+                    @include rgba;
+                    border: none;
+                    color: #fff;
+                    cursor: pointer;
+                    transition: .5s;
+                    font-size: 18px;
+                    color: #2d2292;
+
+                    &:hover{
+                        transition: .5s;
+                        font-size: 20px;
                     }
                 }
             }

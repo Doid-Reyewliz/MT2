@@ -54,17 +54,17 @@ if(isset($_POST['log'], $_POST['pass'])) {
 						setcookie("pass", $pass, time() + 20, "/");
 						header("Location: ../Admin.php");
 					}
-
-					if($role[$j]['role'] == '4') {
-						$_SESSION['role'] = $role[$j]['role'];
-						$_SESSION['mail'] = $log;
-						$_SESSION['name'] = $users[$i]['Name'];
-						$_SESSION['image'] = $users[$i]['Image'];
-						header("Location: ../Home.php");
-					}
 				}
 			}
 		} else header("Location: ../index.php?error=Incorect Login or Password");
 	}
-} else header("Location: ../index.php");
+}
+
+if(isset($_POST['g_log'], $_POST['g_pass'])){
+	$_SESSION['role'] = '4';
+	$_SESSION['mail'] = 'guest@mail.com';
+	$_SESSION['name'] = 'Guest';
+	$_SESSION['image'] = 'icons8-male-user-96.png';
+	header("Location: ../Home.php");
+}
 

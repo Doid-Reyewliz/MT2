@@ -339,6 +339,42 @@ section .box .container .form .back:hover {
   transition: .5s;
 }
 
+section .box .container .f_guest {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+section .box .container .f_guest label {
+  text-align: center;
+  margin: 0;
+}
+
+section .box .container .f_guest .guest {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  -webkit-transition: .5s;
+  transition: .5s;
+  font-size: 18px;
+  color: #2d2292;
+}
+
+section .box .container .f_guest .guest:hover {
+  -webkit-transition: .5s;
+  transition: .5s;
+  font-size: 20px;
+}
+
 section .box .container .content {
   position: relative;
   width: 100%;

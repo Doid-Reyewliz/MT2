@@ -34,13 +34,17 @@
                         <p>Forget Password ? <a href="Forgot.php">Reset</a></p>
                         <p>Don't have an accouunt ? <a href="Register.php">Sign Up</a></p>
                     </form>
+                    <form class="f_guest" action="action/lg.php" method="POST" name="form">
+                        <input type="hidden" name="g_log" value="guest@mail.com">
+                        <input type="hidden" name="g_pass" value=" ">
+                        <br>
+                        <label>or</label>
+                        <br>
+                        <button class="guest" type="submit">Enter as Guest</button>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
 </body>
-<script>
-
-</script>
-
 </html>
