@@ -67,4 +67,3 @@ if(isset($_POST['g_log'], $_POST['g_pass'])){
 	$_SESSION['image'] = 'icons8-male-user-96.png';
 	header("Location: ../Home.php");
 }
-

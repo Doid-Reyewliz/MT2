@@ -88,7 +88,6 @@ $('.upload').on('click', function() {
      });
 });
 </script>
-
 </html>
 
 <?php

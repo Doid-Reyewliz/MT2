@@ -33,30 +33,31 @@ if ($_SESSION['role'] == 2) {
 
 <body>
     <div class="content">
-        <h1>Manage Courses</h1>
-        <div id="search">
-            <input name="search" class="search" type="text" autocomplete="off" placeholder=" Search">
-        </div>
+        <h1>Add New</h1>
         <?php if (isset($_GET['edit'])) {echo "<span class='edit'; style='width: 300px; margin-left: 40%; padding-top: 0; font-size: 18px;'>" . $_GET['edit'] . "</span>";}?>
-        <br>
         <div class="new">
             <div class="card">
-                <div class="add_new">
+                <form class="add_new" action="action/add.php" method="post">
                     <input id="name" name="name" type="text" placeholder="Name" autocomplete="off">
                     <input id="catg" name="catg" type="text" placeholder="Category" autocomplete="off">
-                    <label>Product Image: (864x600)</label><input id="file" name="image" type="file">
+                    <br><label>Product Image: (864x600)</label><input id="file" name="image" type="file">
                     <input id="price" name="price" type="type" placeholder="Price">
                     <input id="number" name="number" type="number" min="1" max="10" placeholder="Quantity">
-                    <input id="code" name="code" type="text" placeholder="Code" autocomplete="off">
-                    <button id="add" type="submit">Add</button>
+                    <input id="code" name="code" type="text" placeholder="Code" autocomplete="off"><br>
+                    <button id="add" type="sumbit">Add</button>
                     <?php if (isset($_GET['error'])) {
                         echo "<span class='error'>" . $_GET['error'] . "</span>";
                     } ?>
-                </div>
+                </form>
             </div>
         </div>
-        <div class="products">
+        <br>
+        <h1>Manage Products</h1>
+        <div id="search">
+            <input name="search" class="search" type="text" autocomplete="off" placeholder=" Search">
         </div>
+
+        <div class="edit"></div>
     </div>
 <?php
 } else {
@@ -108,7 +109,7 @@ $(document).ready(function(){
             chache: false,
             data:{query:query},
             success:function(response){
-                $(".products").html(response);
+                $(".edit").html(response);
             }
         });
     }
@@ -122,16 +123,13 @@ $(document).ready(function(){
         }
     });
 });
-
 //add
 $(document).ready(function(){
     $('#add').click(function(){
         var name=$('#name').val();
         var catg=$('#catg').val();
         var price=$('#price').val();
-        var number=$('#number').val();
         var code=$('#code').val();
-        var file=$('#file').val();
 
         $.ajax({
             url:'action/add.php',
@@ -143,7 +141,6 @@ $(document).ready(function(){
                 price:price,
                 number:number,
                 code:code,
-                file:file,
             },
             success:function(response){
                 alert("Successfully Added");
@@ -151,6 +148,23 @@ $(document).ready(function(){
         });
     });
 });
-</script>
+$('#add').on('click', function() {
+     var file_data = $('#file').prop('files')[0];
+     var form_data = new FormData();
+     form_data.append('file', file_data);
+     $.ajax({
+          url: 'action/add.php',
+          dataType: 'text',
+          cache: false,
+          contentType: false,
+          processData: false,
+          data: form_data,
+          type: 'post',
+          success:function(response){
+               $('#file').html(response);
+          }
+     });
+});
 
+</script>
 </html>

@@ -37,5 +37,4 @@ else{
 
 	move_uploaded_file($_FILES['file']['tmp_name'], '../prof_image/' . $_FILES['file']['name']);
 	$sql = $db->sql("UPDATE users SET `Image`='$image' WHERE id = $id");
-	exit;
 }

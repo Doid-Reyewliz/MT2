@@ -21,7 +21,7 @@
                     <form action="action/lg.php" method="POST">
                         <?php if (isset($_GET['error'])) { ?>
                             <span class="error"><?php echo $_GET['error']; ?></span>
-                        <?php } 
+                        <?php }
                         if(isset($_COOKIE["log"]) && isset($_COOKIE["pass"])){?>
                             <input name="log" id="log" type="email" placeholder="Email" value="<?php echo $_COOKIE["log"]; ?>">
                             <input name="pass" id="pass" type="password" placeholder="Password" value="<?php echo $_COOKIE["pass"]; ?>">
@@ -35,8 +35,8 @@
                         <p>Don't have an accouunt ? <a href="Register.php">Sign Up</a></p>
                     </form>
                     <form class="f_guest" action="action/lg.php" method="POST" name="form">
-                        <input type="hidden" name="g_log" value="guest@mail.com">
-                        <input type="hidden" name="g_pass" value=" ">
+                        <input hidden type="text" name="g_log" value="guest@mail.com">
+                        <input hidden type="text" name="g_pass" value=" ">
                         <label>or</label>
                         <button class="guest" type="submit">Enter as Guest</button>
                     </form>

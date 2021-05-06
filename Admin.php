@@ -17,7 +17,7 @@ if ($_SESSION['role'] == 3) {
         <ul class="list">
             <img class="logo" src="image/logo_white.png" alt="">
             <li><a href="Home.php">Home</a></li>
-            <li class="active"><a href="Products.php">Products</a></li>
+            <li class="active"><a href="Admin.php">Products</a></li>
             <li><a href="Users.php">Users</a></li>
             <!-- <div id="google_translate_element"></div> -->
         </ul>
@@ -48,9 +48,7 @@ if ($_SESSION['role'] == 3) {
         </div>
 
         <div class="products"></div>
-
     </article>
-    <div id="snackbar">Added To Cart</div>
 
 <?php
 } else {
@@ -88,51 +86,11 @@ if ($_SESSION['role'] == 3) {
     </body>";
 }
 ?>
+
 </body>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-var mybutton = document.getElementById("top_btn");
-window.onscroll = function () {
-  scrollFunction();
-};
-
-function scrollFunction() {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        mybutton.style.visibility = "visible";
-    } else {
-        mybutton.style.visibility = "hidden";
-    }
-}
-
-function topFunction() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-}
-</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-//remove
-$(document).ready(function(){
-    $('.rem').click(function(){
-        var el = this;
-        var deleteprod = $(this).data('id');
-        var confirmalert = confirm("Are you sure?");
-
-        if (confirmalert == true) {
-        $.ajax({
-            url: 'action/del.php',
-            type: 'POST',
-            data: { code:deleteprod },
-            success: function(response){
-                $(el).closest('.card').fadeOut(800,function(){
-                $(this).remove();
-                });
-            }
-            });
-        }
-    });
-});
-
 //search
 $(document).ready(function(){
     loadData();
@@ -158,5 +116,4 @@ $(document).ready(function(){
     });
 });
 </script>
-
 </html>

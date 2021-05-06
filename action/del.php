@@ -7,7 +7,7 @@ if(isset($_POST['code'])){
 
     $u_c = $db->sql("DELETE FROM `basket` WHERE product_code = '$code'");
     $sql = $db->sql("DELETE FROM `products` WHERE Code = '$code'");
-    exit;
+    header("Location:../Admin.php");
 }
 
 elseif(isset($_POST['id'])){
@@ -22,8 +22,7 @@ elseif(isset($_POST['id'])){
     $u_r = $db->sql("DELETE FROM `user_roles` WHERE user = '$login'");
     $u_c = $db->sql("DELETE FROM `basket` WHERE user_mail = '$login'");
     $user = $db->sql("DELETE FROM `users` WHERE id = '$id'");
-
-    exit;
 }
+
 exit;
 ?>

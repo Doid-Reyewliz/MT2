@@ -18,9 +18,8 @@ if (isset($_POST['log'], $_POST['pass'], $_POST['name'], $_POST['gen'], $_POST['
 	if (empty($_POST['check'])) {
 		header("Location:../Register.php?error=One or More fields are empty");
 		$error++;
-	} else {
-		$lang[] = implode(", ", $_POST['check']);
-	}
+	} else $lang[] = implode(", ", $_POST['check']);
+
 
 	if (empty($log) or empty($pass) or empty($name) or empty($gen) or empty($bday) or empty($quest) or empty($ans)) {
 		header("Location:../Register.php?error=One or More fields are empty");

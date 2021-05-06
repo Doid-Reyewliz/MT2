@@ -27,17 +27,12 @@
     </nav>
 
     <nav class="nav_buttons">
-        <form action="language_switcher.php" method="post">
-            <select name="lang">
-                <option value="en">En</option>
-                <option value="ru">Ru</option>
-            </select>
-        </form>
+        
         <a <?php if ($_SESSION['role'] != 4) { ?> href="Profile.php" <?php } ?>>
             <img class="prof_im" src="<?php echo 'prof_image/' . $_SESSION['image']; ?>">
             <p <?php if($_SESSION['role'] == 3){ echo "class='rainbow rainbow_text_animated'";} ?>><?php echo $_SESSION['name']; ?></p>
         </a>
-        <?php if ($_SESSION['role'] == 4) { ?><a href="index.php"><img src="https://img.icons8.com/fluent/48/000000/exit.png" /></a><?php } 
+        <?php if ($_SESSION['role'] == 4) { ?><a href="index.php"><img src="https://img.icons8.com/fluent/48/000000/exit.png" /></a><?php }
         else {?>
         <a href="Bag.php"><img class="basket" src="https://img.icons8.com/fluent/48/000000/shopping-basket-2.png" /></a>
         <a href="index.php"><img src="https://img.icons8.com/fluent/48/000000/exit.png" /></a>
@@ -85,10 +80,22 @@
                     <div class="content">
                         <div class="size">
                             <h3>Size: </h3>
-                            <span>40</span>
-                            <span>41</span>
-                            <span>42</span>
-                            <span>43</span>
+                            <div class="container">
+                                <input type="radio" name="radio">
+                                <span class="checkmark"></span>
+                            </div>
+                            <div class="container">
+                                <input type="radio" name="radio">
+                                <span class="checkmark"></span>
+                            </div>
+                            <div class="container">
+                                <input type="radio" name="radio">
+                                <span class="checkmark"></span>
+                            </div>
+                            <div class="container">
+                                <input type="radio" name="radio">
+                                <span class="checkmark"></span>
+                            </div>
                         </div>
                         <div class='price'>
                             <h3><?php echo "$ " . $product[$i]['Price'];?> </h3>
@@ -150,24 +157,6 @@
     </div>
 </footer>
 
-<script>
-//scroll on top
-var mybutton = document.getElementById("top_btn");
-window.onscroll = function () {
-  scrollFunction();
-};
-
-function scrollFunction() {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        mybutton.style.visibility = "visible";
-    } else {
-        mybutton.style.visibility = "hidden";
-    }
-}
-
-function topFunction() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-}</script>
+<script src="final.js"></script>
 
 </html>
