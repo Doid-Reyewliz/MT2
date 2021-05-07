@@ -496,10 +496,6 @@ body {
                             height: 0;
                             width: 0;
 
-                            &:checked ~ .checkmark {
-                                background-color: #185e97;
-                                color: #fff;
-                            }
                         }
 
                         .checkmark {

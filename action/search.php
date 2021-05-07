@@ -96,13 +96,25 @@ else{
                                 <h2>{$row['Name']}</h2>
                             </div>
                             <div class='content'>
-                                <div class='size'>
-                                    <h3>Size: </h3>
-                                    <span>40</span>
-                                    <span>41</span>
-                                    <span>42</span>
-                                    <span>43</span>
+                            <div class=\"size\">
+                                <h3>Size: </h3>
+                                <div class=\"container\">
+                                    <input type=\"radio\" name=\"radio\">
+                                    <span class=\"checkmark\"></span>
                                 </div>
+                                <div class=\"container\">
+                                    <input type=\"radio\" name=\"radio\">
+                                    <span class=\"checkmark\"></span>
+                                </div>
+                                <div class=\"container\">
+                                    <input type=\"radio\" name=\"radio\">
+                                    <span class=\"checkmark\"></span>
+                                </div>
+                                <div class=\"container\">
+                                    <input type=\"radio\" name=\"radio\">
+                                    <span class=\"checkmark\"></span>
+                                </div>
+                            </div>
                                 <div class='price'>
                                     <h3>$ {$row['Price']}</h3>
                                 </div>
@@ -145,5 +157,4 @@ $(document).ready(function(){
         }
     });
 });
-
 </script>

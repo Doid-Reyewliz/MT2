@@ -33,8 +33,9 @@ if(isset($_POST['log'], $_POST['pass'], $_POST['name'], $_POST['gen'], $_POST['b
 else{
 	$image = $_FILES['file']['name'];
 	$id = $_SESSION['id'];
-	$_SESSION['image'] = $_FILES['file']['name'];
+	$_SESSION['image'] = $image;
 
 	move_uploaded_file($_FILES['file']['tmp_name'], '../prof_image/' . $_FILES['file']['name']);
 	$sql = $db->sql("UPDATE users SET `Image`='$image' WHERE id = $id");
+	exit;
 }

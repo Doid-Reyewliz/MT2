@@ -53,7 +53,7 @@
 
         if(mysqli_num_rows($select) > 0){
 
-            $sql = $db->query("SELECT basket.number, products.Image, products.Name, products.Price FROM basket INNER JOIN products ON basket.product_code = products.Code WHERE basket.user_mail = '$mail'");
+            $sql = $db->query("SELECT basket.number, basket.product_code, products.Image, products.Name, products.Price FROM basket INNER JOIN products ON basket.product_code = products.Code WHERE basket.user_mail = '$mail'");
 
             foreach($sql as $row){
                 $price = $row['Price'] * $row['number'];
@@ -62,16 +62,17 @@
                         <h3>{$row['Name']}</h3>
                         <p>$$price</p>
                         <div class=\"number\">
-                            <button class=\"minus\"><img src=\"https://img.icons8.com/fluent/48/000000/minus.png\"/></button>
-                            <p>{$row['number']}</p>
-                            <button class=\"pluss\"><img src=\"https://img.icons8.com/fluent/48/000000/add.png\"/></button>
+                            <input hidden type=\"text\" class=\"code\" value=\"{$row['product_code']}\">
+                            <button data-id=\"{$row['number']}\" id=\"minus\"><img src=\"https://img.icons8.com/fluent/48/000000/minus.png\"/></button>
+                            <p id=\"number\">{$row['number']}</p>
+                            <button data-id=\"{$row['number']}\" id=\"plus\"><img src=\"https://img.icons8.com/fluent/48/000000/add.png\"/></button>
                         </div>
                     </div>";
                 $count += $price;
             }
         }
         else{
-            echo "<h1>Your Bag is Empty</h1>";
+            echo "<h1 class='stat'>Your Bag is Empty</h1>";
         }
         ?>
         </div>
@@ -145,6 +146,43 @@ function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 }
+
+$("#minus").click(function(){
+    var el = this;
+    var buy = $(this).data('id');
+    var code=$('.code').val();
+
+    $.ajax({
+        url:'action/basket.php',
+        method:'POST',
+        data:{ 
+            minus:buy,
+            code:code
+        },
+        success:function(response){
+            $("#number").html(response);
+        }
+    });
+});
+
+$("#plus").click(function(){
+    var el = this;
+    var buy = $(this).data('id');
+    var code=$('.code').val();
+
+    $.ajax({
+        url:'action/basket.php',
+        method:'POST',
+        data:{ 
+            plus:buy,
+            code:code
+        },
+        success:function(response){
+            $("#number").html(response);
+        }
+    });
+});
+
 </script>
 
 </html>

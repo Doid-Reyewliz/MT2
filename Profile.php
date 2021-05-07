@@ -40,7 +40,7 @@ if (isset($_SESSION['id'])) {
                     <div class="content">
                          <div class="profile">
                               <div class="load">
-                                   <input type="file" name="file" class="prof_im" style="background-image: url('<?php echo 'prof_image/' . $image; ?>')" >
+                                   <input type="file" name="file" class="prof_im" style="background-image: url('<?php echo 'prof_image/' . $_SESSION['image']; ?>')" >
                                    <button class="upload"><img src="https://img.icons8.com/fluent/48/000000/save.png"/></button>
                               </div>
                               <h2 class="prof"><span <?php if($_SESSION['role'] == 3){ echo "class='rainbow rainbow_text_animated'"; } ?>> <?php echo $name; ?> </span><a href="Edit.php"><img src="https://img.icons8.com/fluent/48/000000/pencil-tip.png"/></a></h2>
@@ -72,6 +72,8 @@ if (isset($_SESSION['id'])) {
 //profile image upload
 $('.upload').on('click', function() {
      var file_data = $('.prof_im').prop('files')[0];
+     var file_name = "prof_image/";
+     var text = $('.prof_im').val();
      var form_data = new FormData();
      form_data.append('file', file_data);
      $.ajax({
@@ -83,7 +85,7 @@ $('.upload').on('click', function() {
           data: form_data,
           type: 'post',
           success:function(response){
-               $(".prof_im").html(response);
+               $(".prof_im").css('background-image', 'url(' + file_name + text.substring(text.lastIndexOf("\\") + 1, text.length) + ')');
           }
      });
 });

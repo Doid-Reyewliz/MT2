@@ -27,7 +27,10 @@
         </a>
         <?php if ($_SESSION['role'] == 4) { ?><a href="index.php"><img src="https://img.icons8.com/fluent/48/000000/exit.png" /></a><?php } 
         else {?>
-        <a href="Bag.php"><img class="basket" src="https://img.icons8.com/fluent/48/000000/shopping-basket-2.png" /></a>
+        <div>
+            <a href="Bag.php"><img class="basket" src="https://img.icons8.com/fluent/48/000000/shopping-basket-2.png" /></a>
+            <!-- <span><?php //echo $_SESSION['num']; ?></span> -->
+        </div>
         <a href="index.php"><img src="https://img.icons8.com/fluent/48/000000/exit.png" /></a>
         <?php }?>
     </nav>
@@ -98,7 +101,10 @@ $(document).ready(function(){
         }
     });
 });
+
 </script>
+
+
 
 <!--
 <script type="text/javascript">

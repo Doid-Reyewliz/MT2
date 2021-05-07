@@ -10,10 +10,10 @@ if(isset($_POST['name'], $_POST['catg'], $_POST['price'], $_POST['code'])){
     $code = $_POST['code'];
     $image = $_FILES['image']['name'];
 
-    move_uploaded_file($_FILES['image']['tmp_name'], '../image/' . $_FILES['image']['name']);
+    move_uploaded_file($_FILES['image']['tmp_name'], '../image/' . $image);
     $sql =  $db->sql("INSERT INTO `products`(`id`, `Name`, `Image`, `Category`, `Price`, `Code`) VALUES ('','$name','$image','$catg','$price','$code')");
-    header("Location: Mod.php");
+    header("Location: ../Mod.php");
 }
 else{
-    header("Location: Mod.php?error=One or More fields are empty");
+    header("Location: ../Mod.php?error=One or More fields are empty");
 }
