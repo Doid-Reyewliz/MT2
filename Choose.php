@@ -1,7 +1,6 @@
 <?php
 session_start();
-if($_SESSION['role'] == 3){ 
-
+if($_SESSION['role'] == 3){
     if(isset($_POST['admin'])){
         $_SESSION['role'] = 3;
         header("Location: Admin.php");
