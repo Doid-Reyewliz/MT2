@@ -104,7 +104,10 @@
                             <h3><?php echo "$ " . $product[$i]['Price'];?> </h3>
                         </div>
                         <?php if ($_SESSION['role'] != 4) { ?>
-                            <button id="btn" onclick="snack();">Add To Cart</button>
+                            <form action='action/basket.php' method='post'>
+                                <input hidden name='code' type='text' value='<?php echo $product[$i]['Code'];?>'>
+                                <button id='btn' type='submit' onclick='snack();'>Add To Cart</button>
+                            </form>
                         <?php } ?>
                     </div>
                 </div>
