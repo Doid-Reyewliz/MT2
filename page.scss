@@ -305,7 +305,7 @@ body {
 
         .b_products{
             @include flex;
-            justify-content: space-between;
+            justify-content: space-around;
             flex-wrap: wrap;
 
             .product{

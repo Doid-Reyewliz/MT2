@@ -109,7 +109,36 @@ section{
             background: rgba(255, 255, 255, .1);
             border-radius: 10px;
             align-items: center;
-            
+
+            .choose{
+                form{
+                    @include flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    button{
+                        @include glass;
+                        background: #fff;
+                        color: #2d2292;
+                        width: 130px;
+                        height: 40px;
+                        font-size: 17px;
+                        cursor: pointer;
+                        margin-top: 3%;
+                        margin-bottom: 15%;
+                        font-weight: 600;
+                        border-radius: 35px;
+                        letter-spacing: 1px;
+                        transition: .5s;
+
+                        &:hover{
+                            width: 140px;
+                            letter-spacing: 2px;
+                            transition: .5s;
+                        }
+                    }
+                }
+            }
 
             .form{
                 position: relative;

@@ -52,7 +52,7 @@ if(isset($_POST['log'], $_POST['pass'])) {
 						$_SESSION['image'] = $users[$i]['Image'];
 						setcookie("log", $log, time() + 20, "/");
 						setcookie("pass", $pass, time() + 20, "/");
-						header("Location: ../Admin.php");
+						header("Location: ../Choose.php");
 					}
 				}
 			}

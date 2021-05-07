@@ -390,9 +390,7 @@ body .order .b_products {
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-around;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
@@ -668,7 +666,7 @@ body .products .card .content .size h3 {
   margin-right: 10px;
 }
 
-.container {
+body .products .card .content .size .container {
   display: block;
   position: relative;
   margin-top: 5%;
@@ -683,7 +681,7 @@ body .products .card .content .size h3 {
   user-select: none;
 }
 
-.container input {
+body .products .card .content .size .container input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
@@ -691,12 +689,7 @@ body .products .card .content .size h3 {
   width: 0;
 }
 
-.container input:checked ~ .checkmark {
-  background-color: #185e97;
-  color: #fff;
-}
-
-.checkmark {
+body .products .card .content .size .container .checkmark {
   position: absolute;
   top: 0;
   left: 0;
@@ -706,7 +699,7 @@ body .products .card .content .size h3 {
   border-radius: 3px;
 }
 
-.checkmark:after {
+body .products .card .content .size .container .checkmark:after {
   left: 4px;
   top: 3px;
   width: 5px;
@@ -715,26 +708,26 @@ body .products .card .content .size h3 {
   position: absolute;
 }
 
-.container:hover {
+body .products .card .content .size .container:hover {
   -webkit-transition: .3s;
   transition: .3s;
   -webkit-transform: translateY(-6px);
           transform: translateY(-6px);
 }
 
-.container:first-of-type .checkmark::after {
+body .products .card .content .size .container:first-of-type .checkmark::after {
   content: "41";
 }
 
-.container:nth-of-type(2) .checkmark::after {
+body .products .card .content .size .container:nth-of-type(2) .checkmark::after {
   content: "42";
 }
 
-.container:nth-of-type(3) .checkmark::after {
+body .products .card .content .size .container:nth-of-type(3) .checkmark::after {
   content: "43";
 }
 
-.container:last-of-type .checkmark::after {
+body .products .card .content .size .container:last-of-type .checkmark::after {
   content: "44";
 }
 

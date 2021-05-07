@@ -133,6 +133,52 @@ section .box .container {
           align-items: center;
 }
 
+section .box .container .choose form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+section .box .container .choose form button {
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  border-right: 3px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+  background: #fff;
+  color: #2d2292;
+  width: 130px;
+  height: 40px;
+  font-size: 17px;
+  cursor: pointer;
+  margin-top: 3%;
+  margin-bottom: 15%;
+  font-weight: 600;
+  border-radius: 35px;
+  letter-spacing: 1px;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+section .box .container .choose form button:hover {
+  width: 140px;
+  letter-spacing: 2px;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
 section .box .container .form {
   position: relative;
   width: 100%;
