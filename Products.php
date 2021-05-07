@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Home</title>
+    <title>Products</title>
     <link rel="shortcut icon" href="https://img.icons8.com/fluent/48/000000/add-shopping-cart.png"/>
     <link rel="stylesheet" href="page.css">
 </head>
