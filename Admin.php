@@ -52,28 +52,15 @@ if ($_SESSION['role'] == 3) {
 
 <?php
 } else {
-    echo "<body style= 'background: linear-gradient(to top right, rgb(78, 219, 120), rgb(45, 34, 146));'><h1 style='
-    color: #fff;
-    margin-top: 15%;
-    margin-left: 23%;
-    width: 50%;
-    padding: 2%;
-    text-align: center;
-    background: #9e00f6;
-    backdrop-filter: blur(5px);
-    border-radius: 20px;
-    background: rgba(255, 255, 255, .1);
-    box-shadow: 0 25px 45px rgba(0, 0, 0, .1);
-    border: 3px solid rgba(255, 255, 255, .5);
-    border-right: 3px solid rgba(255, 255, 255, .2);
-    border-bottom: 3px solid rgba(255, 255, 255, .2);
-
-    '>How did you end up here? <br>Anyway, you don't have an <b>access</b> to this page !<h1>
+    echo "<body style='background: linear-gradient(to top right, rgb(78, 219, 120), rgb(45, 34, 146)); display:flex; flex-direction:column; padding: 30% 30%; padding-top:15%;'>
+    <img src='image/200.gif'>
     <a style='
-    margin-left: 41%;
+    align-self:center;
+    text-align:center;
+    width: 30%;
     color: #fff;
     padding: .6%;
-    margin-top: 1%;
+    margin-top: 4%;
     text-decoration:none; background: #9e00f6;
     backdrop-filter: blur(5px);
     border-radius: 10px;
