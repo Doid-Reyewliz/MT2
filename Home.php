@@ -41,6 +41,17 @@
         <a href="index.php"><img src="https://img.icons8.com/fluent/48/000000/exit.png" /></a>
         <?php }?>
     </nav>
+        <div class="burger-menu">
+            <a href="#" class="burger-menu_button">
+                <span class="burger-menu_lines"></span>
+            </a>
+            <nav class="burger-menu_nav">
+                <a href="#navbar">Home</a>
+                <a href="#men_products">Products</a>
+                <a href="#women_products">Contact Us</a>
+            </nav>
+            <div class="burger-menu_overlay"></div>
+        </div>
 </header>
 
 <body>
@@ -117,7 +128,25 @@
         ?>
         </div>
     </article>
+    <h1>FeedBacks</h1>
+    <div class="feed">
+        <?php
+            $sql = $db->sql("SELECT products.Image, users.Name, feedback.text FROM feedback INNER JOIN products ON feedback.product_name = products.Name INNER JOIN users ON feedback.user = users.Login");
+
+            foreach($sql as $row){
+                echo    "<div class=\"back\">
+                            <img src=\"image/$row[Image]\">
+                            <div>
+                                <span>{$row['Name']}</span>
+                                <p>{$row['text']}</p>
+                            </div>
+                        </div>";
+            }
+        ?>
+    </div>
 </body>
+
+<script src="final.js"></script>
 
 <footer>
     <div class="foot">
@@ -162,7 +191,4 @@
         </div>
     </div>
 </footer>
-
-<script src="final.js"></script>
-
 </html>

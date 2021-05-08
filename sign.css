@@ -220,7 +220,7 @@ section .box .container .form label {
 }
 
 section .box .container .form .error {
-  color: #f32172;
+  color: red;
   padding: 10px;
   width: 95%;
   border-radius: 5px;

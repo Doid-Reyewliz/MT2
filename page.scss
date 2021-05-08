@@ -87,7 +87,7 @@ header {
 
                 a {
                     color: #fff;
-                    font-size: 32px;
+                    font-size: 200%;
                     text-decoration: none;
 
                     &:hover {
@@ -790,6 +790,73 @@ body {
         }
     }
 
+    .coment{
+        @include glass;
+        @include flex;
+        flex-direction: column;
+        border-radius: 10px;
+        margin-left: 25%;
+        margin-right: 25%;
+        padding-top: 3%;
+        padding-bottom: 3%;
+
+        button{
+            @include glass;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 17px;
+            transition: .4s;
+            cursor: pointer;
+
+            &:hover{
+                letter-spacing: 2px;
+                transition: .4s;
+            }
+        }
+
+        .p_search{
+            @include flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+
+            select{
+                @include glass;
+                border-radius: 4px;
+            }
+        }
+
+        .div{
+            @include flex;
+            flex-direction: row;
+            justify-content: space-around;
+            margin-top: 5%;
+
+            div{
+                @include flex;
+
+                img{
+                    width: 220px;
+                    height: 200px;
+                }
+            }
+
+            .com{
+                @include flex;
+                flex-direction: column;
+
+                textarea{
+                    @include glass;
+                    border-radius: 2px;
+                    margin-bottom: 5%;
+
+                    &::placeholder{
+                        color: #000;
+                    }
+                }
+            }
+        }
+    }
+
     .table{
         padding-left: 5%;
         padding-right: 5%;
@@ -841,6 +908,49 @@ body {
                     }
                 }
             }
+        }
+    }
+
+    .feed{
+        @include flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        padding: 5% 5%;
+        padding-top: 3%;
+
+        .back{
+            @include glass;
+            @include flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 10px;
+            padding: 5% 5%;
+            margin-bottom: 5%;
+            width: 30%;
+
+            img{
+                width: 60%;
+            }
+
+            div{
+                @include flex;
+                justify-content: space-evenly;
+                flex-direction: column;
+
+                span{
+                    color: #fff;
+                    font-size: 20px;
+                    border-bottom: 3px solid #fff;
+                    text-align: center;
+                }
+
+                p{
+                    overflow-y: auto;
+                    word-break: break-all;
+                }
+            }
+
         }
     }
 }

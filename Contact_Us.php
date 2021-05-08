@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php
+session_start();
+include_once "action/db.php";
+$db = new Dbase();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -33,8 +37,75 @@
 </header>
 
 <body>
+    <h1>FeedBack</h1>
+    <div class="coment">
+        <form class="p_search" action="action/com.php" method="POST">
+            <select name="select" id="sel">
+                <option disabled selected>Choose Snicker</option>
+                <?php 
+                    $sql=$db->sql("SELECT * FROM products");
+                    foreach($sql as $row){
+                        echo "<option value='{$row['Name']}'>{$row['Name']}</option>";
+                    }
+                ?>
+            </select>
+            <button id="prod" type="submit">Search</button>
+        </form>
+        <div class="div">
+            <div>
+                <img id="img" src="">
+            </div>
+            <form class="com" action="action/com.php" method="POST">
+                <textarea name="text" id="artext" cols="30" rows="10" placeholder="Text..."></textarea>
+                <input hidden type="text" id="text" value="">
+                <button id="sub" type="submit">Sent</button>
+            </form>
+        </div>
+    </div>
+    <h1>Contacs</h1>
+    <div>
 
+    </div>
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('#prod').click(function(){
+        var name = $('#sel').val();
+
+        $.ajax({
+            url:'action/com.php',
+            method:'POST',
+            cache: false,
+            data:{select:name},
+            success:function(response){
+                $('#img').attr("src", response);
+            }
+        });
+    });
+
+    $('#sub').click(function(){
+        var artext = $('#artext').val();
+        var text = $('#sel').val();
+
+        $.ajax({
+            url:'action/com.php',
+            method:'POST',
+            cache: false,
+            data:{
+                artext:artext,
+                text:text
+            },
+            success:function(response){
+                alert("Your feedback was added!!!");
+            }
+        });
+    });
+});
+
+</script>
+
 <footer>
     <div class="foot">
         <div class="contact">
