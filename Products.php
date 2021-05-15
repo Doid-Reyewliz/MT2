@@ -53,9 +53,9 @@
         <div class="products"></div>
 
     </article>
-    <div id="snackbar">Added To Cart</div>
 </body>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 //to top button
 var mybutton = document.getElementById("top_btn");
@@ -74,9 +74,6 @@ function topFunction() {
     document.documentElement.scrollTop = 0;
 }
 
-</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
 //search
 $(document).ready(function(){
     loadData();
@@ -101,7 +98,6 @@ $(document).ready(function(){
         }
     });
 });
-
 </script>
 
 

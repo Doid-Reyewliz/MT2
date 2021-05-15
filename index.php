@@ -38,7 +38,7 @@
                         <input hidden type="text" name="g_log" value="guest@mail.com">
                         <input hidden type="text" name="g_pass" value=" ">
                         <label>or</label>
-                        <button class="guest" type="submit">Enter as Guest</button>
+                        <button class="guest" type="submit">Continue as Guest</button>
                     </form>
                 </div>
             </div>

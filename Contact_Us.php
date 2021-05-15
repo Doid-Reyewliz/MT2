@@ -9,7 +9,7 @@ $db = new Dbase();
 <head>
     <meta charset="utf-8">
     <title>Contact Us</title>
-    <link rel="shortcut icon" href="https://img.icons8.com/fluent/48/000000/add-shopping-cart.png" />
+    <link rel="shortcut icon" href="https://img.icons8.com/fluent/48/000000/help.png" />
     <link rel="stylesheet" href="page.css">
 </head>
 
@@ -37,34 +37,75 @@ $db = new Dbase();
 </header>
 
 <body>
-    <h1>FeedBack</h1>
-    <div class="coment">
-        <form class="p_search" action="action/com.php" method="POST">
-            <select name="select" id="sel">
-                <option disabled selected>Choose Snicker</option>
-                <?php 
-                    $sql=$db->sql("SELECT * FROM products");
-                    foreach($sql as $row){
-                        echo "<option value='{$row['Name']}'>{$row['Name']}</option>";
-                    }
-                ?>
-            </select>
-            <button id="prod" type="submit">Search</button>
-        </form>
-        <div class="div">
-            <div>
-                <img id="img" src="">
+    <div class="cont">
+        <h1>FeedBack</h1>
+        <div class="coment">
+            <div class="p_search">
+                <select name="select" id="sel">
+                    <option disabled selected>Choose Snicker</option>
+                    <?php 
+                        $sql=$db->sql("SELECT * FROM products");
+                        foreach($sql as $row){
+                            echo "<option value='{$row['Name']}'>{$row['Name']}</option>";
+                        }
+                    ?>
+                </select>
+                <button id="prod" type="submit">Search</button>
             </div>
-            <form class="com" action="action/com.php" method="POST">
-                <textarea name="text" id="artext" cols="30" rows="10" placeholder="Text..."></textarea>
-                <input hidden type="text" id="text" value="">
-                <button id="sub" type="submit">Sent</button>
-            </form>
+            <div class="div">
+                <div>
+                    <img id="img" src="">
+                </div>
+                <div class="com">
+                    <textarea name="text" id="artext" cols="30" rows="10" placeholder="Text..."></textarea>
+                    <input hidden type="text" id="text" value="">
+                    <button id="sub" type="submit">Sent</button>
+                </div>
+            </div>
         </div>
-    </div>
-    <h1>Contacs</h1>
-    <div>
+        <br>
 
+        <h1>Contact Us</h1>
+        <div class="contr">
+        <div class="row100">
+            <div class="col">
+                <div class="inputBox">
+                    <input type="text" required="required" value="<?php echo $_SESSION['name']; ?>">
+                    <span class="text">Name</span>
+                    <span class="line"></span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="inputBox">
+                    <input type="text" required="required" value="<?php echo $_SESSION['mail']; ?>">
+                    <span class="text">Email</span>
+                    <span class="line"></span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="inputBox">
+                    <input type="text" required="required">
+                    <span class="text">Mobile</span>
+                    <span class="line"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row100">
+            <div class="col">
+                <div class="inputBox textarea">
+                    <textarea required="required"></textarea>
+                    <span class="text">Message...</span>
+                    <span class="line"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row100">
+            <div class="col">
+                <input id="send" type="submit" value="Send">
+            </div>
+        </div>
+        </div>
     </div>
 </body>
 
@@ -101,6 +142,10 @@ $(document).ready(function(){
                 alert("Your feedback was added!!!");
             }
         });
+    });
+
+    $('#send').click(function(){
+        alert("Text Sended");
     });
 });
 

@@ -46,7 +46,6 @@ if ($_SESSION['role'] == 2) {
                     <input id="catg" name="catg" type="text" placeholder="Category" autocomplete="off">
                     <br><label>Product Image: (864x600)</label><input id="file" name="image" type="file">
                     <input id="price" name="price" type="type" placeholder="Price">
-                    <input id="number" name="number" type="number" min="1" max="10" placeholder="Quantity">
                     <input id="code" name="code" type="text" placeholder="Code" autocomplete="off"><br>
                     <button id="add" type="sumbit">Add</button>
                 </form>

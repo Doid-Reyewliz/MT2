@@ -10,6 +10,7 @@ elseif(isset($_POST['code'])){
 
     $user_mail = $_SESSION['mail'];
     $code = $_POST['code'];
+    $size = $_POST['size'];
 
     $check = $db->sql("SELECT * FROM basket WHERE user_mail = '$user_mail' AND product_code = '$code'");
 
@@ -21,7 +22,7 @@ elseif(isset($_POST['code'])){
         $sql = $db->sql("UPDATE basket SET number = $count WHERE user_mail = '$user_mail' AND product_code = '$code'");
     }
     else{
-        $sql = $db->sql("INSERT INTO basket(`id`, `user_mail`, `product_code`, `number`) VALUES ('', '$user_mail', '$code', '$count')");
+        $sql = $db->sql("INSERT INTO basket(`id`, `user_mail`, `product_code`, `size`, `number`) VALUES ('', '$user_mail', '$code', '$size', '$count')");
     }
     header("Location:../Products.php");
 }

@@ -11,16 +11,14 @@ if(isset($_POST['select'])){
     foreach($sql as $row){
         $image = "image/$row[Image]";
     }
-
-    exit;
+    echo $image;
 }
-
-if(isset($_POST['text'], $_POST['artext'])){
+elseif(isset($_POST['text'], $_POST['artext'])){
     $text = $_POST['text'];
     $artext = $_POST['artext'];
     $mail = $_SESSION['mail'];
 
     $sql = $db->sql("INSERT INTO `feedback`(`id`, `user`, `product_name`, `text`) VALUES ('','$mail','$text','$artext')");
 }
-exit;
+
 ?>

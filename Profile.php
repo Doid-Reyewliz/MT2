@@ -25,7 +25,7 @@ if (isset($_SESSION['id'])) {
 <head>
      <title>Profile</title>
      <link rel="stylesheet" type="text/css" href="sign.css">
-     <link rel="shortcut icon" href="https://img.icons8.com/fluent/48/000000/user-male-circle.png"/>
+     <link rel="shortcut icon" href="https://img.icons8.com/fluent/48/000000/contact-card.png"/>
 </head>
 
 <body>

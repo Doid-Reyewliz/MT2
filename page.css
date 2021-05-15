@@ -10,6 +10,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 header {
@@ -43,7 +44,7 @@ header .nav_text {
 }
 
 header .nav_text .logo {
-  width: 180px;
+  width: 20%;
 }
 
 header .nav_text .list {
@@ -176,7 +177,7 @@ body #top_btn {
   visibility: hidden;
   position: fixed;
   top: 87%;
-  right: 94%;
+  left: 2%;
   border: 0;
   outline: none;
   border-radius: 100%;
@@ -624,11 +625,13 @@ body .products .card:hover .imgBx img {
 }
 
 body .products .card .content {
-  position: absolute;
-  bottom: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  position: absolute;
+  bottom: 20px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -651,6 +654,9 @@ body .products .card .content .size {
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
@@ -666,69 +672,54 @@ body .products .card .content .size h3 {
   margin-right: 10px;
 }
 
-body .products .card .content .size .container {
-  display: block;
-  position: relative;
-  margin-top: 5%;
-  padding-left: 35px;
+body .products .card .content .size div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-transform: translateY(-10px);
+          transform: translateY(-10px);
+}
+
+body .products .card .content .size div label input {
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance: none;
   cursor: pointer;
-  font-size: 22px;
-  -webkit-transition: .3s;
-  transition: .3s;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 
-body .products .card .content .size .container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
+body .products .card .content .size div label input:checked ~ .fa {
+  color: #a523eb;
+  border: 2px solid #a523eb;
 }
 
-body .products .card .content .size .container .checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #fff;
-  border-radius: 3px;
-}
-
-body .products .card .content .size .container .checkmark:after {
-  left: 4px;
-  top: 3px;
-  width: 5px;
-  height: 10px;
+body .products .card .content .size div label .fa {
+  padding: 5px 5px;
+  text-align: center;
+  margin: 0 10px;
+  color: #fff;
   font-size: 15px;
-  position: absolute;
-}
-
-body .products .card .content .size .container:hover {
+  border: 2px solid #fff;
+  border-radius: 5px;
   -webkit-transition: .3s;
   transition: .3s;
-  -webkit-transform: translateY(-6px);
-          transform: translateY(-6px);
 }
 
-body .products .card .content .size .container:first-of-type .checkmark::after {
-  content: "41";
-}
-
-body .products .card .content .size .container:nth-of-type(2) .checkmark::after {
-  content: "42";
-}
-
-body .products .card .content .size .container:nth-of-type(3) .checkmark::after {
-  content: "43";
-}
-
-body .products .card .content .size .container:last-of-type .checkmark::after {
-  content: "44";
+body .products .card .content .size div label:hover .fa {
+  cursor: pointer;
+  -webkit-transition: .3s;
+  transition: .3s;
+  -webkit-transform: translateY(-5px);
+          transform: translateY(-5px);
 }
 
 body .products .card .content .price {
@@ -737,21 +728,53 @@ body .products .card .content .price {
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  border-radius: 7px;
-  background-color: #fff;
 }
 
 body .products .card .content .price h3 {
+  border-radius: 7px;
+  background-color: #fff;
   color: #000;
   text-align: center;
   margin: 0;
   padding: 5px 5px;
+}
+
+body .products .card .content div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+body .products .card .content div #btn {
+  position: relative;
+  top: 10px;
+  display: inline-block;
+  padding: 12px 30px;
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  border-radius: 40px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 2px solid #fff;
+  cursor: pointer;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+body .products .card .content div #btn:hover {
+  color: #a523eb;
+  border: 2px solid #a523eb;
+  letter-spacing: 2px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 body .products .card .content #btn {
@@ -1158,223 +1181,6 @@ body .edit .card .content .edit:hover {
   border: 2px solid orangered;
 }
 
-body #snackbar {
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
-  background: rgba(255, 255, 255, 0.1);
-  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-  border: 3px solid rgba(255, 255, 255, 0.5);
-  border-right: 3px solid rgba(255, 255, 255, 0.2);
-  border-bottom: 3px solid rgba(255, 255, 255, 0.2);
-  visibility: hidden;
-  min-width: 250px;
-  margin-left: -125px;
-  background-color: rgba(255, 255, 255, 0.404);
-  color: #000;
-  text-align: center;
-  border-radius: 10px;
-  padding: 16px;
-  position: fixed;
-  z-index: 11;
-  left: 50%;
-  bottom: 30px;
-  font-size: 17px;
-}
-
-body #snackbar.show {
-  visibility: visible;
-  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-          animation: fadein 0.5s, fadeout 0.5s 2.5s;
-}
-
-@-webkit-keyframes fadein {
-  from {
-    bottom: 0;
-    opacity: 0;
-  }
-  to {
-    bottom: 30px;
-    opacity: 1;
-  }
-}
-
-@keyframes fadein {
-  from {
-    bottom: 0;
-    opacity: 0;
-  }
-  to {
-    bottom: 30px;
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes fadeout {
-  from {
-    bottom: 30px;
-    opacity: 1;
-  }
-  to {
-    bottom: 0;
-    opacity: 0;
-  }
-}
-
-@keyframes fadeout {
-  from {
-    bottom: 30px;
-    opacity: 1;
-  }
-  to {
-    bottom: 0;
-    opacity: 0;
-  }
-}
-
-body .coment {
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
-  background: rgba(255, 255, 255, 0.1);
-  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-  border: 3px solid rgba(255, 255, 255, 0.5);
-  border-right: 3px solid rgba(255, 255, 255, 0.2);
-  border-bottom: 3px solid rgba(255, 255, 255, 0.2);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  border-radius: 10px;
-  margin-left: 25%;
-  margin-right: 25%;
-  padding-top: 3%;
-  padding-bottom: 3%;
-}
-
-body .coment button {
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
-  background: rgba(255, 255, 255, 0.1);
-  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-  border: 3px solid rgba(255, 255, 255, 0.5);
-  border-right: 3px solid rgba(255, 255, 255, 0.2);
-  border-bottom: 3px solid rgba(255, 255, 255, 0.2);
-  color: #fff;
-  border-radius: 5px;
-  font-size: 17px;
-  -webkit-transition: .4s;
-  transition: .4s;
-  cursor: pointer;
-}
-
-body .coment button:hover {
-  letter-spacing: 2px;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-body .coment .p_search {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-}
-
-body .coment .p_search select {
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
-  background: rgba(255, 255, 255, 0.1);
-  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-  border: 3px solid rgba(255, 255, 255, 0.5);
-  border-right: 3px solid rgba(255, 255, 255, 0.2);
-  border-bottom: 3px solid rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
-}
-
-body .coment .div {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  justify-content: space-around;
-  margin-top: 5%;
-}
-
-body .coment .div div {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-}
-
-body .coment .div div img {
-  width: 220px;
-  height: 200px;
-}
-
-body .coment .div .com {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-body .coment .div .com textarea {
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
-  background: rgba(255, 255, 255, 0.1);
-  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-  border: 3px solid rgba(255, 255, 255, 0.5);
-  border-right: 3px solid rgba(255, 255, 255, 0.2);
-  border-bottom: 3px solid rgba(255, 255, 255, 0.2);
-  border-radius: 2px;
-  margin-bottom: 5%;
-}
-
-body .coment .div .com textarea::-webkit-input-placeholder {
-  color: #000;
-}
-
-body .coment .div .com textarea:-ms-input-placeholder {
-  color: #000;
-}
-
-body .coment .div .com textarea::-ms-input-placeholder {
-  color: #000;
-}
-
-body .coment .div .com textarea::placeholder {
-  color: #000;
-}
-
 body .table {
   padding-left: 5%;
   padding-right: 5%;
@@ -1475,6 +1281,7 @@ body .feed {
       flex-wrap: wrap;
   padding: 5% 5%;
   padding-top: 3%;
+  padding-bottom: 0;
 }
 
 body .feed .back {
@@ -1491,20 +1298,20 @@ body .feed .back {
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   border-radius: 10px;
-  padding: 5% 5%;
+  padding-left: 2%;
+  padding-right: 5%;
+  padding-top: 5%;
+  padding-bottom: 5%;
   margin-bottom: 5%;
   width: 30%;
-}
-
-body .feed .back img {
-  width: 60%;
+  height: 100px;
 }
 
 body .feed .back div {
@@ -1516,6 +1323,9 @@ body .feed .back div {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -1534,6 +1344,319 @@ body .feed .back div p {
   word-break: break-all;
 }
 
+body .feed .back div img {
+  width: 60%;
+}
+
+body .cont {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body .cont .coment {
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  border-right: 3px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 600px;
+  border-radius: 10px;
+  padding: 3% 3%;
+}
+
+body .cont .coment button {
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  border-right: 3px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 5px;
+  font-size: 17px;
+  -webkit-transition: .4s;
+  transition: .4s;
+  cursor: pointer;
+}
+
+body .cont .coment button:hover {
+  letter-spacing: 2px;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+body .cont .coment .p_search {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+body .cont .coment .p_search select {
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  border-right: 3px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+body .cont .coment .div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  justify-content: space-around;
+  margin-top: 5%;
+}
+
+body .cont .coment .div div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  border: none;
+  margin-right: 5%;
+}
+
+body .cont .coment .div div img {
+  border: none;
+  width: 250px;
+  height: 200px;
+}
+
+body .cont .coment .div .com {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body .cont .coment .div .com textarea {
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  border-right: 3px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  margin-bottom: 5%;
+}
+
+body .cont .coment .div .com textarea::-webkit-input-placeholder {
+  color: #000;
+}
+
+body .cont .coment .div .com textarea:-ms-input-placeholder {
+  color: #000;
+}
+
+body .cont .coment .div .com textarea::-ms-input-placeholder {
+  color: #000;
+}
+
+body .cont .coment .div .com textarea::placeholder {
+  color: #000;
+}
+
+body .cont .contr {
+  position: relative;
+  z-index: 1000;
+  width: 100%;
+  max-width: 900px;
+  padding: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-box-sizing: 0 25px 45px rgba(0, 0, 0, 0.1);
+          box-sizing: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  -webkit-backdrop-filter: blur(25px);
+          backdrop-filter: blur(25px);
+}
+
+body .cont .contr::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -40%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  pointer-events: none;
+  -webkit-transform: skewX(-15deg);
+          transform: skewX(-15deg);
+}
+
+body .cont .contr h2 {
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+body .cont .contr .row100 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  position: relative;
+  width: 100%;
+}
+
+body .cont .contr .row100 .col {
+  position: relative;
+  width: 100%;
+  padding: 0 10px;
+  margin: 30px 0 20px;
+}
+
+body .cont .contr .row100 .col .inputBox {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  color: #fff;
+}
+
+body .cont .contr .row100 .col .inputBox input,
+body .cont .contr .row100 .col .inputBox textarea {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  padding: 0 10px;
+  z-index: 1;
+  color: #000;
+}
+
+body .cont .contr .row100 .col .inputBox .text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 40px;
+  font-size: 18px;
+  padding: 0 10px;
+  display: block;
+  -webkit-transition: .5s;
+  transition: .5s;
+  pointer-events: none;
+}
+
+body .cont .contr .row100 .col .inputBox input:focus + .text,
+body .cont .contr .row100 .col .inputBox input:valid + .text,
+body .cont .contr .row100 .col .inputBox textarea:focus + .text,
+body .cont .contr .row100 .col .inputBox textarea:valid + .text {
+  top: -35px;
+  left: -10px;
+}
+
+body .cont .contr .row100 .col .inputBox input:focus ~ .line,
+body .cont .contr .row100 .col .inputBox input:valid ~ .line,
+body .cont .contr .row100 .col .inputBox textarea:focus ~ .line,
+body .cont .contr .row100 .col .inputBox textarea:valid ~ .line {
+  height: 100%;
+}
+
+body .cont .contr .row100 .col .inputBox .line {
+  position: absolute;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  -webkit-transition: .5s;
+  transition: .5s;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+body .cont .contr .row100 .col .inputBox.textarea {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  padding: 10px 0;
+}
+
+body .cont .contr .row100 .col input[type="submit"] {
+  border: none;
+  padding: 10px 40px;
+  cursor: pointer;
+  outline: none;
+  background: #fff;
+  color: #000;
+  font-weight: 600;
+  font-size: 18px;
+  border-radius: 5px;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+body .cont .contr .row100 .col input[type="submit"]:hover {
+  -webkit-transition: .5s;
+  transition: .5s;
+  font-size: 19px;
+}
+
 footer .foot {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1550,7 +1673,7 @@ footer .foot {
   border-bottom: 3px solid rgba(255, 255, 255, 0.2);
   width: 100%;
   height: 300px;
-  margin-top: 5%;
+  margin-top: 2%;
   border-radius: 20px;
 }
 

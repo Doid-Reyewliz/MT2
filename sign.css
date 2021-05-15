@@ -418,7 +418,7 @@ section .box .container .f_guest .guest {
   margin-top: 2%;
   background: #fff;
   color: #2d2292;
-  width: 160px;
+  width: 180px;
   height: 40px;
   font-size: 17px;
   cursor: pointer;
@@ -430,7 +430,7 @@ section .box .container .f_guest .guest {
 }
 
 section .box .container .f_guest .guest:hover {
-  width: 180px;
+  width: 200px;
   letter-spacing: 2px;
   -webkit-transition: .5s;
   transition: .5s;

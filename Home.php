@@ -27,7 +27,6 @@
     </nav>
 
     <nav class="nav_buttons">
-        
         <a <?php if ($_SESSION['role'] != 4) { ?> href="Profile.php" <?php } ?>>
             <img class="prof_im" src="<?php echo 'prof_image/' . $_SESSION['image']; ?>">
             <p <?php if($_SESSION['role'] == 3){ echo "class='rainbow rainbow_text_animated'";} ?>><?php echo $_SESSION['name']; ?></p>
@@ -35,23 +34,12 @@
         <?php if ($_SESSION['role'] == 4) { ?><a href="index.php"><img src="https://img.icons8.com/fluent/48/000000/exit.png" /></a><?php }
         else {?>
         <div>
-            <a href="Bag.php"><img class="basket" src="https://img.icons8.com/fluent/48/000000/shopping-basket-2.png" /></a>
+            <a href="Bag.php"><img class="ico" src="https://img.icons8.com/fluent/48/000000/shopping-basket-2.png" /></a>
             <!-- <span><?php //echo $_SESSION['num']; ?></span> -->
         </div>
-        <a href="index.php"><img src="https://img.icons8.com/fluent/48/000000/exit.png" /></a>
+        <a href="index.php"><img class="ico" src="https://img.icons8.com/fluent/48/000000/exit.png" /></a>
         <?php }?>
     </nav>
-        <div class="burger-menu">
-            <a href="#" class="burger-menu_button">
-                <span class="burger-menu_lines"></span>
-            </a>
-            <nav class="burger-menu_nav">
-                <a href="#navbar">Home</a>
-                <a href="#men_products">Products</a>
-                <a href="#women_products">Contact Us</a>
-            </nav>
-            <div class="burger-menu_overlay"></div>
-        </div>
 </header>
 
 <body>
@@ -92,34 +80,38 @@
                         <h2><?php echo $product[$i]["Name"]; ?></h2>
                     </div>
                     <div class="content">
+                        <form action='action/basket.php' method='post'>
                         <div class="size">
                             <h3>Size: </h3>
-                            <div class="container">
-                                <input type="radio" name="radio">
-                                <span class="checkmark"></span>
-                            </div>
-                            <div class="container">
-                                <input type="radio" name="radio">
-                                <span class="checkmark"></span>
-                            </div>
-                            <div class="container">
-                                <input type="radio" name="radio">
-                                <span class="checkmark"></span>
-                            </div>
-                            <div class="container">
-                                <input type="radio" name="radio">
-                                <span class="checkmark"></span>
+                            <div>
+                                <label>
+                                    <input type="radio" name="size" value="41">
+                                    <p class="fa">41</p>
+                                </label>
+                                <label>
+                                    <input type="radio" name="size" value="42">
+                                    <p class="fa">42</p>
+                                </label>
+                                <label>
+                                    <input type="radio" name="size" value="43">
+                                    <p class="fa">43</p>
+                                </label>
+                                <label>
+                                    <input type="radio" name="size" value="44">
+                                    <p class="fa">44</p>
+                                </label>
                             </div>
                         </div>
                         <div class='price'>
                             <h3><?php echo "$ " . $product[$i]['Price'];?> </h3>
                         </div>
                         <?php if ($_SESSION['role'] != 4) { ?>
-                            <form action='action/basket.php' method='post'>
-                                <input hidden name='code' type='text' value='<?php echo $product[$i]['Code'];?>'>
-                                <button id='btn' type='submit' onclick='snack();'>Add To Cart</button>
-                            </form>
+                        <div>
+                            <input hidden name='code' type='text' value='<?php echo $product[$i]['Code'];?>'>
+                            <button id='btn' type='submit'>Add To Cart</button>
+                        </div>
                         <?php } ?>
+                        </form>
                     </div>
                 </div>
             <?php
@@ -131,11 +123,14 @@
     <h1>FeedBacks</h1>
     <div class="feed">
         <?php
-            $sql = $db->sql("SELECT products.Image, users.Name, feedback.text FROM feedback INNER JOIN products ON feedback.product_name = products.Name INNER JOIN users ON feedback.user = users.Login");
+            $sql = $db->sql("SELECT products.Image, products.Name as p_name, users.Name, feedback.text FROM feedback INNER JOIN products ON feedback.product_name = products.Name INNER JOIN users ON feedback.user = users.Login");
 
             foreach($sql as $row){
                 echo    "<div class=\"back\">
-                            <img src=\"image/$row[Image]\">
+                            <div>
+                                <img src=\"image/$row[Image]\">
+                                <p style='color:#fff;'><b>{$row['p_name']}</b></p>
+                            </div>
                             <div>
                                 <span>{$row['Name']}</span>
                                 <p>{$row['text']}</p>

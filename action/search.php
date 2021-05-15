@@ -96,31 +96,33 @@ else{
                                 <h2>{$row['Name']}</h2>
                             </div>
                             <div class='content'>
-                            <div class=\"size\">
-                                <h3>Size: </h3>
-                                <div class=\"container\">
-                                    <input type=\"radio\" name=\"radio\">
-                                    <span class=\"checkmark\"></span>
+                                <div class=\"size\">
+                                    <h3>Size: </h3>
+                                    <div>
+                                        <label>
+                                            <input type='radio' name='size' value='41'>
+                                            <p class='fa'>41</p>
+                                        </label>
+                                        <label>
+                                            <input type='radio' name='size' value='42'>
+                                            <p class='fa'>42</p>
+                                        </label>
+                                        <label>
+                                            <input type='radio' name='size' value='43'>
+                                            <p class='fa'>43</p>
+                                        </label>
+                                        <label>
+                                            <input type='radio' name='size' value='44'>
+                                            <p class='fa'>44</p>
+                                        </label>
+                                    </div>
                                 </div>
-                                <div class=\"container\">
-                                    <input type=\"radio\" name=\"radio\">
-                                    <span class=\"checkmark\"></span>
-                                </div>
-                                <div class=\"container\">
-                                    <input type=\"radio\" name=\"radio\">
-                                    <span class=\"checkmark\"></span>
-                                </div>
-                                <div class=\"container\">
-                                    <input type=\"radio\" name=\"radio\">
-                                    <span class=\"checkmark\"></span>
-                                </div>
-                            </div>
                                 <div class='price'>
                                     <h3>$ {$row['Price']}</h3>
                                 </div>
                                 <form action='action/basket.php' method='post'>
                                     <input hidden name='code' type='text' value='{$row['Code']}'>
-                                    <button id='btn' type='submit' onclick='snack();'>Add To Cart</button>
+                                    <button id='btn' type='submit'>Add To Cart</button>
                                 </form>
                             </div>
                         </div>";
