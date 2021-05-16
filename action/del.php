@@ -10,7 +10,7 @@ if(isset($_POST['code'])){
     header("Location:../Admin.php");
 }
 
-elseif(isset($_POST['id'])){
+if(isset($_POST['id'])){
     $id = $_POST['id'];
 
     $sql = $db->query("SELECT * FROM users WHERE id = $id");
@@ -23,6 +23,13 @@ elseif(isset($_POST['id'])){
     $u_c = $db->sql("DELETE FROM `basket` WHERE user_mail = '$login'");
     $user = $db->sql("DELETE FROM `users` WHERE id = '$id'");
 }
+
+// if(isset($_POST['f_u'], $_POST['f_n'])){
+//     $f_u = $_POST['f_u'];
+//     $f_n = $_POST['f_n'];
+
+//     $sql = $db->query("DELETE FROM feedback WHERE user = '$f_u' AND product_name='$f_n'");
+// }
 
 exit;
 ?>
