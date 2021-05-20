@@ -185,6 +185,13 @@ section{
                     border-radius: 5px;
                     margin: 20px auto;
                 }
+                .cor{
+                    color: #2d2292;
+                    padding: 10px;
+                    width: 95%;
+                    border-radius: 5px;
+                    margin: 20px auto;
+                }
                 #log, #name, #pass, #quest, #ans{
                     @include glass;
                     @include input;

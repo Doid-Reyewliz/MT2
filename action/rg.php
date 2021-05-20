@@ -52,6 +52,6 @@ if (isset($_POST['log'], $_POST['pass'], $_POST['name'], $_POST['gen'], $_POST['
 			$sql = $db->sql("INSERT INTO users (`id`, `Login`, `Password`, `Name`, `Gender`, `Birthday`, `Question`, `Answer`, `Lang`, `Image`) VALUES ('','$log','$pass','$name','$gen','$bday','$quest','$ans','$lang[$i]','icons8-male-user-96.png')");
 		}
 		$role = $db->sql("INSERT INTO user_roles (`id`, `user`, `role`) VALUES ('','$log','1')");
-		header("Location:../index.php");
+		header("Location:../index.php?cor=Registration was successful");
 	}
 }

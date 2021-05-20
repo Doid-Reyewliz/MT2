@@ -27,38 +27,4 @@ elseif(isset($_POST['code'])){
     header("Location:../Products.php");
 }
 
-if(isset($_POST['minus'])){
-    $minus = $_POST['minus'];
-    $code = $_POST['code'];
-    $user_mail = $_SESSION['mail'];
-
-    $check = $db->sql("SELECT * FROM basket WHERE user_mail = '$user_mail' AND product_code = '$code'");
-
-    if(mysqli_num_rows($check) > 0){
-        while($row = mysqli_fetch_assoc($check)){
-            $count -= $row['number'];
-        }
-
-        $sql = $db->sql("UPDATE basket SET number = $count WHERE user_mail = '$user_mail' AND product_code = '$code'");
-    }
-
-}
-
-if(isset($_POST['plus'])){
-    $plus = $_POST['plus'];
-    $code = $_POST['code'];
-    $user_mail = $_SESSION['mail'];
-
-    $check = $db->sql("SELECT * FROM basket WHERE user_mail = '$user_mail' AND product_code = '$code'");
-
-    if(mysqli_num_rows($check) > 0){
-
-        while($row = mysqli_fetch_assoc($check)){
-            $count += $row['number'];
-        }
-
-        $sql = $db->sql("UPDATE basket SET number = $count WHERE user_mail = '$user_mail' AND product_code = '$code'");
-    }
-
-}
 ?>

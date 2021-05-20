@@ -264,49 +264,6 @@ body h1 {
   font-size: 36px;
 }
 
-body .categ {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
-  background: rgba(255, 255, 255, 0.1);
-  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-  border: 3px solid rgba(255, 255, 255, 0.5);
-  border-right: 3px solid rgba(255, 255, 255, 0.2);
-  border-bottom: 3px solid rgba(255, 255, 255, 0.2);
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  border-radius: 10px;
-  margin-left: 20%;
-  margin-right: 20%;
-  height: 70px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-body .categ li {
-  list-style: none;
-}
-
-body .categ li button {
-  background-color: rgba(0, 0, 0, 0);
-  border: none;
-  color: #fff;
-  font-size: 30px;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-body .categ li button:hover {
-  border-bottom: 3px solid #fff;
-}
-
 body #search {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -438,6 +395,7 @@ body .order .b_products .product p {
   border-radius: 7px;
   font-size: 20px;
   padding: 5px 5px;
+  margin-top: 0;
 }
 
 body .order .b_products .product .number {
@@ -452,6 +410,7 @@ body .order .b_products .product .number {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding-bottom: 5%;
 }
 
 body .order .b_products .product .number button {
@@ -464,12 +423,17 @@ body .order .b_products .product .number button img {
   cursor: pointer;
 }
 
-body .order .b_products .product .number p {
+body .order .b_products .product .number input[type='number'] {
   background-color: #fff;
   border-radius: 5px;
+  text-align: center;
   font-weight: bold;
   width: 30px;
   padding: 10px 10px;
+  border: none;
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
 }
 
 body .order .total {
@@ -1305,13 +1269,16 @@ body .feed .back {
       -ms-flex-align: center;
           align-items: center;
   border-radius: 10px;
-  padding-left: 2%;
-  padding-right: 5%;
-  padding-top: 5%;
-  padding-bottom: 5%;
+  padding: 5% 5%;
   margin-bottom: 5%;
   width: 30%;
   height: 100px;
+}
+
+body .feed .back h3 {
+  color: #fff;
+  -ms-flex-line-pack: center;
+      align-content: center;
 }
 
 body .feed .back div {
@@ -1346,6 +1313,24 @@ body .feed .back div p {
 
 body .feed .back div img {
   width: 60%;
+}
+
+body .feed .back button {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+}
+
+body .feed .back button img {
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  width: 40px;
+  margin-left: 5%;
+  cursor: pointer;
+}
+
+body .feed .back button img:hover {
+  -webkit-filter: brightness(0.8);
+          filter: brightness(0.8);
 }
 
 body .cont {
@@ -1492,6 +1477,7 @@ body .cont .coment .div .com textarea {
   border-bottom: 3px solid rgba(255, 255, 255, 0.2);
   border-radius: 2px;
   margin-bottom: 5%;
+  resize: none;
 }
 
 body .cont .coment .div .com textarea::-webkit-input-placeholder {
@@ -1587,6 +1573,7 @@ body .cont .contr .row100 .col .inputBox textarea {
   padding: 0 10px;
   z-index: 1;
   color: #000;
+  resize: none;
 }
 
 body .cont .contr .row100 .col .inputBox .text {

@@ -248,34 +248,6 @@ body {
         font-size: 36px;
     }
 
-    .categ{
-        @include flex;
-        @include glass;
-        justify-content: space-evenly;
-        border-radius: 10px;
-        margin-left: 20%;
-        margin-right: 20%;
-        height: 70px;
-        align-items: center;
-
-        li{
-            list-style: none;
-
-            button{
-                @include rgba;
-                border: none;
-                color: #fff;
-                font-size: 30px;
-                text-decoration: none;
-                cursor: pointer;
-
-                &:hover{
-                    border-bottom: 3px solid #fff;
-                }
-            }
-        }
-    }
-
     #search{
         @include flex;
         align-items: center;
@@ -341,12 +313,14 @@ body {
                     border-radius: 7px;
                     font-size: 20px;
                     padding: 5px 5px;
+                    margin-top: 0;
                 }
 
                 .number{
                     @include flex;
                     justify-content: center;
                     align-items: center;
+                    padding-bottom: 5%;
 
                     button{
                         @include rgba;
@@ -358,12 +332,20 @@ body {
                         }
                     }
 
-                    p{
+                    input[type='number']{
                         background-color: #fff;
                         border-radius: 5px;
+                        text-align: center;
                         font-weight: bold;
                         width: 30px;
                         padding: 10px 10px;
+                        border: none;
+                        appearance: textfield;
+
+                        // &::-webkit-outer-spin-button, &::-webkit-inner-spin-button{
+                        //     display: none;
+                        //     margin: 0;
+                        // }
                     }
                 }
                 
@@ -839,13 +821,15 @@ body {
             justify-content: flex-start;
             align-items: center;
             border-radius: 10px;
-            padding-left: 2%;
-            padding-right: 5%;
-            padding-top: 5%;
-            padding-bottom: 5%;
+            padding: 5% 5%;
             margin-bottom: 5%;
             width: 30%;
             height: 100px;
+
+            h3{
+                color: #fff;
+                align-content: center;
+            }
 
             div{
                 @include flex;
@@ -867,6 +851,21 @@ body {
 
                 img{
                     width: 60%;
+                }
+            }
+            button{
+                @include rgba;
+                border: none;
+
+                img{
+                    align-self: flex-start;
+                    width: 40px;
+                    margin-left: 5%;
+                    cursor: pointer;
+
+                    &:hover{
+                        filter: brightness(.8);
+                    }
                 }
             }
 
@@ -938,6 +937,7 @@ body {
                         @include glass;
                         border-radius: 2px;
                         margin-bottom: 5%;
+                        resize: none;
 
                         &::placeholder{
                             color: #000;
@@ -1012,6 +1012,7 @@ body {
                             padding: 0 10px;
                             z-index: 1;
                             color: #000;
+                            resize: none;
                         }
 
                         .text{

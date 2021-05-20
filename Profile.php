@@ -69,6 +69,7 @@ if (isset($_SESSION['id'])) {
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
+
 //profile image upload
 $('.upload').on('click', function() {
      var file_data = $('.prof_im').prop('files')[0];
@@ -76,6 +77,7 @@ $('.upload').on('click', function() {
      var text = $('.prof_im').val();
      var form_data = new FormData();
      form_data.append('file', file_data);
+
      $.ajax({
           url: 'action/e.php',
           dataType: 'text',
@@ -93,8 +95,6 @@ $('.upload').on('click', function() {
 </html>
 
 <?php
-} else {
-     header("Location: Home.php");
-     exit();
-}
+} else header("Location: Home.php");
+
 ?>

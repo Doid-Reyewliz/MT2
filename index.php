@@ -22,6 +22,9 @@
                         <?php if (isset($_GET['error'])) { ?>
                             <span class="error"><?php echo $_GET['error']; ?></span>
                         <?php }
+                        if (isset($_GET['cor'])) { ?>
+                            <span class="cor"><?php echo $_GET['cor']; ?></span>
+                        <?php }
                         if(isset($_COOKIE["log"]) && isset($_COOKIE["pass"])){?>
                             <input name="log" id="log" type="email" placeholder="Email" value="<?php echo $_COOKIE["log"]; ?>">
                             <input name="pass" id="pass" type="password" placeholder="Password" value="<?php echo $_COOKIE["pass"]; ?>">

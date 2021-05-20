@@ -20,12 +20,26 @@ if($_SESSION['role'] == 3){
                                 <h2>{$row['Name']}</h2>
                             </div>
                             <div class='content'>
-                                <div class='size'>
+                                <div class=\"size\">
                                     <h3>Size: </h3>
-                                    <span>40</span>
-                                    <span>41</span>
-                                    <span>42</span>
-                                    <span>43</span>
+                                    <div>
+                                        <label>
+                                            <input type='radio' name='size' value='41'>
+                                            <p class='fa'>41</p>
+                                        </label>
+                                        <label>
+                                            <input type='radio' name='size' value='42'>
+                                            <p class='fa'>42</p>
+                                        </label>
+                                        <label>
+                                            <input type='radio' name='size' value='43'>
+                                            <p class='fa'>43</p>
+                                        </label>
+                                        <label>
+                                            <input type='radio' name='size' value='44'>
+                                            <p class='fa'>44</p>
+                                        </label>
+                                    </div>
                                 </div>
                                 <div class='price'>
                                     <h3>$ {$row['Price']}</h3>
@@ -55,22 +69,22 @@ if($_SESSION['role'] == 2){
 
     if(mysqli_num_rows($sql) > 0){
         while($row = mysqli_fetch_assoc($sql)){
-            $output .=  "<div class='card'>
-                            <div class='imgBx'>
-                                <img src='image/{$row['Image']}'>
-                                <input text='name' name='name' value=\"$row[Name]\"></input>
-                            </div>
-
-                            <div class='content'>
-                                <div class='price'>
-                                    <input type='number' name='price' value=\"$row[Price]\"></input>
+            $output .=  "<form action='action/p_edit.php' method='POST' class='card'>
+                                <div class='imgBx'>
+                                    <img src='image/{$row['Image']}'>
+                                    <input text='name' name='name' value=\"$row[Name]\"></input>
                                 </div>
-                                <form action='action/add.php' method='POST'>
-                                    <input hidden type='text' name='id' value=\"$row[id]\"></input>
-                                    <button class='edit' data-id='{$row['Code']}' type='submit'>Edit</button>
-                                </form>
-                            </div>
-                        </div>";
+
+                                <div class='content'>
+                                    <div class='price'>
+                                        <input type='number' name='price' value=\"$row[Price]\"></input>
+                                    </div>
+                                    <div>
+                                        <input hidden type='text' name='id' value=\"$row[id]\"></input>
+                                        <button class='edit' data-id='{$row['Code']}' type='submit'>Edit</button>
+                                    </div>
+                                </div>
+                        </form>";
         }
         echo $output;
         exit;
@@ -85,6 +99,7 @@ if($_SESSION['role'] == 2){
 else{
     if(isset($_POST['query'])){
         $search = $_POST['query'];
+        $catg = $_POST['catg'];
         $sql = $db->sql("SELECT * FROM products WHERE Name LIKE '%$search%' OR Category = '$search'");
     } else $sql = $db->sql("SELECT * FROM products ORDER BY id ASC");
 
@@ -96,33 +111,35 @@ else{
                                 <h2>{$row['Name']}</h2>
                             </div>
                             <div class='content'>
-                                <div class=\"size\">
-                                    <h3>Size: </h3>
-                                    <div>
-                                        <label>
-                                            <input type='radio' name='size' value='41'>
-                                            <p class='fa'>41</p>
-                                        </label>
-                                        <label>
-                                            <input type='radio' name='size' value='42'>
-                                            <p class='fa'>42</p>
-                                        </label>
-                                        <label>
-                                            <input type='radio' name='size' value='43'>
-                                            <p class='fa'>43</p>
-                                        </label>
-                                        <label>
-                                            <input type='radio' name='size' value='44'>
-                                            <p class='fa'>44</p>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class='price'>
-                                    <h3>$ {$row['Price']}</h3>
-                                </div>
                                 <form action='action/basket.php' method='post'>
-                                    <input hidden name='code' type='text' value='{$row['Code']}'>
-                                    <button id='btn' type='submit'>Add To Cart</button>
+                                    <div class=\"size\">
+                                        <h3>Size: </h3>
+                                        <div>
+                                            <label>
+                                                <input type='radio' name='size' value='41'>
+                                                <p class='fa'>41</p>
+                                            </label>
+                                            <label>
+                                                <input type='radio' name='size' value='42'>
+                                                <p class='fa'>42</p>
+                                            </label>
+                                            <label>
+                                                <input type='radio' name='size' value='43'>
+                                                <p class='fa'>43</p>
+                                            </label>
+                                            <label>
+                                                <input type='radio' name='size' value='44'>
+                                                <p class='fa'>44</p>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class='price'>
+                                        <h3>$ {$row['Price']}</h3>
+                                    </div>
+                                    <div>
+                                        <input hidden name='code' type='text' value='{$row['Code']}'>
+                                        <button id='btn' type='submit'>Add To Cart</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>";
@@ -136,27 +153,3 @@ else{
     }
 }
 ?>
-
-<script>
-//Remove For Admin
-$(document).ready(function(){
-    $('.rem').click(function(){
-        var el = this;
-        var deleteprod = $(this).data('id');
-        var confirmalert = confirm("Delete this course?");
-
-        if (confirmalert == true) {
-            $.ajax({
-                url: 'action/del.php',
-                type: 'POST',
-                data: { code:deleteprod },
-                success: function(response){
-                    $(el).closest('.card').fadeOut(800,function(){
-                    $(this).remove();
-                    });
-                }
-            });
-        }
-    });
-});
-</script>

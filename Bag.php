@@ -53,31 +53,32 @@
 
         if(mysqli_num_rows($select) > 0){
 
-            $sql = $db->query("SELECT basket.number, basket.product_code, products.Image, products.Name, products.Price FROM basket INNER JOIN products ON basket.product_code = products.Code WHERE basket.user_mail = '$mail'");
+            $sql = $db->query("SELECT basket.number, basket.product_code, basket.Size, products.Image, products.Name, products.Price FROM basket INNER JOIN products ON basket.product_code = products.Code WHERE basket.user_mail = '$mail'");
 
             foreach($sql as $row){
                 $price = $row['Price'] * $row['number'];
-                echo "<div class=\"product\">
-                        <img src=\"image/{$row['Image']}\"?>
-                        <h3>{$row['Name']}</h3>
-                        <p>$$price</p>
-                        <div class=\"number\">
-                            <input hidden type=\"text\" class=\"code\" value=\"{$row['product_code']}\">
-                            <button data-id=\"{$row['number']}\" id=\"minus\"><img src=\"https://img.icons8.com/fluent/48/000000/minus.png\"/></button>
-                            <p id=\"number\">{$row['number']}</p>
-                            <button data-id=\"{$row['number']}\" id=\"plus\"><img src=\"https://img.icons8.com/fluent/48/000000/add.png\"/></button>
-                        </div>
-                    </div>";
-                $count += $price;
+                echo    "<div class=\"product\">
+                            <img src=\"image/{$row['Image']}\"?>
+                            <h3>{$row['Name']}</h3>
+                            <p>Size: {$row['Size']}</p>
+                            <h3 hidden id=\"price\">{$row['Price']}</h3>
+                            <p id=\"val\">$$price</p>
+                            <div class=\"number\">
+                                <input hidden type=\"text\" class=\"code\" value=\"{$row['product_code']}\">
+                                <input type=\"number\" min=\"0\" max=\"10\" data-id=\"$row[product_code]\" id=\"number\" value=\"{$row['number']}\"></input>
+                            </div>
+                        </div>";
+                    $count+=$price;
             }
         }
         else{
-            echo "<h1 class='stat'>Your Bag is Empty</h1>";
+            echo "<h1 class=\"stat\">Your Bag is Empty</h1>";
         }
         ?>
         </div>
+        <p id="count" hidden><?php echo $count; ?></p>
         <form class="total" action="action/order.php" method="POST">
-            <p>Total: <span>$<?php echo $count; ?></span></p>
+            <p>Total: <span id="total">$<?php echo $count; ?></span></p>
             <button type="submit">Order</button>
         </form>
     </section>
@@ -127,6 +128,7 @@
     </div>
 </footer>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 //scroll on top
 var mybutton = document.getElementById("top_btn");
@@ -141,48 +143,31 @@ function scrollFunction() {
         mybutton.style.visibility = "hidden";
     }
 }
-
 function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 }
 
-$("#minus").click(function(){
-    var el = this;
-    var buy = $(this).data('id');
-    var code=$('.code').val();
+$(".product").on('input', '#number', function() {
+    $('.product #number').each(function() {
+        number = $(this).val();
+        code = $(this).data('id');
 
-    $.ajax({
-        url:'action/basket.php',
-        method:'POST',
-        data:{ 
-            minus:buy,
-            code:code
-        },
-        success:function(response){
-            $("#number").html(response);
-        }
-    });
-});
-
-$("#plus").click(function(){
-    var el = this;
-    var buy = $(this).data('id');
-    var code=$('.code').val();
-
-    $.ajax({
-        url:'action/basket.php',
-        method:'POST',
-        data:{ 
-            plus:buy,
-            code:code
-        },
-        success:function(response){
-            $("#number").html(response);
-        }
+        $.ajax({
+            url: 'action/u_bag.php',
+            type: 'POST',
+            data: {
+                num:number,
+                code:code
+            },
+            success: function(response){
+                $('.product').remove();
+                $('.b_products').html("<h1 class=\"stat\">Your Bag is Empty</h1>");
+                $('#total').text("$0")
+            }
+        });
     });
 });
 
 </script>
-
 </html>

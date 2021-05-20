@@ -40,12 +40,6 @@
     <button onclick="topFunction()" id="top_btn"><img src="https://img.icons8.com/fluent/50/ffffff/circled-chevron-up.png"/></button>
     <article id="products">
         <h1>Products</h1>
-        <ul class="categ">
-            <li><button class="catg" data-id="Men" type="submit">Men</button></li>
-            <li><button class="catg" data-id="Women" type="submit">Women</button></li>
-            <li><button class="catg" data-id="Kids" type="submit">Kids</button></li>
-        </ul>
-
         <div id="search">
             <input name="search" class="search" type="text" autocomplete="off" placeholder=" Search">
         </div>
@@ -77,12 +71,15 @@ function topFunction() {
 //search
 $(document).ready(function(){
     loadData();
-    function loadData(query){
+    function loadData(query, catg){
         $.ajax({
             url : "action/search.php",
             type: "POST",
             chache: false,
-            data:{query:query},
+            data:{
+                query:query,
+                catg:catg
+            },
             success:function(response){
                 $(".products").html(response);
             }
@@ -91,8 +88,9 @@ $(document).ready(function(){
 
     $(".search").keyup(function(){
         var search = $(this).val();
+        var catg = $('.catg').val();
         if (search !="") {
-            loadData(search);
+            loadData(search, catg);
         }else{
             loadData();
         }

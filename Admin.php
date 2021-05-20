@@ -37,11 +37,6 @@ if ($_SESSION['role'] == 3) {
     <button onclick="topFunction()" id="top_btn"><img src="https://img.icons8.com/fluent/50/ffffff/circled-chevron-up.png"/></button>
     <article id="products">
         <h1>Products</h1>
-        <ul class="categ">
-            <li><form method="POST"><input hidden type="text" name="men" value="Men"><button type="submit">Men</button></form></li>
-            <li><form method="POST"><input hidden type="text" name="women" value="Women"><button type="submit">Women</button></form></li>
-            <li><form method="POST"><input hidden type="text" name="kids" value="Kids"><button type="submit">Kids</button></form></li>
-        </ul>
 
         <div id="search">
             <input name="search" class="search" type="text" autocomplete="off" placeholder=" Search">

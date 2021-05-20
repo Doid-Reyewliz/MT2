@@ -120,28 +120,62 @@
         ?>
         </div>
     </article>
-    <h1>FeedBacks</h1>
+    <h1>Feedbacks</h1>
     <div class="feed">
         <?php
-            $sql = $db->sql("SELECT products.Image, products.Name as p_name, users.Name, feedback.text FROM feedback INNER JOIN products ON feedback.product_name = products.Name INNER JOIN users ON feedback.user = users.Login");
+            $sql = $db->sql("SELECT products.Image, products.Name as p_name, users.Name, users.Login, feedback.text FROM feedback INNER JOIN products ON feedback.product_name = products.Name INNER JOIN users ON feedback.user = users.Login");
 
-            foreach($sql as $row){
-                echo    "<div class=\"back\">
-                            <div>
-                                <img src=\"image/$row[Image]\">
-                                <p style='color:#fff;'><b>{$row['p_name']}</b></p>
-                            </div>
-                            <div>
-                                <span>{$row['Name']}</span>
-                                <p>{$row['text']}</p>
-                            </div>
-                        </div>";
+            if(mysqli_num_rows($sql) != 0){
+                foreach($sql as $row){
+                    echo    "<div class=\"back\">
+                                <div>
+                                    <img src=\"image/$row[Image]\">
+                                    <p style='color:#fff;'><b>{$row['p_name']}</b></p>
+                                </div>
+                                <div>
+                                    <span>{$row['Name']}</span>
+                                    <p>{$row['text']}</p>
+                                </div>" .
+                                (($_SESSION['mail'] == $row['Login'] or $_SESSION['role'] == 3)?"<button class='del' data-name='{$row['p_name']}' data-lg='{$row['Login']}'><img src='https://img.icons8.com/fluent/48/000000/multiply.png'/></button>":"") .
+                            "</div>";
+                }
             }
+            else echo   "<div class='back'>
+                            <h3>No Feedbacks yet</h3>
+                        </div>";
         ?>
     </div>
 </body>
 
 <script src="final.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('.del').click(function(){
+        var el = this;
+        var mail = $(this).data('lg');
+        var name = $(this).data('name');
+        var confirma = confirm("Are you sure?");
+
+        if(confirma == true){
+            $.ajax({
+                url: 'action/del.php',
+                type: 'POST',
+                data: { 
+                    f_u:mail,
+                    f_n:name
+                },
+                success: function(response){
+                    $(el).closest('.back').fadeOut(800,function(){
+                        $(this).remove();
+                        $(".feed").html("<div class='back'><h3>No Feedbacks yet</h3></div   >");
+                    });
+                }
+            });
+        }
+    });
+});
+</script>
 
 <footer>
     <div class="foot">

@@ -50,7 +50,7 @@ $db = new Dbase();
                         }
                     ?>
                 </select>
-                <button id="prod" type="submit">Search</button>
+                <button id="prod" type="submit">Select</button>
             </div>
             <div class="div">
                 <div>
@@ -67,44 +67,44 @@ $db = new Dbase();
 
         <h1>Contact Us</h1>
         <div class="contr">
-        <div class="row100">
-            <div class="col">
-                <div class="inputBox">
-                    <input type="text" required="required" value="<?php echo $_SESSION['name']; ?>">
-                    <span class="text">Name</span>
-                    <span class="line"></span>
+            <div class="row100">
+                <div class="col">
+                    <div class="inputBox">
+                        <input type="text" required="required" value="<?php echo $_SESSION['name']; ?>">
+                        <span class="text">Name</span>
+                        <span class="line"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="inputBox">
+                        <input type="text" required="required" value="<?php echo $_SESSION['mail']; ?>">
+                        <span class="text">Email</span>
+                        <span class="line"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="inputBox">
+                        <input type="text" required="required">
+                        <span class="text">Mobile</span>
+                        <span class="line"></span>
+                    </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="inputBox">
-                    <input type="text" required="required" value="<?php echo $_SESSION['mail']; ?>">
-                    <span class="text">Email</span>
-                    <span class="line"></span>
+            <div class="row100">
+                <div class="col">
+                    <div class="inputBox textarea">
+                        <textarea required="required"></textarea>
+                        <span class="text">Message...</span>
+                        <span class="line"></span>
+                    </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="inputBox">
-                    <input type="text" required="required">
-                    <span class="text">Mobile</span>
-                    <span class="line"></span>
-                </div>
-            </div>
-        </div>
-        <div class="row100">
-            <div class="col">
-                <div class="inputBox textarea">
-                    <textarea required="required"></textarea>
-                    <span class="text">Message...</span>
-                    <span class="line"></span>
-                </div>
-            </div>
-        </div>
 
-        <div class="row100">
-            <div class="col">
-                <input id="send" type="submit" value="Send">
+            <div class="row100">
+                <div class="col">
+                    <input id="send" type="submit" value="Send">
+                </div>
             </div>
-        </div>
         </div>
     </div>
 </body>

@@ -24,12 +24,17 @@ if(isset($_POST['id'])){
     $user = $db->sql("DELETE FROM `users` WHERE id = '$id'");
 }
 
-// if(isset($_POST['f_u'], $_POST['f_n'])){
-//     $f_u = $_POST['f_u'];
-//     $f_n = $_POST['f_n'];
+if(isset($_POST['f_u'], $_POST['f_n'])){
+    $f_u = $_POST['f_u'];
+    $f_n = $_POST['f_n'];
 
-//     $sql = $db->query("DELETE FROM feedback WHERE user = '$f_u' AND product_name='$f_n'");
-// }
+    $sql = $db->query("DELETE FROM feedback WHERE user = '$f_u' AND product_name='$f_n'");
+}
 
-exit;
+if(isset($_POST['b_code'])){
+    $code = $_POST['b_code'];
+    $mail = $_SESSION['mail'];
+
+    $sql = $db->sql("DELETE FROM basket WHERE user_mail = '$mail' AND product_name='$code'");
+}
 ?>
