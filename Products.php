@@ -71,14 +71,13 @@ function topFunction() {
 //search
 $(document).ready(function(){
     loadData();
-    function loadData(query, catg){
+    function loadData(query){
         $.ajax({
             url : "action/search.php",
             type: "POST",
             chache: false,
             data:{
                 query:query,
-                catg:catg
             },
             success:function(response){
                 $(".products").html(response);

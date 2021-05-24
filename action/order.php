@@ -12,7 +12,7 @@ if(mysqli_num_rows($sel) > 0){
         $code = $row['product_code'];
         $number = $row['number'];
 
-        $sql = $db->sql("INSERT INTO orders (`id`, `user_mail`, `product_code`, `number`, `date`, `time`, `status`) VALUES ('', '$user_mail', '$code', '$number', CURRENT_DATE(), CURRENT_TIME(), 'Fara')");
+        $sql = $db->sql("INSERT INTO orders (`id`, `user_mail`, `product_code`, `number`, `date`, `time`, `status`) VALUES ('', '$user_mail', '$code', '$number', CURRENT_DATE(), CURRENT_TIME(), 'In Process')");
     }
 }
 $del = $db->sql("DELETE FROM `basket` WHERE user_mail = \"$user_mail\"");
