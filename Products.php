@@ -87,9 +87,8 @@ $(document).ready(function(){
 
     $(".search").keyup(function(){
         var search = $(this).val();
-        var catg = $('.catg').val();
         if (search !="") {
-            loadData(search, catg);
+            loadData(search);
         }else{
             loadData();
         }

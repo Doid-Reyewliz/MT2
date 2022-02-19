@@ -8,7 +8,7 @@ if (isset($_SESSION['id'])) {
     $db = new Dbase();
 
     $id = $_SESSION['id'];
-    $sql = $db->query("SELECT * FROM `users` WHERE id = $id");
+    $sql = $db->query("SELECT * FROM `users` WHERE user_id = $id");
 
     foreach($sql as $key => $value) {
         $login = $sql[$key]['Login'];
@@ -16,9 +16,10 @@ if (isset($_SESSION['id'])) {
         $pass = $sql[$key]['Password'];
         $gen = $sql[$key]['Gender'];
         $bday = $sql[$key]['Birthday'];
+        $addr = $sql[$key]['Address'];
+        $phone = $sql[$key]['Phone'];
         $que = $sql[$key]['Question'];
         $ans = $sql[$key]['Answer'];
-        $lang = $sql[$key]['Lang'];
         $img = $sql[$key]['Image'];
     }
 ?>
@@ -59,6 +60,12 @@ if (isset($_SESSION['id'])) {
                                 <label for="bday">Birthday:</label>
                                 <input id="bday" name="bday" type="date" value="<?php echo $bday; ?>">
 
+                                <label for="addr">Address:</label>
+                                <input id="addr" name="addr" type="text" value="<?php echo $addr; ?>">
+
+                                <label for="phone">Phone:</label>
+                                <input id="phone" name="phone" type="tel" pattern="+7-[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}" value="<?php echo $phone; ?>">
+
                                 <select name="quest" id="quest">
                                     <option disabled selected>Choose Question</option>
                                     <option value="Name of your first pet" selected="<?php if ($que == "Name of your first pet") {echo "selected";} ?>">Name of your first pet</option>
@@ -67,20 +74,6 @@ if (isset($_SESSION['id'])) {
                                 </select>
 
                                 <input name="ans" id="ans" type="text" placeholder="Your Answer" value="<?php echo $ans; ?>">
-
-                                <label>Languages: </label> <br>
-                                <ul>
-                                    <li>
-                                        <input name="check[]" type="checkbox" id="check" value="C++" <?php if (stristr($lang, "C++")) {echo "checked";} ?>>
-                                        <label>C++</label>
-                                        <input name="check[]" type="checkbox" id="check" value="Java" <?php if (stristr($lang, "Java")) {echo "checked";} ?>>
-                                        <label>Java</label>
-                                        <input name="check[]" type="checkbox" id="check" value="Web" <?php if (stristr($lang, "Web")) { echo "checked";} ?>>
-                                        <label>Web</label>
-                                        <input name="check[]" type="checkbox" id="check" value="Python" <?php if (stristr($lang, "Python")) {echo "checked";} ?>>
-                                        <label>Python</label>
-                                    </li>
-                                </ul>
 
                                 <div class="but">
                                     <input id="submit" type="submit" value="Submit">

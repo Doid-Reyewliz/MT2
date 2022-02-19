@@ -5,7 +5,7 @@ require_once "action/db.php";
 if (isset($_SESSION['id'])) {
     $id = $_SESSION['id'];
     $db = new Dbase();
-    $sql = $db->query("SELECT * FROM users WHERE id = '$id'");
+    $sql = $db->query("SELECT * FROM users WHERE user_id = '$id'");
 
      foreach($sql as $key => $value){
           $login = $sql[$key]['Login'];
@@ -13,11 +13,39 @@ if (isset($_SESSION['id'])) {
           $pass = $sql[$key]['Password'];
           $gen = $sql[$key]['Gender'];
           $bday = $sql[$key]['Birthday'];
+          $addr = $sql[$key]['Address'];
+          $phone = $sql[$key]['Phone'];
           $que = $sql[$key]['Question'];
           $ans = $sql[$key]['Answer'];
-          $lang = $sql[$key]['Lang'];
+          $rank = $sql[$key]['Rank'];
+          $end_d = $sql[$key]['End_of_discount'];
           $image = $sql[$key]['Image'];
      }
+
+     $sql_status = $db->query("SELECT * FROM orders WHERE user_id = '$id'");
+     $sql_rank = $db->query("SELECT * FROM rank");
+     $count = 0;
+     
+     foreach ($sql_status as $stat => $value){
+          $product_id = $sql_status[$stat]['product_id'];
+          $number = $sql_status[$stat]['number'];
+          $sql_price = $db->query("SELECT Price FROM products WHERE product_id = '$product_id'");
+
+          foreach($sql_price as $price){
+              $count += $price['Price'] * $number;
+          }
+     }
+
+     foreach ($sql_rank as $all_ranks => $value){
+
+          if($count >= $sql_rank[$all_ranks]['cost']){
+               $discount = $sql_rank[$all_ranks]['discount'];
+               $n_rank = $sql_rank[$all_ranks]['rank'];
+
+               $upd = $db->sql("UPDATE users SET Rank = '$n_rank' AND End_of_discount = CURRENT_DATE() WHERE user_id = '$id'");
+          }
+     }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -47,14 +75,19 @@ if (isset($_SESSION['id'])) {
                          </div>
 
                          <div class="inf">
-                              <p> <?php
+                              <p> 
+                                   <?php
                                    echo nl2br("Login: <span>" . $login .
                                    "</span>\nPassword:<span> " . $pass .
                                    "</span>\nGender: <span>" . $gen .
                                    "</span>\nBirthday: <span>" . $bday .
+                                   "</span>\nAddress: <span>" . $addr .
+                                   "</span>\nPhone: <span>" . $phone .
                                    "</span>\nQuestion: <span>" . $que .
                                    "</span>\nAnswer: <span>" . $ans .
-                                   "</span>\nLanguages: <span>" . $lang);
+                                   "</span>\nRank: <span>" . $n_rank .
+                                   "</span>\nDiscount: <span>" . $discount . "%" .
+                                   "</span>\nEnd of discount: <span>" . $end_d);
                                    ?>
                               <p>
                          </div>

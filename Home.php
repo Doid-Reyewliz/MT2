@@ -69,7 +69,7 @@
             require_once "action/db.php";
             $db = new Dbase();
 
-            $product = $db->query("SELECT * FROM products ORDER BY id DESC");
+            $product = $db->query("SELECT * FROM products ORDER BY product_id DESC");
             if (!empty($product)) {
                 for ($i = 0; $i < 3; $i++) {
             ?>
@@ -107,7 +107,7 @@
                         </div>
                         <?php if ($_SESSION['role'] != 4) { ?>
                         <div>
-                            <input hidden name='code' type='text' value='<?php echo $product[$i]['Code'];?>'>
+                            <input hidden name='code' type='text' value='<?php echo $product[$i]['product_id'];?>'>
                             <button id='btn' type='submit'>Add To Cart</button>
                         </div>
                         <?php } ?>
@@ -123,7 +123,7 @@
     <h1>Feedbacks</h1>
     <div class="feed">
         <?php
-            $sql = $db->sql("SELECT products.Image, products.Name as p_name, users.Name, users.Login, feedback.text FROM feedback INNER JOIN products ON feedback.product_name = products.Name INNER JOIN users ON feedback.user = users.Login");
+            $sql = $db->sql("SELECT products.Image, products.product_id as product_id, users.Name, products.Name as p_name, users.user_id, orders.comment FROM orders INNER JOIN products ON orders.product_id = products.product_id INNER JOIN users ON orders.user_id = users.user_id");
 
             if(mysqli_num_rows($sql) != 0){
                 foreach($sql as $row){
@@ -134,9 +134,9 @@
                                 </div>
                                 <div>
                                     <span>{$row['Name']}</span>
-                                    <p>{$row['text']}</p>
+                                    <p>{$row['comment']}</p>
                                 </div>" .
-                                (($_SESSION['mail'] == $row['Login'] or $_SESSION['role'] == 3)?"<button class='del' data-name='{$row['p_name']}' data-lg='{$row['Login']}'><img src='https://img.icons8.com/fluent/48/000000/multiply.png'/></button>":"") .
+                                (($_SESSION['id'] == $row['user_id'] || $_SESSION['role'] == 3)?"<button class='del' data-name='{$row['product_id']}' data-lg='{$row['user_id']}'><img src='https://img.icons8.com/fluent/48/000000/multiply.png'/></button>":"") .
                             "</div>";
                 }
             }
@@ -153,8 +153,8 @@
 $(document).ready(function(){
     $('.del').click(function(){
         var el = this;
-        var mail = $(this).data('lg');
-        var name = $(this).data('name');
+        var user_id = $(this).data('user_id');
+        var product_id = $(this).data('product_id');
         var confirma = confirm("Are you sure?");
 
         if(confirma == true){
@@ -162,8 +162,8 @@ $(document).ready(function(){
                 url: 'action/del.php',
                 type: 'POST',
                 data: { 
-                    f_u:mail,
-                    f_n:name
+                    u_id:user_id,
+                    p_id:product_id
                 },
                 success: function(response){
                     $(el).closest('.back').fadeOut(800,function(){

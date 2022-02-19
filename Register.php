@@ -38,6 +38,12 @@
                         <label for="bday">Birthday:</label>
                         <input id="bday" name="bday" type="date">
 
+                        <label for="addr">Address:</label>
+                        <input id="addr" name="addr" type="text">
+
+                        <label for="phone">Phone:</label>
+                        <input id="phone" name="phone" type="tel" pattern="+7[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}" placeholder="+7123-456-78-90" required>
+
                         <select name="quest" id="quest">
                             <option value="" disabled selected>Choose Question</option>
                             <option value="Name of your first pet">Name of your first pet</option>
@@ -46,20 +52,6 @@
                         </select>
 
                         <input name="ans" id="ans" type="text" placeholder="Your Answer">
-
-                        <label>Languages That you know: </label> <br>
-                        <ul>
-                            <li>
-                                <input name="check[]" type="checkbox" id="check" value="C++">
-                                <label>C++</label>
-                                <input name="check[]" type="checkbox" id="check" value="Java">
-                                <label>Java</label>
-                                <input name="check[]" type="checkbox" id="check" value="Web">
-                                <label>Web</label>
-                                <input name="check[]" type="checkbox" id="check" value="Python">
-                                <label>Python</label>
-                            </li>
-                        </ul>
 
                         <input id="submit" type="submit" value="Register">
                         <input id="reset" type="reset" value="Reset">
