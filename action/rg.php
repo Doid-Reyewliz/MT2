@@ -2,7 +2,7 @@
 session_start();
 
 if (isset($_POST['log'], $_POST['pass'], $_POST['name'], $_POST['gen'], $_POST['bday'], $_POST['quest'], $_POST['ans'])) {
-	require_once "db.php";;
+	require_once "db.php";
 	$db = new Dbase();
 
 	$log = $_POST['log'];
@@ -10,18 +10,14 @@ if (isset($_POST['log'], $_POST['pass'], $_POST['name'], $_POST['gen'], $_POST['
 	$name = $_POST['name'];
 	$gen = $_POST['gen'];
 	$bday = $_POST['bday'];
+	$addr = $_POST['addr'];
+	$phone = $_POST['phone'];
 	$quest = $_POST['quest'];
 	$ans = $_POST['ans'];
 
 	$error = 0;
 
-	if (empty($_POST['check'])) {
-		header("Location:../Register.php?error=One or More fields are empty");
-		$error++;
-	} else $lang[] = implode(", ", $_POST['check']);
-
-
-	if (empty($log) or empty($pass) or empty($name) or empty($gen) or empty($bday) or empty($quest) or empty($ans)) {
+	if (empty($log) || empty($pass) || empty($name) || empty($gen) || empty($bday) || empty($quest) || empty($ans)) {
 		header("Location:../Register.php?error=One or More fields are empty");
 		$error++;
 	}
@@ -48,10 +44,8 @@ if (isset($_POST['log'], $_POST['pass'], $_POST['name'], $_POST['gen'], $_POST['
 	}
 
 	if ($error == 0) {
-		for ($i = 0; $i < sizeof($lang); $i++) {
-			$sql = $db->sql("INSERT INTO users (`id`, `Login`, `Password`, `Name`, `Gender`, `Birthday`, `Question`, `Answer`, `Lang`, `Image`) VALUES ('','$log','$pass','$name','$gen','$bday','$quest','$ans','$lang[$i]','icons8-male-user-96.png')");
-		}
-		$role = $db->sql("INSERT INTO user_roles (`id`, `user`, `role`) VALUES ('','$log','1')");
+		$db->sql("CALL register(' ', '$log', '$pass', '$name', '$gen', '$bday', '$addr', '$phone', '$quest', '$ans', '1', 'icons8-male-user-96.png')");
+		$db->sql("CALL user_role('','$log','1')");
 		header("Location:../index.php?cor=Registration was successful");
 	}
 }

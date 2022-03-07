@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once "db.php";;
+require_once "db.php";
 
 if(isset($_POST['log'], $_POST['pass'])) {
 
@@ -23,7 +23,7 @@ if(isset($_POST['log'], $_POST['pass'])) {
 			foreach ($users as $i => $values) {
 				foreach ($role as $j => $values) {
 					if($role[$j]['role'] == '1') {
-						$_SESSION['id'] = $users[$i]['id'];
+						$_SESSION['id'] = $users[$i]['user_id'];
 						$_SESSION['role'] = $role[$j]['role'];
 						$_SESSION['mail'] = $log;
 						$_SESSION['name'] = $users[$i]['Name'];
@@ -34,7 +34,7 @@ if(isset($_POST['log'], $_POST['pass'])) {
 					}
 
 					if($role[$j]['role'] == '2') {
-						$_SESSION['id'] = $users[$i]['id'];
+						$_SESSION['id'] = $users[$i]['user_id'];
 						$_SESSION['role'] = $role[$j]['role'];
 						$_SESSION['mail'] = $log;
 						$_SESSION['name'] = $users[$i]['Name'];
@@ -45,7 +45,7 @@ if(isset($_POST['log'], $_POST['pass'])) {
 					}
 
 					if($role[$j]['role'] == '3') {
-						$_SESSION['id'] = $users[$i]['id'];
+						$_SESSION['id'] = $users[$i]['user_id'];
 						$_SESSION['role'] = $role[$j]['role'];
 						$_SESSION['mail'] = $log;
 						$_SESSION['name'] = $users[$i]['Name'];

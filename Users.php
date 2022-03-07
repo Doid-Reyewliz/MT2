@@ -37,25 +37,30 @@ if ($_SESSION['role'] == 3) {
     <div class="table">
         <div class="t">
             <?php
-            require_once "action/db.php";;
+            require_once "action/db.php";
             $db = new Dbase();
-            $q = $db->query("SELECT * FROM users");
+            $q = $db->query("SELECT * FROM users INNER JOIN rank ON users.rank_id = rank.rank_id");
 
-            echo "<table><tr><th>ID</th><th>Email</th><th>Password</th><th>Name</th><th>Gender</th><th>Birthday</th><th>Question</th><th>Answer</th><th></th></tr>";
+            echo "<table><tr><th>ID</th><th>Email</th><th>Password</th><th>Name</th><th>Gender</th><th>Birthday</th><th>Address</th><th>Phone</th><th>Question</th><th>Answer</th><th>Rank</th><th>End_of_discount</th><th>Action</th></tr>";
             if (!empty($q)) {
                 foreach ($q as $row) {
-                    if ($row['id'] <= 0) {
+                    if ($row['user_id'] <= 0) {
                         continue;
                     } else {
-                        echo "<tr><td>" . $row["id"] .
+                        echo "<tr><td>" . $row["user_id"] .
                             "</td><td>" . $row["Login"] .
                             "</td><td>" . $row["Password"] .
                             "</td><td>" . $row["Name"] .
                             "</td><td>" . $row["Gender"] .
                             "</td><td>" . $row["Birthday"] .
+                            "</td><td>" . $row["Address"] .
+                            "</td><td>" . $row["Phone"] .
                             "</td><td>" . $row["Question"] .
                             "</td><td>" . $row["Answer"] .
-                            "</td><td>" . "<button class='trash'; type='submit' data-id='$row[id]'><img src='https://img.icons8.com/fluent/48/000000/delete-sign.png'/></button>" .
+                            "</td><td>" . $row["rank"] .
+                            "</td><td>" . $row["End_of_discount"] .
+                            "</td><td>" . $row["Image"] .
+                            "</td><td>" . "<button class='trash'; type='submit' data-id='$row[user_id]'><img src='https://img.icons8.com/fluent/48/000000/delete-sign.png'/></button>" .
                             "</td></tr>";
                     }
                 }
@@ -106,7 +111,7 @@ if ($_SESSION['role'] == 3) {
 $(document).ready(function(){
     $('.trash').click(function(){
         var el = this;
-        var deleteid = $(this).data('id');
+        var deleteid = $(this).data('user_id');
         var confirmalert = confirm("Are you sure?");
 
         if (confirmalert == true) {

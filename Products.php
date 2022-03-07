@@ -40,8 +40,32 @@
     <button onclick="topFunction()" id="top_btn"><img src="https://img.icons8.com/fluent/50/ffffff/circled-chevron-up.png"/></button>
     <article id="products">
         <h1>Products</h1>
-        <div id="search">
-            <input name="search" class="search" type="text" autocomplete="off" placeholder=" Search">
+
+        <div id="options">
+            <div id="filter">
+                <label>Filter:</label>
+                
+                <select name="filter_select" class="filter_select">
+                    <option selected>All</option>
+                    <option value="Men">Men</option>
+                    <option value="Women">Women</option>
+                    <option value="Kids">Kids</option>
+                </select>
+            </div>
+
+            <div id="search">
+                <input name="search" class="search" type="text" autocomplete="off" placeholder=" Search">
+            </div>
+    
+            <div id="sort">
+                <label>Sort:</label>
+                
+                <select name="sort_select" class="sort_select">
+                    <option selected>By default</option>
+                    <option value="ASC">By lower price</option>
+                    <option value="DESC">By higher price</option>
+                </select>
+            </div>
         </div>
 
         <div class="products"></div>
@@ -87,17 +111,44 @@ $(document).ready(function(){
 
     $(".search").keyup(function(){
         var search = $(this).val();
-        var catg = $('.catg').val();
         if (search !="") {
-            loadData(search, catg);
+            loadData(search);
         }else{
             loadData();
         }
     });
 });
+
+//filter
+$(".filter_select").change(function(){
+    $.ajax({
+        url : "action/search.php",
+        type: "POST",
+        chache: false,
+        data:{
+            filter_select: $(".filter_select").val()
+        },
+        success:function(response){
+            $(".products").html(response);
+        }
+    })
+});
+
+//sort
+$(".sort_select").change(function(){
+    $.ajax({
+        url : "action/search.php",
+        type: "POST",
+        chache: false,
+        data:{
+            sort_select: $(".sort_select").val()
+        },
+        success:function(response){
+            $(".products").html(response);
+        }
+    })
+});
 </script>
-
-
 
 <!--
 <script type="text/javascript">

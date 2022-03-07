@@ -18,7 +18,7 @@
     // border-bottom: 1px solid rgba(255, 255 , 255, .1);
 }
 @mixin rgba {
-    background-color: rgba(0, 0, 0, 0);
+    background-color: transparent;
 }
 @mixin tab {
     border: 3px solid rgba(255, 255, 255, .5);
@@ -248,28 +248,68 @@ body {
         font-size: 36px;
     }
 
-    #search{
+    #options {
         @include flex;
-        align-items: center;
-
-        .search{
-            @include glass;
-            width: 10%;
-            height: 25px;
-            transition: .5s;
-            border-radius: 10px;
-            background-size: 25px;
-            color: #fff;
-            background-repeat: no-repeat;
-            background-position: right;
-            background-image: url("https://img.icons8.com/fluent/48/000000/search.png");
-
-            &:focus{
-                width: 15%;
-                transition: .5s;
-            }
-            &::placeholder{
+        justify-content: space-between;
+        margin-left: 8%;
+        margin-right: 8%;
+        
+        #search{
+            .search{
+                @include glass;
+                align-self: center;
+                width: 100%;
+                height: 25px;
+                border-radius: 10px;
+                background-size: 25px;
                 color: #fff;
+                background-repeat: no-repeat;
+                background-position: right;
+                background-image: url("https://img.icons8.com/fluent/48/000000/search.png");
+                    
+                &::placeholder{
+                    color: #fff;
+                }
+            }
+        }
+        
+        #filter{
+            @include glass;
+            height: 25px;
+            padding: 0 5px 0 5px;
+            align-self: flex-end;
+            border-radius: 5px;
+            color: #fff;
+
+            .filter_select{
+                @include rgba;
+                border: none;
+                color: #fff;
+                font-weight: 500;
+
+                option{
+                    background-color: purple;
+                }
+            }
+        }
+
+        #sort{
+            @include glass;
+            height: 25px;
+            padding: 0 5px 0 5px;
+            align-self: flex-end;
+            border-radius: 5px;
+            color: #fff;
+
+            .sort_select{
+                @include rgba;
+                border: none;
+                color: #fff;
+                font-weight: 500;
+
+                option{
+                    background-color: purple;
+                }
             }
         }
     }

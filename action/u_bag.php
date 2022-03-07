@@ -4,9 +4,9 @@ require_once "db.php";
 
 $db = new Dbase();
 
-$mail = $_SESSION['mail'];
+$user_id = $_SESSION['id'];
 $num = $_POST['num'];
-$code = $_POST['code'];
+$product_id = $_POST['product_id'];
 
-$sql = $db->sql("UPDATE `basket` SET `number`='$num' WHERE user_mail = '$mail' AND product_code = '$code'");
+$sql = $db->sql("UPDATE `basket` SET `number`='$num' WHERE user_id = '$user_id' AND product_id = '$product_id'");
 ?>

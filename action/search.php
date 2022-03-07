@@ -9,7 +9,7 @@ $output = "";
 if($_SESSION['role'] == 3){
     if(isset($_POST['query'])){
         $search = $_POST['query'];
-        $sql = $db->sql("SELECT * FROM products WHERE Name LIKE '%$search%' OR Category = '$search'");
+        $sql = $db->sql("SELECT * FROM products WHERE Name LIKE '%$search%' OR Gender = '$search' OR Category = '$search'");
     } else $sql = $db->sql("SELECT * FROM products");
 
     if(mysqli_num_rows($sql) > 0){
@@ -45,8 +45,8 @@ if($_SESSION['role'] == 3){
                                     <h3>$ {$row['Price']}</h3>
                                 </div>
                                 <form action='action/del.php' method='post'>
-                                    <input hidden type='text' name='code' value='{$row['Code']}'>
-                                    <button class='rem' data-id='{$row['Code']}'>Remove</button>
+                                    <input hidden type='text' name='id' value='{$row['product_id']}'>
+                                    <button class='rem' data-id='{$row['product_id']}'>Remove</button>
                                 </form>
                             </div>
                         </div>";
@@ -64,8 +64,8 @@ if($_SESSION['role'] == 3){
 if($_SESSION['role'] == 2){
     if(isset($_POST['query'])){
         $search = $_POST['query'];
-        $sql = $db->sql("SELECT * FROM products WHERE Name LIKE '%$search%' OR Category = '$search'");
-    } else $sql = $db->sql("SELECT * FROM products ORDER BY id ASC");
+        $sql = $db->sql("SELECT * FROM products WHERE Name LIKE '%$search%' OR Gender = '$search' OR Category = '$search'");
+    } else $sql = $db->sql("SELECT * FROM products ORDER BY product_id ASC");
 
     if(mysqli_num_rows($sql) > 0){
         while($row = mysqli_fetch_assoc($sql)){
@@ -80,8 +80,8 @@ if($_SESSION['role'] == 2){
                                         <input type='number' name='price' value=\"$row[Price]\"></input>
                                     </div>
                                     <div>
-                                        <input hidden type='text' name='id' value=\"$row[id]\"></input>
-                                        <button class='edit' data-id='{$row['Code']}' type='submit'>Edit</button>
+                                        <input hidden type='text' name='id' value=\"$row[product_id]\"></input>
+                                        <button class='edit' data-id='{$row['product_id']}' type='submit'>Edit</button>
                                     </div>
                                 </div>
                         </form>";
@@ -99,9 +99,20 @@ if($_SESSION['role'] == 2){
 else{
     if(isset($_POST['query'])){
         $search = $_POST['query'];
-        $catg = $_POST['catg'];
-        $sql = $db->sql("SELECT * FROM products WHERE Name LIKE '%$search%' OR Category = '$search'");
-    } else $sql = $db->sql("SELECT * FROM products ORDER BY id ASC");
+        
+        $sql = $db->sql("SELECT * FROM products WHERE Name LIKE '%$search%'");
+    } 
+    else if(isset($_POST['sort_select'])){
+        $sort = $_POST['sort_select'];
+        
+        $sql = $db->sql("SELECT * FROM products ORDER BY Price $sort");
+    }
+    else if(isset($_POST['filter_select'])){
+        $filter = $_POST['filter_select'];
+        
+        $sql = $db->sql("SELECT * FROM products WHERE Gender = '$filter' OR Category = '$filter' ");
+    }
+    else $sql = $db->sql("SELECT * FROM products ORDER BY product_id ASC");
 
     if(mysqli_num_rows($sql) > 0){
         while($row = mysqli_fetch_assoc($sql)){
@@ -137,7 +148,7 @@ else{
                                         <h3>$ {$row['Price']}</h3>
                                     </div>
                                     <div>
-                                        <input hidden name='code' type='text' value='{$row['Code']}'>
+                                        <input hidden name='id' type='text' value='{$row['product_id']}'>
                                         <button id='btn' type='submit'>Add To Cart</button>
                                     </div>
                                 </form>

@@ -5,36 +5,30 @@ $db = new Dbase();
 if(isset($_POST['code'])){
     $code = $_POST['code'];
 
-    $u_c = $db->sql("DELETE FROM `basket` WHERE product_code = '$code'");
-    $sql = $db->sql("DELETE FROM `products` WHERE Code = '$code'");
+    $u_c = $db->sql("DELETE FROM `basket` WHERE product_id = '$product_id'");
+    $sql = $db->sql("DELETE FROM `products` WHERE product_id = '$product_id'");
     header("Location:../Admin.php");
 }
 
-if(isset($_POST['id'])){
-    $id = $_POST['id'];
+if(isset($_POST['user_id'])){
+    $user_id = $_POST['user_id'];
 
-    $sql = $db->query("SELECT * FROM users WHERE id = $id");
+    echo $user_id;
 
-    foreach($sql as $key => $value){
-        $login = $sql[$key]['Login'];
-    }
-
-    $u_r = $db->sql("DELETE FROM `user_roles` WHERE user = '$login'");
-    $u_c = $db->sql("DELETE FROM `basket` WHERE user_mail = '$login'");
-    $user = $db->sql("DELETE FROM `users` WHERE id = '$id'");
+    $db->sql("CALL delete_user('$user_id')");
 }
 
 if(isset($_POST['f_u'], $_POST['f_n'])){
-    $f_u = $_POST['f_u'];
-    $f_n = $_POST['f_n'];
+    $u_id = $_POST['u_id'];
+    $p_id = $_POST['p_id'];
 
-    $sql = $db->query("DELETE FROM feedback WHERE user = '$f_u' AND product_name='$f_n'");
+    $sql = $db->query("UPDATE orders SET comment='' WHERE user_id = '$u_id' AND product_id='$p_id'");
 }
 
-if(isset($_POST['b_code'])){
-    $code = $_POST['b_code'];
-    $mail = $_SESSION['mail'];
+if(isset($_POST['product_id'])){
+    $product_id = $_POST['product_id'];
+    $user_id = $_SESSION['user_id'];
 
-    $sql = $db->sql("DELETE FROM basket WHERE user_mail = '$mail' AND product_name='$code'");
+    $sql = $db->sql("DELETE FROM basket WHERE user_id= '$user_id' AND product_id='$product_id'");
 }
 ?>

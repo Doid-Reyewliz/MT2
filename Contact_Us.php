@@ -46,7 +46,7 @@ $db = new Dbase();
                     <?php 
                         $sql=$db->sql("SELECT * FROM products");
                         foreach($sql as $row){
-                            echo "<option value='{$row['Name']}'>{$row['Name']}</option>";
+                            echo "<option value='{$row['product_id']}'>{$row['Name']}</option>";
                         }
                     ?>
                 </select>
@@ -139,8 +139,8 @@ $(document).ready(function(){
                 text:text
             },
             success:function(response){
-                alert("Your feedback was added!!!");
-            }
+                alert(response);
+            },
         });
     });
 

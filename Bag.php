@@ -44,16 +44,17 @@
         <?php
         require_once "action/db.php";
         $db = new Dbase();
-
+        
+        $user_id = $_SESSION['id'];
         $mail = $_SESSION['mail'];
         $count = 0;
         $price = 0;
 
-        $select = $db->sql("SELECT * FROM basket WHERE user_mail = '$mail'");
+        $select = $db->sql("SELECT * FROM basket WHERE user_id = '$user_id'");
 
         if(mysqli_num_rows($select) > 0){
 
-            $sql = $db->query("SELECT basket.number, basket.product_code, basket.Size, products.Image, products.Name, products.Price FROM basket INNER JOIN products ON basket.product_code = products.Code WHERE basket.user_mail = '$mail'");
+            $sql = $db->query("SELECT basket.number, basket.product_id, basket.Size, products.Image, products.Name, products.Price FROM basket INNER JOIN products ON basket.product_id = products.product_id WHERE basket.user_id = '$user_id'");
 
             foreach($sql as $row){
                 $price = $row['Price'] * $row['number'];
@@ -64,8 +65,8 @@
                             <h3 hidden id=\"price\">{$row['Price']}</h3>
                             <p id=\"val\">$$price</p>
                             <div class=\"number\">
-                                <input hidden type=\"text\" class=\"code\" value=\"{$row['product_code']}\">
-                                <input type=\"number\" min=\"0\" max=\"10\" data-id=\"$row[product_code]\" id=\"number\" value=\"{$row['number']}\"></input>
+                                <input hidden type=\"text\" class=\"product_id\" value=\"{$row['product_id']}\">
+                                <input type=\"number\" min=\"0\" max=\"10\" data-id=\"$row[product_id]\" id=\"number\" value=\"{$row['number']}\"></input>
                             </div>
                         </div>";
                     $count+=$price;
@@ -78,6 +79,9 @@
         </div>
         <p id="count" hidden><?php echo $count; ?></p>
         <form class="total" action="action/order.php" method="POST">
+            <?php 
+                $rank = $db->query("SELECT rank.discount as discount FROM rank INNER JOIN users ON rank.rank_id = users.Rank_id WHERE users.login = '$mail'");            
+            ?>
             <p>Total: <span id="total">$<?php echo $count; ?></span></p>
             <button type="submit">Order</button>
         </form>
@@ -158,7 +162,7 @@ $(".product").on('input', '#number', function() {
             type: 'POST',
             data: {
                 num:number,
-                code:code
+                product_id:product_id
             },
             success: function(response){
                 $('.product').remove();

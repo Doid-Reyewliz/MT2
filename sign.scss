@@ -93,7 +93,7 @@ section{
 
         @keyframes animate{
             0%, 100%{
-                transform: translateY(-40px);
+                traform: translateY(-40px);
             }
             50%{
                 transform: translateY(40px);
@@ -192,7 +192,7 @@ section{
                     border-radius: 5px;
                     margin: 20px auto;
                 }
-                #log, #name, #pass, #quest, #ans{
+                #log, #name, #pass, #quest, #ans, #addr, #phone{
                     @include glass;
                     @include input;
                     

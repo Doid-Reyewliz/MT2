@@ -32,7 +32,7 @@ function update(){
     if($pass != $rpass) header("Location:Forgot.php?error=Passwords must be the same");
 
     if(!empty($pass)){
-        $set = $db->sql("UPDATE users SET `Password`='$pass' WHERE Login = '$log' AND Question = '$quest' AND Answer = '$ans'");
+        $upd = $db->sql("UPDATE users SET `Password`='$pass' WHERE Login = '$log' AND Question = '$quest' AND Answer = '$ans'");
         header("Location: ../index.php?cor= Password updated");
     } else header("Location:Forgot.php?error=Password is empty");
 

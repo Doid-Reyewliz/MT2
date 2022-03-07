@@ -235,7 +235,7 @@ section .box .container .form .cor {
   margin: 20px auto;
 }
 
-section .box .container .form #log, section .box .container .form #name, section .box .container .form #pass, section .box .container .form #quest, section .box .container .form #ans {
+section .box .container .form #log, section .box .container .form #name, section .box .container .form #pass, section .box .container .form #quest, section .box .container .form #ans, section .box .container .form #addr, section .box .container .form #phone {
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
   background: rgba(255, 255, 255, 0.1);
@@ -279,6 +279,15 @@ section .box .container .form #gen {
 
 section .box .container .form #ans {
   margin-bottom: 5%;
+}
+
+section .box .container .form #phone{
+  width: 70%;
+  margin-left: 15px; 
+}
+
+section .box .container .form #phone::placeholder{
+  color: rgb(230, 230, 230);
 }
 
 section .box .container .form #bday {
