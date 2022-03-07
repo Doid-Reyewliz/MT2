@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="page.css">
 </head>
 
+
 <header>
     <nav class="nav_text">
         <ul class="list">
