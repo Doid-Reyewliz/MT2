@@ -44,7 +44,7 @@ if (isset($_POST['log'], $_POST['pass'], $_POST['name'], $_POST['gen'], $_POST['
 	}
 
 	if ($error == 0) {
-		$db->sql("CALL register(' ', '$log', '$pass', '$name', '$gen', '$bday', '$addr', '$phone', '$quest', '$ans', '1', 'icons8-male-user-96.png')");
+		$db->sql("CALL user_add(' ', '$log', '$pass', '$name', '$gen', '$bday', '$addr', '$phone', '$quest', '$ans', '1', 'icons8-male-user-96.png')");
 		$db->sql("CALL user_role('','$log','1')");
 		header("Location:../index.php?cor=Registration was successful");
 	}

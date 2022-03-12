@@ -100,7 +100,7 @@ else{
     if(isset($_POST['query'])){
         $search = $_POST['query'];
         
-        $sql = $db->sql("SELECT * FROM products WHERE Name LIKE '%$search%'");
+        $sql = $db->sql("CALL search_by($search)");
     } 
     else if(isset($_POST['sort_select'])){
         $sort = $_POST['sort_select'];
