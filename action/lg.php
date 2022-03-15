@@ -18,42 +18,40 @@ if(isset($_POST['log'], $_POST['pass'])) {
 
 		if (!empty($users)) {
 
-			$role = $db->query("SELECT * FROM user_roles WHERE user='$log'");
+			$role = $db->query("SELECT users.Name, users.Image, users.user_id, role.role_id FROM users INNER JOIN role ON users.Role_id = role.role_id WHERE users.Login='$log'");
 
-			foreach ($users as $i => $values) {
-				foreach ($role as $j => $values) {
-					if($role[$j]['role'] == '1') {
-						$_SESSION['id'] = $users[$i]['user_id'];
-						$_SESSION['role'] = $role[$j]['role'];
-						$_SESSION['mail'] = $log;
-						$_SESSION['name'] = $users[$i]['Name'];
-						$_SESSION['image'] = $users[$i]['Image'];
-						setcookie("log", $log, time() + 20, "/");
-						setcookie("pass", $pass, time() + 20, "/");
-						header("Location: ../Home.php");
-					}
+			foreach ($role as $values) {
+				if($values['role_id'] == '1') {
+					$_SESSION['id'] = $values['user_id'];
+					$_SESSION['role'] = $values['role_id'];
+					$_SESSION['mail'] = $log;
+					$_SESSION['name'] = $values['Name'];
+					$_SESSION['image'] = $values['Image'];
+					setcookie("log", $log, time() + 20, "/");
+					setcookie("pass", $pass, time() + 20, "/");
+					header("Location: ../Home.php");
+				}
 
-					if($role[$j]['role'] == '2') {
-						$_SESSION['id'] = $users[$i]['user_id'];
-						$_SESSION['role'] = $role[$j]['role'];
-						$_SESSION['mail'] = $log;
-						$_SESSION['name'] = $users[$i]['Name'];
-						$_SESSION['image'] = $users[$i]['Image'];
-						setcookie("log", $log, time() + 20, "/");
-						setcookie("pass", $pass, time() + 20, "/");
-						header("Location: ../Mod.php");
-					}
+				if($values['role_id'] == '2') {
+					$_SESSION['id'] = $values['user_id'];
+					$_SESSION['role'] = $values['role_id'];
+					$_SESSION['mail'] = $log;
+					$_SESSION['name'] = $values['Name'];
+					$_SESSION['image'] = $values['Image'];
+					setcookie("log", $log, time() + 20, "/");
+					setcookie("pass", $pass, time() + 20, "/");
+					header("Location: ../Mod.php");
+				}
 
-					if($role[$j]['role'] == '3') {
-						$_SESSION['id'] = $users[$i]['user_id'];
-						$_SESSION['role'] = $role[$j]['role'];
-						$_SESSION['mail'] = $log;
-						$_SESSION['name'] = $users[$i]['Name'];
-						$_SESSION['image'] = $users[$i]['Image'];
-						setcookie("log", $log, time() + 20, "/");
-						setcookie("pass", $pass, time() + 20, "/");
-						header("Location: ../Choose.php");
-					}
+				if($values['role_id'] == '3') {
+					$_SESSION['id'] = $values['user_id'];
+					$_SESSION['role'] = $values['role_id'];
+					$_SESSION['mail'] = $log;
+					$_SESSION['name'] = $values['Name'];
+					$_SESSION['image'] = $values['Image'];
+					setcookie("log", $log, time() + 20, "/");
+					setcookie("pass", $pass, time() + 20, "/");
+					header("Location: ../Choose.php");
 				}
 			}
 		} else header("Location: ../index.php?error=Incorect Login or Password");
