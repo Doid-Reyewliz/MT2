@@ -46,7 +46,7 @@
                 <label>Filter:</label>
                 
                 <select name="filter_select" class="filter_select">
-                    <option selected>All</option>
+                    <option selected value=" ">All</option>
                     <option value="Men">Men</option>
                     <option value="Women">Women</option>
                     <option value="Kids">Kids</option>
@@ -61,7 +61,7 @@
                 <label>Sort:</label>
                 
                 <select name="sort_select" class="sort_select">
-                    <option selected>By default</option>
+                    <option selected disabled>By default</option>
                     <option value="ASC">By lower price</option>
                     <option value="DESC">By higher price</option>
                 </select>

@@ -110,7 +110,13 @@ else{
     else if(isset($_POST['filter_select'])){
         $filter = $_POST['filter_select'];
         
-        $sql = $db->sql("SELECT * FROM products WHERE Gender = '$filter' OR Category = '$filter' ");
+        if($filter == ' '){
+            $sql = $db->sql("SELECT * FROM products");
+        }
+        else{
+            $sql = $db->sql("SELECT * FROM products WHERE Gender = '$filter' OR Category = '$filter' ");
+        }
+
     }
     else $sql = $db->sql("SELECT * FROM products ORDER BY product_id ASC");
 
