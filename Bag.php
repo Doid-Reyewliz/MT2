@@ -30,7 +30,9 @@
     <nav class="nav_buttons">
         <a href="Profile.php">
             <img class="prof_im" src="<?php echo 'prof_image/' . $_SESSION['image']; ?>">
-            <p <?php if($_SESSION['role'] == 3){ echo "class='rainbow rainbow_text_animated'";} ?>><?php echo $_SESSION['name']; ?></p>
+            <p <?php if ($_SESSION['role'] == 3) {
+                    echo "class='rainbow rainbow_text_animated'";
+                } ?>><?php echo $_SESSION['name']; ?></p>
         </a>
         <a href="Bag.php"><img class="basket" src="https://img.icons8.com/fluent/48/000000/shopping-basket-2.png" /></a>
         <a href="index.php"><img src="https://img.icons8.com/fluent/48/000000/exit.png" /></a>
@@ -38,28 +40,28 @@
 </header>
 
 <body>
-    <button onclick="topFunction()" id="top_btn"><img src="https://img.icons8.com/fluent/50/ffffff/circled-chevron-up.png"/></button>
+    <button onclick="topFunction()" id="top_btn"><img src="https://img.icons8.com/fluent/50/ffffff/circled-chevron-up.png" /></button>
     <h1>Your Bag</h1>
     <section class="order">
         <div class="b_products">
-        <?php
-        require_once "action/db.php";
-        $db = new Dbase();
-        
-        $user_id = $_SESSION['id'];
-        $mail = $_SESSION['mail'];
-        $count = 0;
+            <?php
+            require_once "action/db.php";
+            $db = new Dbase();
 
-        $select = $db->sql("SELECT * FROM basket WHERE user_id = '$user_id'");
+            $user_id = $_SESSION['id'];
+            $mail = $_SESSION['mail'];
+            $count = 0;
 
-        if(mysqli_num_rows($select) > 0){
+            $select = $db->sql("SELECT * FROM basket WHERE user_id = '$user_id'");
 
-            $sql = $db->query("SELECT basket.number, basket.product_id, basket.Size, products.Image, products.Name, products.Price, products.Quantity FROM basket INNER JOIN products ON basket.product_id = products.product_id WHERE basket.user_id = '$user_id'");
+            if (mysqli_num_rows($select) > 0) {
 
-            foreach($sql as $row){
-                $price = $db->query("SELECT basket.number * products.Price as total_price FROM basket INNER JOIN products ON basket.product_id = products.product_id WHERE products.product_id = {$row['product_id']} ");
-                foreach($price as $p){  
-                    echo "<div class=\"product\">
+                $sql = $db->query("SELECT basket.number, basket.product_id, basket.Size, products.Image, products.Name, products.Price, products.Quantity FROM basket INNER JOIN products ON basket.product_id = products.product_id WHERE basket.user_id = '$user_id'");
+
+                foreach ($sql as $row) {
+                    $price = $db->query("SELECT basket.number * products.Price as total_price FROM basket INNER JOIN products ON basket.product_id = products.product_id WHERE products.product_id = {$row['product_id']} ");
+                    foreach ($price as $p) {
+                        echo "<div class=\"product\">
                             <img src=\"image/{$row['Image']}\"?>
                             <h3>{$row['Name']}</h3>
                             <p>Size: {$row['Size']}</p>
@@ -67,30 +69,32 @@
                             <p id=\"val\">$ {$p['total_price']}</p>
                             <div class=\"number\">
                                 <label>Quantity:</label>
-                                <select class='quant'>
-                                    <option value=\"{$row['number']}\" hidden></option>
-                                    <option value=\"{$row['number']}\" hidden></option>
+                                <input id='p_id' value=\"{$row['product_id']}\" hidden></штз>
+                                <input id='size' value=\"{$row['Size']}\" hidden></input>
+                                <select name='quant' class='quant'>
+                                    <option id='q' value=\"{$row['number']}\" hidden></option>
                                 </select>
                             </div>
                          </div>";
-                    $count += $p['total_price'];
+                        $count += $p['total_price'];
+                    }
                 }
+            } else {
+                echo "<h1 class=\"stat\">Your Bag is Empty</h1>";
             }
-        }
-        else{
-            echo "<h1 class=\"stat\">Your Bag is Empty</h1>";
-        }
-        ?>
+            ?>
         </div>
         <p id="count" hidden><?php echo $count; ?></p>
         <form class="total" action="action/order.php" method="POST">
-            <?php 
-                $rank = $db->query("SELECT rank.discount FROM rank INNER JOIN users ON rank.rank_id = users.Rank_id WHERE users.login = '$mail'");
-                foreach ($rank as $row){
-                    $discount = $db->query("CALL discount_price($count,{$row['discount']})");            
-                }
+            <?php
+            $rank = $db->query("SELECT rank.discount FROM rank INNER JOIN users ON rank.rank_id = users.Rank_id WHERE users.login = '$mail'");
+            foreach ($rank as $row) {
+                $discount = $db->query("CALL discount_price($count,{$row['discount']})");
+            }
             ?>
-            <p>Total: <span id="total">$<?php foreach($discount as $row){echo intval($row['total']);} ?></span></p>
+            <p>Total: <span id="total">$<?php foreach ($discount as $row) {
+                                            echo intval($row['total']);
+                                        } ?></span></p>
             <button type="submit">Order</button>
         </form>
     </section>
@@ -142,56 +146,60 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-//scroll on top
-var mybutton = document.getElementById("top_btn");
-window.onscroll = function () {
-  scrollFunction();
-};
+    //scroll on top
+    var mybutton = document.getElementById("top_btn");
+    window.onscroll = function() {
+        scrollFunction();
+    };
 
-function scrollFunction() {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        mybutton.style.visibility = "visible";
-    } else {
-        mybutton.style.visibility = "hidden";
-    }
-}
-function topFunction() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-}
-
-// Auto fill select
-$(function(){
-    var $select = $(".quant");
-    $('.quant').each(function(){
-        var $val = $(this).val();
-        for (i=1;i<=$val;i++){
-            if(i == $val){
-                $(this).append($('<option value={"i"} selected></option>').val(i).html(i))
-            }
-            else{
-                $(this).append($('<option value={"i"}></option>').val(i).html(i))
-            }
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.visibility = "visible";
+        } else {
+            mybutton.style.visibility = "hidden";
         }
-        // $val = 0
+    }
+
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+
+    // Auto fill select
+    $(function() {
+        var $select = $(".quant");
+        $('.quant').each(function() {
+            var $val = $(this).val();
+            for (i = 1; i <= $val; i++) {
+                if (i == $val) {
+                    $(this).append($('<option value={"i"} selected></option>').val(i).html(i))
+                } else {
+                    $(this).append($('<option value={"i"}></option>').val(i).html(i))
+                }
+            }
+            // $val = 0
+        });
+
     });
 
-});
+    // Change quantity
+    $(".quant").change(function() {
+        var id = $('#id').val();
+        var p_id = $('#p_id').val();
+        var size = $('#size').val();
 
-// Change quantity
-$(".quant").change(function(){
-    $.ajax({
-        url : "action/basket.php",
-        type: "POST",
-        chache: false,
-        data:{
-            quant: $(".quant").val()
-        },
-        success:function(response){
-            $(".products").html(response);
-        }
-    })
-});
-
+        $.ajax({
+            url: "action/basket.php",
+            type: "POST",
+            chache: false,
+            data: {
+                p_id: p_id,
+                size: size,
+                quant: $('.quant').val()
+            },
+            success: function(response) {}
+        })
+    });
 </script>
+
 </html>

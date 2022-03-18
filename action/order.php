@@ -16,7 +16,7 @@ if(mysqli_num_rows($sel) > 0){
         $db->sql("CALL subtract_quantity($product_id, $number)");
     }
 }
-$del = $db->sql("DELETE FROM `basket` WHERE user_id = \"$user_id\"");
+$db->sql("DELETE FROM `basket` WHERE user_id = $user_id");
 header("Location:../Bag.php?stat=Succses");
 
 ?>

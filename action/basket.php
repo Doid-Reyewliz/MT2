@@ -19,10 +19,10 @@ else if(isset($_POST['product_id'])){
             $count += $row['number'];
         }
 
-        $sql = $db->sql("UPDATE basket SET number = $count WHERE user_id = '$user_id' AND product_id = '$product_id'");
+        $db->sql("UPDATE basket SET number = $count WHERE user_id = '$user_id' AND product_id = '$product_id'");
     }
     else{
-        $sql = $db->sql("INSERT INTO basket(`user_id`, `product_id`, `size`, `number`) VALUES ('$user_id', '$product_id', '$size', '$count')");
+        $db->sql("INSERT INTO basket(`user_id`, `product_id`, `size`, `number`) VALUES ('$user_id', '$product_id', '$size', '$count')");
     }
     header("Location:../Products.php");
 }
@@ -31,12 +31,12 @@ else if (isset($_POST['quant'])){
     require_once "db.php";
     $db = new Dbase();
 
-    $user_id = $_POST['user_id'];
-    $product_id = $_POST['product_id'];
+    $user_id = $_SESSION['id'];
+    $product_id = $_POST['p_id'];
     $size = $_POST['size'];
     $quant = $_POST['quant'];
 
-    $db->query("INSERT INTO basket(`user_id`, `product_id`, `size`, `number`) VALUES ('$user_id', '$product_id', '$size', '$quant')");
+    $db->sql("UPDATE basket SET number = $quant WHERE product_id = '$product_id' AND user_id = '$user_id' AND size = '$size'");
 }
 
 ?>
