@@ -69,8 +69,12 @@
                             <p id=\"val\">$ {$p['total_price']}</p>
                             <div class=\"number\">
                                 <label>Quantity:</label>
-                                <input id='p_id' value=\"{$row['product_id']}\" hidden></штз>
+                                <input id='p_id' value=\"{$row['product_id']}\" hidden></input>
                                 <input id='size' value=\"{$row['Size']}\" hidden></input>
+                                <select class='max_q' hidden>
+                                    <option value=\"{$row['Quantity']}\"></option>
+                                </select>
+
                                 <select name='quant' class='quant'>
                                     <option id='q' value=\"{$row['number']}\" hidden></option>
                                 </select>
@@ -85,16 +89,16 @@
             ?>
         </div>
         <p id="count" hidden><?php echo $count; ?></p>
+
         <form class="total" action="action/order.php" method="POST">
             <?php
             $rank = $db->query("SELECT rank.discount FROM rank INNER JOIN users ON rank.rank_id = users.Rank_id WHERE users.login = '$mail'");
             foreach ($rank as $row) {
                 $discount = $db->query("CALL discount_price($count,{$row['discount']})");
+                $dis = $row['discount'];
             }
             ?>
-            <p>Total: <span id="total">$<?php foreach ($discount as $row) {
-                                            echo intval($row['total']);
-                                        } ?></span></p>
+            <p>Total: <?php echo "$".$count. " - " . $dis . "%="; ?> <span id="total">$<?php foreach ($discount as $row) {echo intval($row['total']);} ?></span></p>
             <button type="submit">Order</button>
         </form>
     </section>
@@ -166,38 +170,42 @@ function topFunction() {
 
 //! Auto fill select
 $(function() {
-    var $select = $(".quant");
-    $('.quant').each(function() {
-        var $val = $(this).val();
-        for (i = 1; i <= $val; i++) {
-            if (i == $val) {
-                $(this).append($('<option value={"i"} selected></option>').val(i).html(i))
-            } else {
-                $(this).append($('<option value={"i"}></option>').val(i).html(i))
-            }
-        }
-        // $val = 0
-    });
+    function max_q(){
+        var max = []
+        $('.max_q').each(function() {
+            max.push($(this).val());
+        });
+        return max;
+    }
 
+    function each_product(max){
+        const max_q = max;
+        var j = 0;
+
+        $('.quant').each(function() {
+            var val = $(this).val();
+
+            for (i = 1; i <= max_q[j]; i++) {
+                if (i == val) {
+                    $(this).append($('<option value={"i"} selected></option>').val(i).html(i))
+                } else {
+                    $(this).append($('<option value={"i"}></option>').val(i).html(i))
+                }
+            }
+            j++;
+        });
+    }
+
+    const max = max_q();        
+    each_product(max);
 });
 
 //! Change quantity
 $(".quant").change(function() {
-    var id = $('#id').val();
-    var p_id = $('#p_id').val();
-    var size = $('#size').val();
-
-    $.ajax({
-        url: "action/basket.php",
-        type: "POST",
-        chache: false,
-        data: {
-            p_id: p_id,
-            size: size,
-            quant: $('.quant').val()
-        },
-        success: function(response) {}
-    })
+    var p_id = $("#p_id").val();
+    var size  = $("#size").val();
+    var quant = $(".quant").val();
+    $(".order").append($('<form action="action/basket.php"><input name="p_id" value="{p_id}" hidden></input><input name="size" value="{size}" hidden></input><input name="quant" value="quant"></input><button class="check" type="submit">Check in the stock</button></form>'))
 });
 
 //! Take products form basket with ajax

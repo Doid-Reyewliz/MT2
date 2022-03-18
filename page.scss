@@ -320,7 +320,7 @@ body {
         flex-direction: column;
         margin: 5% 5%;
         margin-top: 2%;
-        padding: 5% 5%;
+        padding: 2% 5% 2% 5%;
         border-radius: 10px;
 
         .b_products{
@@ -375,6 +375,21 @@ body {
                 }
                 
             }
+        }
+
+        .check{
+            @include glass;
+                border-radius: 10px;
+                font-size: 24px;
+                color: #fff;
+                cursor: pointer;
+                transition: .5s;
+                margin: 30px 40% 0px 40%;
+
+                &:hover{
+                    letter-spacing: 2px;
+                    transition: .5s;
+                }
         }
 
         .total{
