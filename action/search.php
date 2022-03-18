@@ -122,44 +122,49 @@ else{
 
     if(mysqli_num_rows($sql) > 0){
         while($row = mysqli_fetch_assoc($sql)){
-            $output .= "<div class='card'>
-                            <div class='imgBx'>
-                                <img src='image/{$row['Image']}'>
-                                <h2>{$row['Name']}</h2>
-                            </div>
-                            <div class='content'>
-                                <form action='action/basket.php' method='post'>
-                                    <div class=\"size\">
-                                        <h3>Size: </h3>
-                                        <div>
-                                            <label>
-                                                <input type='radio' name='size' value='41'>
-                                                <p class='fa'>41</p>
-                                            </label>
-                                            <label>
-                                                <input type='radio' name='size' value='42'>
-                                                <p class='fa'>42</p>
-                                            </label>
-                                            <label>
-                                                <input type='radio' name='size' value='43'>
-                                                <p class='fa'>43</p>
-                                            </label>
-                                            <label>
-                                                <input type='radio' name='size' value='44'>
-                                                <p class='fa'>44</p>
-                                            </label>
+            if ($row['Quantity'] > 0){
+                $output .= "<div class='card'>
+                                <div class='imgBx'>
+                                    <img src='image/{$row['Image']}'>
+                                    <h2>{$row['Name']}</h2>
+                                </div>
+                                <div class='content'>
+                                    <form action='action/basket.php' method='post'>
+                                        <div class=\"size\">
+                                            <h3>Size: </h3>
+                                            <div>
+                                                <label>
+                                                    <input type='radio' name='size' value='41'>
+                                                    <p class='fa'>41</p>
+                                                </label>
+                                                <label>
+                                                    <input type='radio' name='size' value='42'>
+                                                    <p class='fa'>42</p>
+                                                </label>
+                                                <label>
+                                                    <input type='radio' name='size' value='43'>
+                                                    <p class='fa'>43</p>
+                                                </label>
+                                                <label>
+                                                    <input type='radio' name='size' value='44'>
+                                                    <p class='fa'>44</p>
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class='price'>
-                                        <h3>$ {$row['Price']}</h3>
-                                    </div>
-                                    <div>
-                                        <input hidden name='id' type='text' value='{$row['product_id']}'>
-                                        <button id='btn' type='submit'>Add To Cart</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>";
+                                        <div class='price'>
+                                            <h3>$ {$row['Price']}</h3>
+                                        </div>
+                                        <div>
+                                            <input hidden name='product_id' type='text' value='{$row['product_id']}'>
+                                            <button id='btn' type='submit'>Add To Cart</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>";
+            }
+            else{
+                continue;
+            }
         }
         echo $output;
         exit;

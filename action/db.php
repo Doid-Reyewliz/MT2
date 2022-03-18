@@ -12,7 +12,12 @@ class Dbase{
 
     function connectDB() {
         $conn = mysqli_connect($this->host,$this->user,$this->password,$this->database);
-        return $conn;
+
+        if(mysqli_connect_errno()){
+            printf("Connect failed: %s\n", mysqli_connect_error());
+            exit();
+        } 
+        else return $conn;
     }
 
     function query($query){

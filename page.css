@@ -429,7 +429,7 @@ body .order .b_products .product {
       -ms-flex-direction: column;
           flex-direction: column;
   border-radius: 10px;
-  margin-bottom: 5%;
+  margin-bottom: 1%;
   width: 25%;
 }
 
@@ -452,41 +452,22 @@ body .order .b_products .product p {
 }
 
 body .order .b_products .product .number {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding-bottom: 5%;
-}
-
-body .order .b_products .product .number button {
-  background-color: transparent;
-  border: none;
-}
-
-body .order .b_products .product .number button img {
-  width: 35px;
-  cursor: pointer;
-}
-
-body .order .b_products .product .number input[type='number'] {
+  margin-bottom: 5%;
+  padding: 3px 1px 3px 4px;
+  border-radius: 4px;
   background-color: #fff;
-  border-radius: 5px;
-  text-align: center;
-  font-weight: bold;
-  width: 30px;
-  padding: 10px 10px;
+}
+
+body .order .b_products .product .number select {
+  border-radius: 3px;
   border: none;
   -webkit-appearance: textfield;
      -moz-appearance: textfield;
           appearance: textfield;
+}
+
+body .order .b_products .product .number select:hover {
+  cursor: pointer;
 }
 
 body .order .total {
@@ -516,7 +497,7 @@ body .order .total p {
 }
 
 body .order .total p span {
-  color: #535252;
+  color: #3b3b3b;
 }
 
 body .order .total button {

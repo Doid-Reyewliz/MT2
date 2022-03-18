@@ -2,7 +2,7 @@
 session_start();
 if($_SESSION['role'] == 4) header("Location:../Products.php");
 
-elseif(isset($_POST['id'])){
+else if(isset($_POST['product_id'])){
     require_once "db.php";
     $db = new Dbase();
 
@@ -22,9 +22,21 @@ elseif(isset($_POST['id'])){
         $sql = $db->sql("UPDATE basket SET number = $count WHERE user_id = '$user_id' AND product_id = '$product_id'");
     }
     else{
-        $sql = $db->sql("INSERT INTO basket(`basket_id`, `user_id`, `product_id`, `size`, `number`) VALUES ('', '$user_id', '$product_id', '$size', '$count')");
+        $sql = $db->sql("INSERT INTO basket(`user_id`, `product_id`, `size`, `number`) VALUES ('$user_id', '$product_id', '$size', '$count')");
     }
     header("Location:../Products.php");
+}
+
+else if (isset($_POST['quant'])){
+    require_once "db.php";
+    $db = new Dbase();
+
+    $user_id = $_POST['user_id'];
+    $product_id = $_POST['product_id'];
+    $size = $_POST['size'];
+    $quant = $_POST['quant'];
+
+    $db->query("INSERT INTO basket(`user_id`, `product_id`, `size`, `number`) VALUES ('$user_id', '$product_id', '$size', '$quant')");
 }
 
 ?>

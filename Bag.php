@@ -49,28 +49,32 @@
         $user_id = $_SESSION['id'];
         $mail = $_SESSION['mail'];
         $count = 0;
-        $price = 0;
 
         $select = $db->sql("SELECT * FROM basket WHERE user_id = '$user_id'");
 
         if(mysqli_num_rows($select) > 0){
 
-            $sql = $db->query("SELECT basket.number, basket.product_id, basket.Size, products.Image, products.Name, products.Price FROM basket INNER JOIN products ON basket.product_id = products.product_id WHERE basket.user_id = '$user_id'");
+            $sql = $db->query("SELECT basket.number, basket.product_id, basket.Size, products.Image, products.Name, products.Price, products.Quantity FROM basket INNER JOIN products ON basket.product_id = products.product_id WHERE basket.user_id = '$user_id'");
 
             foreach($sql as $row){
-                $price = $row['Price'] * $row['number'];
-                echo    "<div class=\"product\">
+                $price = $db->query("SELECT basket.number * products.Price as total_price FROM basket INNER JOIN products ON basket.product_id = products.product_id WHERE products.product_id = {$row['product_id']} ");
+                foreach($price as $p){  
+                    echo "<div class=\"product\">
                             <img src=\"image/{$row['Image']}\"?>
                             <h3>{$row['Name']}</h3>
                             <p>Size: {$row['Size']}</p>
                             <h3 hidden id=\"price\">{$row['Price']}</h3>
-                            <p id=\"val\">$$price</p>
+                            <p id=\"val\">$ {$p['total_price']}</p>
                             <div class=\"number\">
-                                <input hidden type=\"text\" class=\"product_id\" value=\"{$row['product_id']}\">
-                                <input type=\"number\" min=\"0\" max=\"10\" data-id=\"$row[product_id]\" id=\"number\" value=\"{$row['number']}\"></input>
+                                <label>Quantity:</label>
+                                <select class='quant'>
+                                    <option value=\"{$row['number']}\" hidden></option>
+                                    <option value=\"{$row['number']}\" hidden></option>
+                                </select>
                             </div>
-                        </div>";
-                    $count+=$price;
+                         </div>";
+                    $count += $p['total_price'];
+                }
             }
         }
         else{
@@ -81,9 +85,12 @@
         <p id="count" hidden><?php echo $count; ?></p>
         <form class="total" action="action/order.php" method="POST">
             <?php 
-                $rank = $db->query("SELECT rank.discount as discount FROM rank INNER JOIN users ON rank.rank_id = users.Rank_id WHERE users.login = '$mail'");            
+                $rank = $db->query("SELECT rank.discount FROM rank INNER JOIN users ON rank.rank_id = users.Rank_id WHERE users.login = '$mail'");
+                foreach ($rank as $row){
+                    $discount = $db->query("CALL discount_price($count,{$row['discount']})");            
+                }
             ?>
-            <p>Total: <span id="total">$<?php echo $count; ?></span></p>
+            <p>Total: <span id="total">$<?php foreach($discount as $row){echo intval($row['total']);} ?></span></p>
             <button type="submit">Order</button>
         </form>
     </section>
@@ -153,25 +160,37 @@ function topFunction() {
     document.documentElement.scrollTop = 0;
 }
 
-$(".product").on('input', '#number', function() {
-    $('.product #number').each(function() {
-        number = $(this).val();
-        code = $(this).data('id');
-
-        $.ajax({
-            url: 'action/u_bag.php',
-            type: 'POST',
-            data: {
-                num:number,
-                product_id:product_id
-            },
-            success: function(response){
-                $('.product').remove();
-                $('.b_products').html("<h1 class=\"stat\">Your Bag is Empty</h1>");
-                $('#total').text("$0")
+// Auto fill select
+$(function(){
+    var $select = $(".quant");
+    $('.quant').each(function(){
+        var $val = $(this).val();
+        for (i=1;i<=$val;i++){
+            if(i == $val){
+                $(this).append($('<option value={"i"} selected></option>').val(i).html(i))
             }
-        });
+            else{
+                $(this).append($('<option value={"i"}></option>').val(i).html(i))
+            }
+        }
+        // $val = 0
     });
+
+});
+
+// Change quantity
+$(".quant").change(function(){
+    $.ajax({
+        url : "action/basket.php",
+        type: "POST",
+        chache: false,
+        data:{
+            quant: $(".quant").val()
+        },
+        success:function(response){
+            $(".products").html(response);
+        }
+    })
 });
 
 </script>

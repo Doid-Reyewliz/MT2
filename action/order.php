@@ -9,10 +9,11 @@ $sel = $db->sql("SELECT * FROM basket WHERE user_id = \"$user_id\"");
 
 if(mysqli_num_rows($sel) > 0){
     while($row = mysqli_fetch_assoc($sel)){
-        $product_ = $row['product_id'];
+        $product_id = $row['product_id'];
         $number = $row['number'];
 
-        $sql = $db->sql("INSERT INTO orders (`order_id`, `user_id`, `product_id`, `number`, `date`, `time`, `status`) VALUES ('', '$user_id', '$product_id', '$number', CURRENT_DATE(), CURRENT_TIME(), 'In Process')");
+        $db->sql("INSERT INTO orders (`order_id`, `user_id`, `product_id`, `number`, `date`, `time`, `status`) VALUES ('', '$user_id', '$product_id', '$number', CURRENT_DATE(), CURRENT_TIME(), 'In Process')");
+        $db->sql("CALL subtract_quantity($product_id, $number)");
     }
 }
 $del = $db->sql("DELETE FROM `basket` WHERE user_id = \"$user_id\"");
