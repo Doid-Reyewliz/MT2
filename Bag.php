@@ -146,60 +146,82 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-    //scroll on top
-    var mybutton = document.getElementById("top_btn");
-    window.onscroll = function() {
-        scrollFunction();
-    };
-
-    function scrollFunction() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            mybutton.style.visibility = "visible";
-        } else {
-            mybutton.style.visibility = "hidden";
-        }
+//! Scroll on top
+var mybutton = document.getElementById("top_btn");
+window.onscroll = function() {
+    scrollFunction();
+};
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.visibility = "visible";
+    } else {
+        mybutton.style.visibility = "hidden";
     }
+}
 
-    function topFunction() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-    }
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
 
-    // Auto fill select
-    $(function() {
-        var $select = $(".quant");
-        $('.quant').each(function() {
-            var $val = $(this).val();
-            for (i = 1; i <= $val; i++) {
-                if (i == $val) {
-                    $(this).append($('<option value={"i"} selected></option>').val(i).html(i))
-                } else {
-                    $(this).append($('<option value={"i"}></option>').val(i).html(i))
-                }
+//! Auto fill select
+$(function() {
+    var $select = $(".quant");
+    $('.quant').each(function() {
+        var $val = $(this).val();
+        for (i = 1; i <= $val; i++) {
+            if (i == $val) {
+                $(this).append($('<option value={"i"} selected></option>').val(i).html(i))
+            } else {
+                $(this).append($('<option value={"i"}></option>').val(i).html(i))
             }
-            // $val = 0
-        });
-
+        }
+        // $val = 0
     });
 
-    // Change quantity
-    $(".quant").change(function() {
-        var id = $('#id').val();
-        var p_id = $('#p_id').val();
-        var size = $('#size').val();
+});
 
-        $.ajax({
-            url: "action/basket.php",
-            type: "POST",
-            chache: false,
-            data: {
-                p_id: p_id,
-                size: size,
-                quant: $('.quant').val()
-            },
-            success: function(response) {}
-        })
-    });
+//! Change quantity
+$(".quant").change(function() {
+    var id = $('#id').val();
+    var p_id = $('#p_id').val();
+    var size = $('#size').val();
+
+    $.ajax({
+        url: "action/basket.php",
+        type: "POST",
+        chache: false,
+        data: {
+            p_id: p_id,
+            size: size,
+            quant: $('.quant').val()
+        },
+        success: function(response) {}
+    })
+});
+
+//! Take products form basket with ajax
+// $(document).ready(function() {
+//     loadData();
+//     function loadData(query){
+//         $.ajax({
+//             url : "action/basket.php",
+//             type: "POST",
+//             chache: false,
+//             data:{
+//                 query:query
+//             },
+//             success:function(response){
+//                 $(".b_products").html(response);
+//             }
+//         })
+//     }
+
+//     $('#query').keyup(function(){
+//         var query = $(this).val();
+//         loadData(query);
+//     });
+// });
 </script>
 
 </html>

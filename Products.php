@@ -75,7 +75,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-//to top button
+//! To top button
 var mybutton = document.getElementById("top_btn");
 window.onscroll = function () {
   scrollFunction();
@@ -92,7 +92,7 @@ function topFunction() {
     document.documentElement.scrollTop = 0;
 }
 
-//search
+//! Search ajax
 $(document).ready(function(){
     loadData();
     function loadData(query){
@@ -119,7 +119,7 @@ $(document).ready(function(){
     });
 });
 
-//filter
+//! Filter ajax
 $(".filter_select").change(function(){
     $.ajax({
         url : "action/search.php",
@@ -134,7 +134,7 @@ $(".filter_select").change(function(){
     })
 });
 
-//sort
+//! Sort ajax
 $(".sort_select").change(function(){
     $.ajax({
         url : "action/search.php",

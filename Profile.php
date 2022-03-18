@@ -106,7 +106,7 @@ if (isset($_SESSION['id'])) {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 
-//profile image upload
+//! Profile image upload
 $('.upload').on('click', function() {
      var file_data = $('.prof_im').prop('files')[0];
      var file_name = "prof_image/";
@@ -121,7 +121,7 @@ $('.upload').on('click', function() {
           contentType: false,
           processData: false,
           data: form_data,
-          type: 'post',
+          type: 'POST',
           success:function(response){
                $(".prof_im").css('background-image', 'url(' + file_name + text.substring(text.lastIndexOf("\\") + 1, text.length) + ')');
           }
