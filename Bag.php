@@ -56,10 +56,11 @@
 
             if (mysqli_num_rows($select) > 0) {
 
-                $sql = $db->query("SELECT basket.number, basket.product_id, basket.Size, products.Image, products.Name, products.Price, products.Quantity FROM basket INNER JOIN products ON basket.product_id = products.product_id WHERE basket.user_id = '$user_id'");
+                $sql = $db->query("SELECT basket.number, basket.product_id, basket.Size, products.Image, products.Name, products.Price, products.Quantity FROM basket FULL OUTER JOIN products ON basket.product_id = products.product_id WHERE basket.user_id = '$user_id'");
 
                 foreach ($sql as $row) {
                     $price = $db->query("SELECT basket.number * products.Price as total_price FROM basket INNER JOIN products ON basket.product_id = products.product_id WHERE products.product_id = {$row['product_id']} ");
+                    // $price = $db->query("CALL total_price({$row['product_id']})");
                     foreach ($price as $p) {
                         echo "<div class=\"product\">
                             <img src=\"image/{$row['Image']}\"?>
@@ -92,7 +93,7 @@
 
         <form class="total" action="action/order.php" method="POST">
             <?php
-            $rank = $db->query("SELECT rank.discount FROM rank INNER JOIN users ON rank.rank_id = users.Rank_id WHERE users.login = '$mail'");
+            $rank = $db->query("SELECT rank.discount FROM users RIGHT JOIN rank ON users.Rank_id = rank.rank_id WHERE users.login = '$mail'");
             foreach ($rank as $row) {
                 $discount = $db->query("CALL discount_price($count,{$row['discount']})");
                 $dis = $row['discount'];

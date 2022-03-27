@@ -18,7 +18,7 @@ if(isset($_POST['log'], $_POST['pass'])) {
 
 		if (!empty($users)) {
 
-			$role = $db->query("SELECT users.Name, users.Image, users.user_id, role.role_id FROM users INNER JOIN role ON users.Role_id = role.role_id WHERE users.Login='$log'");
+			$role = $db->query("SELECT users.Name, users.Image, users.user_id, role.role_id FROM users LEFT JOIN role ON users.Role_id = role.role_id WHERE users.Login='$log'");
 
 			foreach ($role as $values) {
 				if($values['role_id'] == '1') {

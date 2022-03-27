@@ -113,58 +113,64 @@ else{
         if($filter == ' '){
             $sql = $db->sql("SELECT * FROM products");
         }
-        else{
-            $sql = $db->sql("SELECT * FROM products WHERE Gender = '$filter' OR Category = '$filter' ");
+        
+        else if(strlen($filter) > 5){
+            $ranges = explode("-", $filter);
+        
+            $from = $ranges[0];
+            $to = $ranges[1];
+        
+            $sql = $db->sql("SELECT * FROM products WHERE Price BETWEEN $from AND $to");
         }
 
+        else{
+            $sql = $db->sql("SELECT * FROM products WHERE Gender = '$filter' OR Category = '$filter'");
+        }
+
+
     }
-    else $sql = $db->sql("SELECT * FROM products ORDER BY product_id ASC");
+    else $sql = $db->sql("SELECT * FROM products WHERE NOT Quantity = '0'");
 
     if(mysqli_num_rows($sql) > 0){
         while($row = mysqli_fetch_assoc($sql)){
-            if ($row['Quantity'] > 0){
-                $output .= "<div class='card'>
-                                <div class='imgBx'>
-                                    <img src='image/{$row['Image']}'>
-                                    <h2>{$row['Name']}</h2>
-                                </div>
-                                <div class='content'>
-                                    <form action='action/basket.php' method='post'>
-                                        <div class=\"size\">
-                                            <h3>Size: </h3>
-                                            <div>
-                                                <label>
-                                                    <input type='radio' name='size' value='41'>
-                                                    <p class='fa'>41</p>
-                                                </label>
-                                                <label>
-                                                    <input type='radio' name='size' value='42'>
-                                                    <p class='fa'>42</p>
-                                                </label>
-                                                <label>
-                                                    <input type='radio' name='size' value='43'>
-                                                    <p class='fa'>43</p>
-                                                </label>
-                                                <label>
-                                                    <input type='radio' name='size' value='44'>
-                                                    <p class='fa'>44</p>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class='price'>
-                                            <h3>$ {$row['Price']}</h3>
-                                        </div>
+            $output .= "<div class='card'>
+                            <div class='imgBx'>
+                                <img src='image/{$row['Image']}'>
+                                <h2>{$row['Name']}</h2>
+                            </div>
+                            <div class='content'>
+                                <form action='action/basket.php' method='post'>
+                                    <div class=\"size\">
+                                        <h3>Size: </h3>
                                         <div>
-                                            <input hidden name='product_id' type='text' value='{$row['product_id']}'>
-                                            <button id='btn' type='submit'>Add To Cart</button>
+                                            <label>
+                                                <input type='radio' name='size' value='41'>
+                                                <p class='fa'>41</p>
+                                            </label>
+                                            <label>
+                                                <input type='radio' name='size' value='42'>
+                                                <p class='fa'>42</p>
+                                            </label>
+                                            <label>
+                                                <input type='radio' name='size' value='43'>
+                                                <p class='fa'>43</p>
+                                            </label>
+                                            <label>
+                                                <input type='radio' name='size' value='44'>
+                                                <p class='fa'>44</p>
+                                            </label>
                                         </div>
-                                    </form>
-                                </div>
-                            </div>";
-            }
-            else{
-                continue;
-            }
+                                    </div>
+                                    <div class='price'>
+                                        <h3>$ {$row['Price']}</h3>
+                                    </div>
+                                    <div>
+                                        <input hidden name='product_id' type='text' value='{$row['product_id']}'>
+                                        <button id='btn' type='submit'>Add To Cart</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>";
         }
         echo $output;
         exit;

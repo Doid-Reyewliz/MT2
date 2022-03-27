@@ -5,7 +5,7 @@ require_once "action/db.php";
 if (isset($_SESSION['id'])) {
      $id = $_SESSION['id'];
      $db = new Dbase();
-     $sql = $db->query("SELECT users.Login, users.Password, users.Name, users.Gender, users.Birthday, users.Phone, users.Question, users.Answer, users.Address, rank.rank as Rank, users.End_of_discount, users.Image FROM users INNER JOIN rank ON users.Rank_id = rank.rank_id WHERE users.user_id = '$id'");
+     $sql = $db->query("SELECT users.Login, users.Password, users.Name, users.Gender, users.Birthday, users.Phone, users.Question, users.Answer, users.Address, rank.rank as Rank, users.End_of_discount, users.Image FROM users FULL OUTER JOIN rank ON users.Rank_id = rank.rank_id WHERE users.user_id = '$id'");
 
      foreach($sql as $key){
           $login = $key['Login'];

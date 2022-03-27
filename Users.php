@@ -39,7 +39,7 @@ if ($_SESSION['role'] == 3) {
             <?php
             require_once "action/db.php";
             $db = new Dbase();
-            $q = $db->query("SELECT * FROM users INNER JOIN rank ON users.rank_id = rank.rank_id");
+            $q = $db->query("SELECT * FROM users LEFT JOIN rank ON users.rank_id = rank.rank_id");
 
             echo "<table><tr><th>ID</th><th>Email</th><th>Password</th><th>Name</th><th>Gender</th><th>Birthday</th><th>Address</th><th>Phone</th><th>Question</th><th>Answer</th><th>Rank</th><th>End_of_discount</th><th>Action</th></tr>";
             if (!empty($q)) {

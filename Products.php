@@ -50,6 +50,7 @@
                     <option value="Men">Men</option>
                     <option value="Women">Women</option>
                     <option value="Kids">Kids</option>
+                    <option value="500-600">$500-600</option>
                 </select>
             </div>
 
