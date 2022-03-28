@@ -340,7 +340,7 @@ body #options #filter .filter_select {
 }
 
 body #options #filter .filter_select option {
-  background-color: purple;
+  color: #202020;
 }
 
 body #options #sort {
@@ -368,7 +368,7 @@ body #options #sort .sort_select {
 }
 
 body #options #sort .sort_select option {
-  background-color: purple;
+  color: #202020;
 }
 
 body .order {

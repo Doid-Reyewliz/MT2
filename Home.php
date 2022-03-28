@@ -123,7 +123,7 @@
     <h1>Feedbacks</h1>
     <div class="feed">
         <?php
-            $sql = $db->sql("SELECT products.Image, products.product_id as product_id, users.Name, products.Name as p_name, users.user_id, orders.comment FROM orders FULL OUTER JOIN products ON orders.product_id = products.product_id INNER JOIN users ON orders.user_id = users.user_id WHERE orders.comment IS NOT NULL");
+            $sql = $db->sql("SELECT products.Image, products.product_id as product_id, users.Name, products.Name as p_name, users.user_id, orders.comment FROM orders INNER JOIN products ON orders.product_id = products.product_id INNER JOIN users ON orders.user_id = users.user_id WHERE orders.comment IS NOT NULL");
 
             if(mysqli_num_rows($sql) != 0){
                 foreach($sql as $row){

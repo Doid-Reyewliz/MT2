@@ -5,7 +5,7 @@ require_once "action/db.php";
 if (isset($_SESSION['id'])) {
      $id = $_SESSION['id'];
      $db = new Dbase();
-     $sql = $db->query("SELECT users.Login, users.Password, users.Name, users.Gender, users.Birthday, users.Phone, users.Question, users.Answer, users.Address, rank.rank as Rank, users.End_of_discount, users.Image FROM users FULL OUTER JOIN rank ON users.Rank_id = rank.rank_id WHERE users.user_id = '$id'");
+     $sql = $db->query("SELECT users.Login, users.Password, users.Name, users.Gender, users.Birthday, users.Phone, users.Question, users.Answer, users.Address, rank.rank as Rank, users.End_of_discount, users.Image FROM users LEFT JOIN rank ON users.Rank_id = rank.rank_id WHERE users.user_id = '$id'");
 
      foreach($sql as $key){
           $login = $key['Login'];
@@ -35,6 +35,17 @@ if (isset($_SESSION['id'])) {
                foreach($sql_price as $price){
                    $count += $price['Price'] * $number;
                }
+
+               $Orders = $db->query("SELECT COUNT(user_id) as county FROM orders WHERE user_id = '$id'");
+               $Spent = $db->query("SELECT SUM(orders.number * products.Price) as sumy FROM orders INNER JOIN products ON orders.product_id = products.product_id WHERE orders.user_id = '$id'");
+
+          }
+          foreach($Orders as $t){
+               $totalOrders = ($t['county']);
+          }
+     
+          foreach($Spent as $t){
+              $totalSpent = ($t['sumy']);
           }
      }
      
@@ -45,7 +56,7 @@ if (isset($_SESSION['id'])) {
                $rank_id = $sql_rank[$all_ranks]['rank_id'];
                $rank_n = $sql_rank[$all_ranks]['rank'];
 
-               // $upd = $db->sql("UPDATE users SET Rank_id =  '$rank_id' AND End_of_discount = CURRENT_DATE() WHERE user_id = '$id'");
+               //? $upd = $db->sql("UPDATE users SET Rank_id =  '$rank_id' AND End_of_discount = CURRENT_DATE() WHERE user_id = '$id'");
           }
      }
 
@@ -90,6 +101,8 @@ if (isset($_SESSION['id'])) {
                                    "</span>\nAnswer: <span>" . $ans .
                                    "</span>\nRank: <span>" . $rank_n .
                                    "</span>\nDiscount: <span>" . $discount . "%" .
+                                   "</span>\nTotal number of orders: <span>" . $totalOrders .
+                                   "</span>\nTotal spent: <span>" . "$" . $totalSpent .
                                    "</span>\nEnd of discount: <span>" . $end_d);
                                    ?>
                               <p>
