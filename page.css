@@ -429,7 +429,8 @@ body .order .b_products .product {
       -ms-flex-direction: column;
           flex-direction: column;
   border-radius: 10px;
-  margin-bottom: 1%;
+  margin-bottom: 2%;
+  margin-top: 2%;
   width: 25%;
 }
 
