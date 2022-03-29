@@ -165,7 +165,7 @@ function googleTranslateElementInit() {
         <div class="contact">
             <div class="text">
                 <a>GIFT CARDS</a>
-                <a>PROMOEIONS</a>
+                <a>PROMOTIONS</a>
                 <a>FIND A STORE</a>
                 <a>SIGN UP FOR EMAIL</a>
                 <a>BECOME A MEMBER</a>

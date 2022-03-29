@@ -12,9 +12,9 @@ if (isset($_POST['select'])) {
         $image = "image/$row[Image]";
     }
     echo $image;
-} elseif (isset($_POST['text'], $_POST['artext'])) {
+} elseif (isset($_POST['text'], $_POST['areaText'])) {
     $product_id = $_POST['text'];
-    $text = $_POST['artext'];
+    $text = $_POST['areaText'];
     $user_id = $_SESSION['id'];
 
     $upd = $db->sql("UPDATE `orders` SET `comment`='$text' WHERE `user_id` = '$user_id' AND `product_id` = '$product_id'");

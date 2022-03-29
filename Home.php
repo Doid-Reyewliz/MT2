@@ -155,9 +155,9 @@ $(document).ready(function(){
         var el = this;
         var user_id = $(this).data('user_id');
         var product_id = $(this).data('product_id');
-        var confirma = confirm("Are you sure?");
+        var confirm = confirm("Are you sure?");
 
-        if(confirma == true){
+        if(confirm == true){
             $.ajax({
                 url: 'action/del.php',
                 type: 'POST',
@@ -182,7 +182,7 @@ $(document).ready(function(){
         <div class="contact">
             <div class="text">
                 <a>GIFT CARDS</a>
-                <a>PROMOEIONS</a>
+                <a>PROMOTIONS</a>
                 <a>FIND A STORE</a>
                 <a>SIGN UP FOR EMAIL</a>
                 <a>BECOME A MEMBER</a>

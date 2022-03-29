@@ -39,7 +39,7 @@ $db = new Dbase();
 <body>
     <div class="cont">
         <h1>FeedBack</h1>
-        <div class="coment">
+        <div class="comment">
             <div class="p_search">
                 <select name="select" id="sel">
                     <option disabled selected>Choose Snicker</option>
@@ -57,7 +57,7 @@ $db = new Dbase();
                     <img id="img" src="">
                 </div>
                 <div class="com">
-                    <textarea name="text" id="artext" cols="30" rows="10" placeholder="Text..."></textarea>
+                    <textarea name="text" id="areaText" cols="30" rows="10" placeholder="Text..."></textarea>
                     <input hidden type="text" id="text" value="">
                     <button id="sub" type="submit">Sent</button>
                 </div>
@@ -127,7 +127,7 @@ $(document).ready(function(){
     });
 
     $('#sub').click(function(){
-        var artext = $('#artext').val();
+        var areaText = $('#areaText').val();
         var text = $('#sel').val();
 
         $.ajax({
@@ -135,7 +135,7 @@ $(document).ready(function(){
             method:'POST',
             cache: false,
             data:{
-                artext:artext,
+                areaText:areaText,
                 text:text
             },
             success:function(response){
@@ -156,7 +156,7 @@ $(document).ready(function(){
         <div class="contact">
             <div class="text">
                 <a>GIFT CARDS</a>
-                <a>PROMOEIONS</a>
+                <a>PROMOTIONS</a>
                 <a>FIND A STORE</a>
                 <a>SIGN UP FOR EMAIL</a>
                 <a>BECOME A MEMBER</a>
