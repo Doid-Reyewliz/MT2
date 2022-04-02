@@ -4,7 +4,7 @@ session_start();
 require_once "db.php";
 $db = new Dbase();
 
-//Edit User Information
+// Edit User Information
 if(isset($_POST['log'], $_POST['pass'], $_POST['name'], $_POST['gen'], $_POST['bday'], $_POST['quest'])){
 	$id = $_SESSION['id'];
 	$log = $_POST['log'];

@@ -290,13 +290,12 @@ body #options #search .search {
       -ms-grid-row-align: center;
       align-self: center;
   width: 100%;
-  height: 25px;
+  height: 35px;
   border-radius: 10px;
   background-size: 25px;
   color: #fff;
   background-repeat: no-repeat;
   background-position: right;
-  background-image: url("https://img.icons8.com/fluent/48/000000/search.png");
 }
 
 body #options #search .search::-webkit-input-placeholder {
@@ -1410,7 +1409,7 @@ body .cont {
           align-items: center;
 }
 
-body .cont .coment {
+body .cont .comment {
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
   background: rgba(255, 255, 255, 0.1);
@@ -1433,7 +1432,7 @@ body .cont .coment {
   padding: 3% 3%;
 }
 
-body .cont .coment button {
+body .cont .comment button {
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
   background: rgba(255, 255, 255, 0.1);
@@ -1450,13 +1449,13 @@ body .cont .coment button {
   cursor: pointer;
 }
 
-body .cont .coment button:hover {
+body .cont .comment button:hover {
   letter-spacing: 2px;
   -webkit-transition: .4s;
   transition: .4s;
 }
 
-body .cont .coment .p_search {
+body .cont .comment .p_search {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1471,7 +1470,7 @@ body .cont .coment .p_search {
           justify-content: space-evenly;
 }
 
-body .cont .coment .p_search select {
+body .cont .comment .p_search select {
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
   background: rgba(255, 255, 255, 0.1);
@@ -1483,7 +1482,7 @@ body .cont .coment .p_search select {
   border-radius: 4px;
 }
 
-body .cont .coment .div {
+body .cont .comment .div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1497,7 +1496,7 @@ body .cont .coment .div {
   margin-top: 5%;
 }
 
-body .cont .coment .div div {
+body .cont .comment .div div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1507,13 +1506,13 @@ body .cont .coment .div div {
   margin-right: 5%;
 }
 
-body .cont .coment .div div img {
+body .cont .comment .div div img {
   border: none;
   width: 250px;
   height: 200px;
 }
 
-body .cont .coment .div .com {
+body .cont .comment .div .com {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1525,7 +1524,7 @@ body .cont .coment .div .com {
           flex-direction: column;
 }
 
-body .cont .coment .div .com textarea {
+body .cont .comment .div .com textarea {
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
   background: rgba(255, 255, 255, 0.1);
@@ -1539,19 +1538,19 @@ body .cont .coment .div .com textarea {
   resize: none;
 }
 
-body .cont .coment .div .com textarea::-webkit-input-placeholder {
+body .cont .comment .div .com textarea::-webkit-input-placeholder {
   color: #000;
 }
 
-body .cont .coment .div .com textarea:-ms-input-placeholder {
+body .cont .comment .div .com textarea:-ms-input-placeholder {
   color: #000;
 }
 
-body .cont .coment .div .com textarea::-ms-input-placeholder {
+body .cont .comment .div .com textarea::-ms-input-placeholder {
   color: #000;
 }
 
-body .cont .coment .div .com textarea::placeholder {
+body .cont .comment .div .com textarea::placeholder {
   color: #000;
 }
 

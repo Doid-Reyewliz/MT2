@@ -56,7 +56,7 @@
 
             if (mysqli_num_rows($select) > 0) {
 
-                $sql = $db->query("SELECT basket.number, basket.product_id, basket.Size, products.Image, products.Name, products.Price, products.Quantity FROM basket INNER JOIN products ON basket.product_id = products.product_id WHERE basket.user_id = '$user_id'");
+                $sql = $db->query("SELECT basket.number, basket.product_id, basket.Size, products.Image, products.Name, products.Price, products.Quantity FROM basket CROSS JOIN products ON basket.product_id = products.product_id WHERE basket.user_id = '$user_id'");
 
                 foreach ($sql as $row) {
                     $price = $db->query("SELECT basket.number * products.Price as total_price FROM basket INNER JOIN products ON basket.product_id = products.product_id WHERE products.product_id = {$row['product_id']} ");

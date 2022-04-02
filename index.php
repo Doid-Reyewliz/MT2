@@ -26,6 +26,8 @@
                         if (isset($_GET['cor'])) { ?>
                             <span class="cor"><?php echo $_GET['cor']; ?></span>
                         <?php }
+                        
+
 
                         if(isset($_COOKIE["log"]) && isset($_COOKIE["pass"])){?>
                             <input name="log" id="log" type="email" placeholder="Email" value="<?php echo $_COOKIE["log"]; ?>">
@@ -39,7 +41,7 @@
 
                         <button name="submit" id="submit" type="submit">Submit</button>
                         <p>Forget Password ? <a href="Forgot.php">Reset</a></p>
-                        <p>Don't have an accouunt ? <a href="Register.php">Sign Up</a></p>
+                        <p>Don't have an account ? <a href="Register.php">Sign Up</a></p>
                     </form>
                     <form class="f_guest" action="action/lg.php" method="POST" name="form">
                         <input hidden type="text" name="g_log" value="guest@mail.com">

@@ -55,7 +55,7 @@
             </div>
 
             <div id="search">
-                <input name="search" class="search" type="text" autocomplete="off" placeholder=" Search">
+                <input name="search" class="search" type="search" autocomplete="off" placeholder=" Search">
             </div>
     
             <div id="sort">

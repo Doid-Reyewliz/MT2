@@ -259,13 +259,13 @@ body {
                 @include glass;
                 align-self: center;
                 width: 100%;
-                height: 25px;
+                height: 35px;
                 border-radius: 10px;
                 background-size: 25px;
                 color: #fff;
                 background-repeat: no-repeat;
                 background-position: right;
-                background-image: url("https://img.icons8.com/fluent/48/000000/search.png");
+                // background-image: url("https://img.icons8.com/fluent/48/000000/search.png");
                     
                 &::placeholder{
                     color: #fff;
