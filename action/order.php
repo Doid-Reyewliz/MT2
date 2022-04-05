@@ -12,7 +12,7 @@ if(mysqli_num_rows($sel) > 0){
         $product_id = $row['product_id'];
         $number = $row['number'];
 
-        $db->sql("INSERT INTO orders (`order_id`, `user_id`, `product_id`, `number`, `date`, `time`, `status`) VALUES ('', '$user_id', '$product_id', '$number', CURRENT_DATE(), CURRENT_TIME(), 'In Process')");
+        $db->sql("INSERT INTO orders (`user_id`, `product_id`, `number`, `date`, `time`, `status`) VALUES ('$user_id', '$product_id', '$number', CURRENT_DATE(), CURRENT_TIME(), 'In Process')");
         $db->sql("CALL subtract_quantity($product_id, $number)");
     }
 }

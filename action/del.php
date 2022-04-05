@@ -22,7 +22,7 @@ if(isset($_POST['f_u'], $_POST['f_n'])){
     $u_id = $_POST['u_id'];
     $p_id = $_POST['p_id'];
 
-    $sql = $db->query("UPDATE orders SET comment='' WHERE user_id = '$u_id' AND product_id='$p_id'");
+    $sql = $db->query("UPDATE orders SET comment = NULL WHERE user_id = '$u_id' AND product_id='$p_id'");
 }
 
 if(isset($_POST['product_id'])){
